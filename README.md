@@ -1,7 +1,7 @@
 # Sugarbetes - Manage diabetes precisely, easier
 ## Proiect de licenta
 
-##Functionalitati:
+###Functionalitati:
 
 1. Creare cont + autentificare
 2. Vizualizare detalii pacient, atat personale, cat si referitoare la schema de tratament
