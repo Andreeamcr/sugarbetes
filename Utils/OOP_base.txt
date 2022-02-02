@@ -1,0 +1,56 @@
+void main() {
+  //creating a normal car
+  Car car = Car();
+  car.drive();
+
+  //creating a levitating car
+  LevitatingCar leviCar = LevitatingCar();
+  print(leviCar
+      .nr_of_seats); //Here i demonstrate the inheritance of nr_of_seats property
+  leviCar.drive(); //overriding the drive() function
+
+  //creating a self driving car
+  SelfDrivingCar smartCar = SelfDrivingCar('George Devereux');
+  smartCar.drive();
+}
+
+class Car {
+  int nr_of_seats = 5;
+
+  void drive() {
+    print('wheels moving');
+  }
+}
+
+class ElectricCar extends Car {
+  int battery_level = 100;
+
+  void recharge() {
+    battery_level = 100;
+  }
+}
+
+class LevitatingCar extends Car {
+  //overriding the function inherited from the parent class
+  @override
+  void drive() {
+    print('car is floating');
+  }
+}
+
+class SelfDrivingCar extends Car {
+  String destination = '';
+  //constructor
+  SelfDrivingCar(String userSetDestination) {
+    destination = userSetDestination;
+  }
+
+  //overloading the function by using super keyword
+  @override
+  void drive() {
+    super.drive(); //here is brought the drive() function from the parent class
+    print(
+        'wheels steering by themselves to reach at $destination'); //then the functionality of drive()
+    // is extended => overloaded function
+  }
+}
