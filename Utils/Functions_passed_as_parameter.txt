@@ -1,0 +1,49 @@
+Functions passed by parameter, simple example
+
+void main() {
+  
+  int result = calculator(3,5,add);
+  print(result);
+  
+}
+
+final Function calculator = (int n1, int n2, Function calculation){
+  return calculation(n1,n2);
+};
+
+int add(int n1, int n2){
+  return n1 + n2;
+}
+
+int multiply(int n1, int n2){
+  return n1 * n2;
+}
+
+---------------------------------------------------------------------------------------------
+Functions passed by parameter using classes
+
+void main() {
+  
+  Car mySlowCar = Car(drive:slowDriving);//I created an object which has a parameter setted as a 
+  //slowDriving function; it does not need to put any parentheses, just mention the name of the function
+  mySlowCar.drive(); //here i called the function(triggered), so i put parantheses, 
+  //in case there are parameters needed to be passed
+  Car myFastCar = Car(drive:fastDriving);
+  myFastCar.drive();
+  
+}
+
+class Car {
+  
+  Car({required this.drive}); //the constructor of the class requires a class parameter
+  Function drive; //the property of the class is a function
+  
+}
+
+void slowDriving(){
+  print('Driving slowly');
+}
+
+void fastDriving(){
+  print('Driving super fast');
+}
