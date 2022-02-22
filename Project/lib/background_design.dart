@@ -1,23 +1,27 @@
 import 'package:flutter/material.dart';
+import 'constants.dart';
 
 class BackgroundColorWidget extends StatelessWidget {
-  BackgroundColorWidget({required this.backgroundChild});
-  final Widget backgroundChild;
+  static final BackgroundColorWidget _singleton =
+      BackgroundColorWidget._internal();
+
+  factory BackgroundColorWidget() {
+    return _singleton;
+  }
+
+  BackgroundColorWidget._internal();
   @override
   Widget build(BuildContext context) {
-    return Container(
-      child: backgroundChild,
-      decoration: BoxDecoration(
+    return Stack(children: [
+      Container(
+          decoration: BoxDecoration(
         gradient: LinearGradient(
           begin: Alignment.topRight,
           end: Alignment.bottomLeft,
-          colors: [
-            Color(0xFF255B7C),
-            Color(0xFF77E6B6),
-          ],
+          colors: [kGradient1, kGradient2],
         ),
-      ),
-    );
+      ))
+    ]);
   }
 }
 

@@ -1,21 +1,29 @@
 import 'package:flutter/material.dart';
-import 'welcome_page.dart';
-import 'background_design.dart';
+import 'package:sugarbetes/screens/sign_up_page.dart';
+import 'screens/welcome_page.dart';
 
 void main() => runApp(MyApp());
 
 class MyApp extends StatelessWidget {
   //const MyApp({Key? key}) : super(key: key);
+
   // This widget is the root of your application.
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Flutter Demo',
-      theme: ThemeData(
-        primarySwatch: Colors.teal,
-        visualDensity: VisualDensity.adaptivePlatformDensity,
+      theme: ThemeData.dark().copyWith(
+        primaryColor: Colors.teal,
+        appBarTheme: AppBarTheme(color: Color(0xFF090C22)),
+
+        // backgroundColor: BackgroundColorWidget(),
+        //colorScheme: ColorScheme.fromSwatch(primarySwatch: Colors.red),
       ),
-      home: WelcomePage(),
+      initialRoute: '/welcome',
+      routes: {
+        '/welcome': (context) => WelcomePage(),
+        '/signUp': (context) => SignUpPage(),
+      },
+      // home: WelcomePage(),
     );
   }
 }
