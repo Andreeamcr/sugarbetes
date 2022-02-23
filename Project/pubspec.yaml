@@ -45,6 +45,18 @@ flutter:
     - family: IndieFlower
       fonts:
         - asset: assets/fonts/IndieFlower-Regular.ttf
+
+    - family: ArchitectsDaughter
+      fonts:
+        - asset: assets/fonts/ArchitectsDaughter-Regular.ttf
+
+    - family: MontserratAlternates
+      fonts:
+        - asset: assets/fonts/MontserratAlternates-Regular.ttf
+
+    - family: LobsterTwo-Regular
+      fonts:
+        - asset: assets/fonts/LobsterTwo-Regular.ttf
   # An image asset can refer to one or more resolution-specific "variants", see
   # https://flutter.dev/assets-and-images/#resolution-aware.
 
