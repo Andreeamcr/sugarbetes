@@ -1,9 +1,9 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
+import 'package:sugarbetes/components/custom_circle_avatar.dart';
 import '../background_design.dart';
-import 'package:sugarbetes/constants.dart';
-import 'package:sugarbetes/components/custom_clipper.dart';
+import 'package:sugarbetes/utils/constants.dart';
 import 'package:sugarbetes/components/reusable_button_welcome.dart';
 
 class WelcomePage extends StatefulWidget {
@@ -38,18 +38,7 @@ class _WelcomePageState extends State<WelcomePage> {
               ),
               Expanded(
                 flex: 2,
-                child: CircleAvatar(
-                  child: ClipOval(
-                    clipper: MyClipper(),
-                    child: Image.asset(
-                      'assets/images/BloodSugar.jpg',
-                      height: 150,
-                      width: 150,
-                      fit: BoxFit.cover,
-                    ),
-                  ),
-                  radius: 75,
-                ),
+                child: MyCircleAvatar(),
               ),
               Expanded(
                 flex: 0,
@@ -79,7 +68,9 @@ class _WelcomePageState extends State<WelcomePage> {
                   child: ReusableWelcomeButton(
                     color: kGradient2,
                     onPress: () {
-                      setState(() {});
+                      setState(() {
+                        Navigator.pushNamed(context, '/signIn');
+                      });
                     },
                     buttonChild: Text(
                       'Sign in',

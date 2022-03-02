@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'constants.dart';
+import 'utils/constants.dart';
 
 class BackgroundColorWidget extends StatelessWidget {
   static final BackgroundColorWidget _singleton =

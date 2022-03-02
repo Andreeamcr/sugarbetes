@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sugarbetes/screens/sign_in_page.dart';
 import 'package:sugarbetes/screens/sign_up_page.dart';
 import 'screens/welcome_page.dart';
 
@@ -18,6 +19,7 @@ class MyApp extends StatelessWidget {
       routes: {
         '/welcome': (context) => WelcomePage(),
         '/signUp': (context) => SignUpPage(),
+        '/signIn': (context) => SignInPage(),
       },
       // home: WelcomePage(),
     );

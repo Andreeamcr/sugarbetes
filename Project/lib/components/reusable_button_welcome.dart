@@ -2,7 +2,7 @@
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sugarbetes/constants.dart';
+import 'package:sugarbetes/utils/constants.dart';
 
 class ReusableWelcomeButton extends StatelessWidget {
   ReusableWelcomeButton(
