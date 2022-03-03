@@ -86,7 +86,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       BottomButton(
                         label: 'Create account',
                         onPress: () {
-                          print('Hello!');
+                          // print('Hello!');
                         },
                       ),
                     ],
