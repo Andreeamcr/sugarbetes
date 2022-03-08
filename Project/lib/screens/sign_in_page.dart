@@ -4,6 +4,7 @@ import 'package:sugarbetes/components/custom_circle_avatar.dart';
 import 'package:sugarbetes/components/form_field.dart';
 import 'package:sugarbetes/utils/constants.dart';
 import 'package:sugarbetes/background_design.dart';
+import 'home_page.dart';
 
 class SignInPage extends StatefulWidget {
   @override
@@ -63,11 +64,48 @@ class _SignInPageState extends State<SignInPage> {
                             obscure: true,
                             suggestions: false),
                         SizedBox(
-                          height: 20.0,
+                          height: 15.0,
+                        ),
+                        Padding(
+                          padding: EdgeInsets.only(left: 20.0),
+                          child: InkWell(
+                            child: Text(
+                              "I forgot my password",
+                              style: kCreateAccountText,
+                            ),
+                            onTap: () {
+                              print("I forgot my password");
+                            },
+                          ),
                         ),
                         BottomButton(
-                          label: 'Log In',
-                          onPress: () => print('Log in button pressed'),
+                            label: 'Log In',
+                            onPress: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => HomePage(),
+                                ),
+                              );
+                            }),
+                        Row(
+                          children: [
+                            Padding(
+                              padding: EdgeInsets.only(left: 15.0, right: 8),
+                              child: Text(
+                                "You don't have an account?",
+                                style: kNotHavingAccountText,
+                              ),
+                            ),
+                            InkWell(
+                                child: Text(
+                                  "Create account",
+                                  style: kCreateAccountText,
+                                ),
+                                onTap: () {
+                                  Navigator.pushNamed(context, '/signUp');
+                                }),
+                          ],
                         ),
                       ],
                     ),

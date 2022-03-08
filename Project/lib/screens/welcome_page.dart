@@ -49,6 +49,7 @@ class _WelcomePageState extends State<WelcomePage> {
                     onPress: () {
                       setState(() {
                         Navigator.pushNamed(context, '/signUp');
+                        //TODO: replace home route with signUp route
                       });
                     },
                     buttonChild: Text(

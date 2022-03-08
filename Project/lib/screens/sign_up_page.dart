@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -86,7 +88,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       BottomButton(
                         label: 'Create account',
                         onPress: () {
-                          // print('Hello!');
+                          print('Hello!');
                         },
                       ),
                     ],

@@ -1,7 +1,9 @@
 import 'package:flutter/material.dart';
+import 'package:sugarbetes/screens/home_page.dart';
 import 'package:sugarbetes/screens/sign_in_page.dart';
 import 'package:sugarbetes/screens/sign_up_page.dart';
 import 'screens/welcome_page.dart';
+import 'package:flutter/services.dart';
 
 void main() => runApp(MyApp());
 
@@ -20,6 +22,7 @@ class MyApp extends StatelessWidget {
         '/welcome': (context) => WelcomePage(),
         '/signUp': (context) => SignUpPage(),
         '/signIn': (context) => SignInPage(),
+        '/home': (context) => HomePage(),
       },
       // home: WelcomePage(),
     );
