@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'utils/constants.dart';
+import 'constants.dart';
 
 class BackgroundColorWidget extends StatelessWidget {
   static final BackgroundColorWidget _singleton =
@@ -14,13 +14,14 @@ class BackgroundColorWidget extends StatelessWidget {
   Widget build(BuildContext context) {
     return Stack(children: [
       Container(
-          decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topRight,
-          end: Alignment.bottomLeft,
-          colors: [kGradient1, kGradient2],
+        decoration: BoxDecoration(
+          gradient: LinearGradient(
+            begin: Alignment.topRight,
+            end: Alignment.bottomLeft,
+            colors: [kGradient1, kGradient2],
+          ),
         ),
-      ))
+      )
     ]);
   }
 }

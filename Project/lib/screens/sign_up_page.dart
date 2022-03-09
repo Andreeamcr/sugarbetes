@@ -1,10 +1,8 @@
-import 'dart:async';
-
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:sugarbetes/utils/constants.dart';
-import '../background_design.dart';
+import '../utils/background_design.dart';
 import 'package:sugarbetes/components/custom_circle_avatar.dart';
 import 'package:sugarbetes/components/form_field.dart';
 import 'package:sugarbetes/components/bottom_button.dart';
@@ -20,6 +18,16 @@ class _SignUpPageState extends State<SignUpPage> {
     return Stack(children: [
       BackgroundColorWidget(),
       Scaffold(
+        appBar: AppBar(
+          shadowColor: Colors.transparent,
+          leading: IconButton(
+            icon: Icon(Icons.arrow_back),
+            onPressed: () {
+              Navigator.pop(context);
+            },
+          ),
+          backgroundColor: Colors.transparent,
+        ),
         extendBodyBehindAppBar: true,
         backgroundColor: Colors.transparent,
         body: Column(

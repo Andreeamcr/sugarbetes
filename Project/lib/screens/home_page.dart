@@ -36,17 +36,15 @@ class _HomePageState extends State<HomePage> {
                   child: Row(
                     children: [
                       Expanded(
-                        child: ReusableHomeCard(
-                          color: kCardColor1,
-                          radius: BorderRadius.only(
-                              topRight: Radius.circular(10.0)),
-                          onPress: () => print('HELLOO'),
-                          cardChild: IconTextWidget(
-                            icon: Icons.opacity,
-                            label: 'Blood Glucose',
-                          ),
+                          child: ReusableHomeCard(
+                        color: kCardColor1,
+                        radius: BorderRadius.zero,
+                        onPress: () => print('HELLO1'),
+                        cardChild: IconTextWidget(
+                          icon: Icons.person,
+                          label: 'Profile',
                         ),
-                      ),
+                      )),
                       Expanded(
                         child: ReusableHomeCard(
                           color: kBottomCardColor,
@@ -92,15 +90,17 @@ class _HomePageState extends State<HomePage> {
                   child: Row(
                     children: [
                       Expanded(
-                          child: ReusableHomeCard(
-                        color: kCardColor1,
-                        radius: BorderRadius.zero,
-                        onPress: () => print('HELLO5'),
-                        cardChild: IconTextWidget(
-                          icon: Icons.person,
-                          label: 'Profile',
+                        child: ReusableHomeCard(
+                          color: kCardColor1,
+                          radius: BorderRadius.only(
+                              topRight: Radius.circular(10.0)),
+                          onPress: () => print('HELLO5'),
+                          cardChild: IconTextWidget(
+                            icon: Icons.opacity,
+                            label: 'Blood Glucose',
+                          ),
                         ),
-                      )),
+                      ),
                       Expanded(
                           child: ReusableHomeCard(
                         color: kBottomCardColor,

@@ -3,7 +3,7 @@ import 'package:sugarbetes/components/bottom_button.dart';
 import 'package:sugarbetes/components/custom_circle_avatar.dart';
 import 'package:sugarbetes/components/form_field.dart';
 import 'package:sugarbetes/utils/constants.dart';
-import 'package:sugarbetes/background_design.dart';
+import 'package:sugarbetes/utils/background_design.dart';
 import 'home_page.dart';
 
 class SignInPage extends StatefulWidget {
@@ -18,6 +18,16 @@ class _SignInPageState extends State<SignInPage> {
       children: [
         BackgroundColorWidget(),
         Scaffold(
+          appBar: AppBar(
+            shadowColor: Colors.transparent,
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
+            backgroundColor: Colors.transparent,
+          ),
           extendBodyBehindAppBar: true,
           backgroundColor: Colors.transparent,
           body: Column(

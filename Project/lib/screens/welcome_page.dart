@@ -2,7 +2,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/rendering.dart';
 import 'package:sugarbetes/components/custom_circle_avatar.dart';
-import '../background_design.dart';
+import '../utils/background_design.dart';
 import 'package:sugarbetes/utils/constants.dart';
 import 'package:sugarbetes/components/reusable_button_welcome.dart';
 
