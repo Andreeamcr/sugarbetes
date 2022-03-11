@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'constants.dart';
+import 'package:sugarbetes/utils/constants.dart';
 
 class BackgroundColorWidget extends StatelessWidget {
   static final BackgroundColorWidget _singleton =
@@ -26,22 +27,29 @@ class BackgroundColorWidget extends StatelessWidget {
   }
 }
 
-//in case i'll do the circles from the corners
-// class MyPainter extends CustomPainter {
-//   @override
-//   void paint(Canvas canvas, Size size) {
-//     final height = size.height;
-//     final width = size.width;
-//     Paint paint = Paint();
-//
-//     Path firstOvalPath = Path();
-//     firstOvalPath.moveTo(10.0, 0);
-//     paint.color = Color(0xFF6FD394);
-//     canvas.drawPath(firstOvalPath, paint);
-//   }
-//
-//   @override
-//   bool shouldRepaint(CustomPainter oldDelegate) {
-//     return oldDelegate != this;
-//   }
-// }
+class Mypainter extends CustomPainter {
+  @override
+  void paint(Canvas canvas, Size size) {
+    final height = size.height;
+    final width = size.width;
+    Paint paint = Paint();
+    Path ovalPath = Path();
+    ovalPath.moveTo(0, height * 0.3);
+    ovalPath.quadraticBezierTo(
+        width * 0.5, height * 0.5, width * 1, height * 0.3);
+    //the first 2 parameters are for the direction of stretching of the curve; the last 2 parameters are for the final point
+    paint.color = kFullNavyBlue;
+    canvas.drawPath(ovalPath, paint);
+    Path rectPath = Path();
+    rectPath.moveTo(0, 0);
+    rectPath.addRect(Rect.fromLTRB(0, 0, width, height * 0.3));
+    paint.color = kFullNavyBlue;
+    canvas.drawPath(rectPath, paint);
+  }
+
+  @override
+  bool shouldRepaint(covariant CustomPainter oldDelegate) {
+    return oldDelegate != this;
+    //I made this to not build the custom paint every time, just if the color modify for ex
+  }
+}
