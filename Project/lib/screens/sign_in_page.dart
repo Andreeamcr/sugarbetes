@@ -54,7 +54,7 @@ class _SignInPageState extends State<SignInPage> {
                       borderRadius: BorderRadius.only(
                           topLeft: Radius.circular(20.0),
                           topRight: Radius.circular(20.0)),
-                      color: kBottomCardColor),
+                      color: kFullGreen),
                   child: SingleChildScrollView(
                     child: Column(
                       crossAxisAlignment: CrossAxisAlignment.stretch,

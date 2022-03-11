@@ -37,9 +37,9 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Expanded(
                           child: ReusableHomeCard(
-                        color: kCardColor1,
+                        color: kFullNavyBlue,
                         radius: BorderRadius.zero,
-                        onPress: () => print('HELLO1'),
+                        onPress: () => Navigator.pushNamed(context, '/profile'),
                         cardChild: IconTextWidget(
                           icon: Icons.person,
                           label: 'Profile',
@@ -47,7 +47,7 @@ class _HomePageState extends State<HomePage> {
                       )),
                       Expanded(
                         child: ReusableHomeCard(
-                          color: kBottomCardColor,
+                          color: kFullGreen,
                           radius:
                               BorderRadius.only(topLeft: Radius.circular(10.0)),
                           onPress: () => print('HELLO2'),
@@ -65,7 +65,7 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Expanded(
                           child: ReusableHomeCard(
-                        color: kBottomCardColor,
+                        color: kFullGreen,
                         radius: BorderRadius.zero,
                         onPress: () => print('HELLO3'),
                         cardChild: IconTextWidget(
@@ -75,7 +75,7 @@ class _HomePageState extends State<HomePage> {
                       )),
                       Expanded(
                           child: ReusableHomeCard(
-                        color: kCardColor1,
+                        color: kFullNavyBlue,
                         radius: BorderRadius.zero,
                         onPress: () => print('HELLO4'),
                         cardChild: IconTextWidget(
@@ -91,7 +91,7 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Expanded(
                         child: ReusableHomeCard(
-                          color: kCardColor1,
+                          color: kFullNavyBlue,
                           radius: BorderRadius.only(
                               topRight: Radius.circular(10.0)),
                           onPress: () => print('HELLO5'),
@@ -103,7 +103,7 @@ class _HomePageState extends State<HomePage> {
                       ),
                       Expanded(
                           child: ReusableHomeCard(
-                        color: kBottomCardColor,
+                        color: kFullGreen,
                         radius: BorderRadius.zero,
                         onPress: () => print('HELLO6'),
                         cardChild: IconTextWidget(
