@@ -7,17 +7,19 @@ class MyCircleAvatar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return CircleAvatar(
       child: ClipOval(
         clipper: MyClipper(),
         child: Image.asset(
           imageUrl,
-          height: 150,
-          width: 150,
+          height: height * 0.22,
+          width: width * 0.4,
           fit: BoxFit.cover,
         ),
       ),
-      radius: 75,
+      radius: height * 0.11,
     );
   }
 }

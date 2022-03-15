@@ -14,6 +14,7 @@ class WelcomePage extends StatefulWidget {
 class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return Stack(
       children: [
         BackgroundColorWidget(),
@@ -28,11 +29,13 @@ class _WelcomePageState extends State<WelcomePage> {
                 child: Center(
                   child: Container(
                     // color: Colors.red,
-                    child: Text(
-                      'Welcome to Sugarbetes!',
-                      style: kWelcomeText,
+                    child: Center(
+                      child: Text(
+                        'Welcome to Sugarbetes!',
+                        style: kWelcomeText,
+                      ),
                     ),
-                    padding: EdgeInsets.only(top: 120),
+                    padding: EdgeInsets.only(top: height * 0.1),
                   ),
                 ),
               ),
@@ -45,13 +48,13 @@ class _WelcomePageState extends State<WelcomePage> {
               Expanded(
                 flex: 0,
                 child: SizedBox(
-                  height: 50,
+                  height:
+                      height * 0.08, //8% from the total height of the screen
                   child: ReusableWelcomeButton(
                     color: kGradient1,
                     onPress: () {
                       setState(() {
                         Navigator.pushNamed(context, '/signUp');
-                        //TODO: replace home route with signUp route
                       });
                     },
                     buttonChild: Text(
@@ -62,12 +65,12 @@ class _WelcomePageState extends State<WelcomePage> {
                 ),
               ),
               SizedBox(
-                height: 20,
+                height: height * 0.03,
               ),
               Expanded(
                 flex: 0,
                 child: SizedBox(
-                  height: 50,
+                  height: height * 0.08,
                   child: ReusableWelcomeButton(
                     color: kGradient2,
                     onPress: () {
@@ -83,7 +86,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 ),
               ),
               SizedBox(
-                height: 80,
+                height: height * 0.13,
               ),
             ],
           ),

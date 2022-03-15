@@ -15,8 +15,9 @@ class MyFormField extends StatelessWidget {
   final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return Padding(
-      padding: EdgeInsets.symmetric(horizontal: 15.0),
+      padding: EdgeInsets.symmetric(horizontal: width * 0.05),
       child: TextFormField(
         decoration: InputDecoration(
           border: UnderlineInputBorder(),

@@ -15,6 +15,7 @@ class SignUpPage extends StatefulWidget {
 class _SignUpPageState extends State<SignUpPage> {
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return Stack(children: [
       BackgroundColorWidget(),
       Scaffold(
@@ -40,7 +41,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     imageUrl: 'assets/images/BloodSugar.jpg',
                   ),
                   SizedBox(
-                    height: 15,
+                    height: height * 0.03,
                   ),
                   Text(
                     'Sign Up',
@@ -63,7 +64,7 @@ class _SignUpPageState extends State<SignUpPage> {
                     crossAxisAlignment: CrossAxisAlignment.stretch,
                     children: [
                       SizedBox(
-                        height: 15,
+                        height: height * 0.03,
                       ),
                       MyFormField(
                           inputLabel: 'Enter your firstname',

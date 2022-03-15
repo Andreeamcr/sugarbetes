@@ -8,14 +8,14 @@ class BottomButton extends StatelessWidget {
   final String label;
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return GestureDetector(
       onTap: onPress,
       // Future.delayed(Duration.zero, () {
       // });
       child: Container(
-        margin: EdgeInsets.only(top: 5.0),
         width: double.infinity,
-        height: 100,
+        height: height * 0.13,
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
