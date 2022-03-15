@@ -2,9 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:sugarbetes/components/custom_clipper.dart';
 
 class MyCircleAvatar extends StatelessWidget {
-  const MyCircleAvatar({
-    Key? key,
-  }) : super(key: key);
+  MyCircleAvatar({required this.imageUrl});
+  final String imageUrl;
 
   @override
   Widget build(BuildContext context) {
@@ -12,7 +11,7 @@ class MyCircleAvatar extends StatelessWidget {
       child: ClipOval(
         clipper: MyClipper(),
         child: Image.asset(
-          'assets/images/BloodSugar.jpg',
+          imageUrl,
           height: 150,
           width: 150,
           fit: BoxFit.cover,

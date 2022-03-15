@@ -42,6 +42,7 @@ flutter:
     - assets/images/logo.jpg
     - assets/images/BloodSugar.jpg
     - assets/images/sugar.jpg
+    - assets/images/user-profile.jpg
 
   fonts:
     - family: IndieFlower

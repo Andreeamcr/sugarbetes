@@ -42,7 +42,7 @@ class Mypainter extends CustomPainter {
     canvas.drawPath(ovalPath, paint);
     Path rectPath = Path();
     rectPath.moveTo(0, 0);
-    rectPath.addRect(Rect.fromLTRB(0, 0, width, height * 0.3));
+    rectPath.addRect(Rect.fromLTRB(0, 0, width, height * 0.301));
     paint.color = kFullNavyBlue;
     canvas.drawPath(rectPath, paint);
   }

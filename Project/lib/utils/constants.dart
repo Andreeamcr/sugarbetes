@@ -4,6 +4,7 @@ const Color kGradient1 = Color(0xFF255B7C);
 const Color kGradient2 = Color(0xFF77E6B6);
 const Color kFullGreen = Color(0xFF7DEB9E);
 const Color kFullNavyBlue = Color(0xFF22577A);
+
 const kWelcomeText = TextStyle(
   fontSize: 25,
   fontWeight: FontWeight.w600,
@@ -14,13 +15,19 @@ const kNotHavingAccountText = TextStyle(
   fontWeight: FontWeight.w600,
   fontFamily: 'MontserratAlternates',
 );
-const kCreateAccountText = TextStyle(
+const kHyperlinkTextStyle = TextStyle(
   fontSize: 14,
   fontWeight: FontWeight.w600,
   fontFamily: 'MontserratAlternates',
   color: Colors.blue,
 );
 const kIconTextLabel = TextStyle(
+  fontSize: 14,
+  fontWeight: FontWeight.w600,
+  fontFamily: 'MontserratAlternates',
+  color: Colors.black,
+);
+const kGenderTextStyle = TextStyle(
   fontSize: 14,
   fontWeight: FontWeight.w600,
   fontFamily: 'MontserratAlternates',

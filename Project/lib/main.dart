@@ -6,7 +6,14 @@ import 'package:sugarbetes/screens/sign_up_page.dart';
 import 'screens/welcome_page.dart';
 import 'package:flutter/services.dart';
 
-void main() => runApp(MyApp());
+void main() {
+  //these lines are for always remaining in portrait mode
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setPreferredOrientations(
+      [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
+
+  runApp(MyApp());
+}
 
 class MyApp extends StatelessWidget {
   // This widget is the root of your application.

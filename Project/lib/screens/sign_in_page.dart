@@ -36,7 +36,9 @@ class _SignInPageState extends State<SignInPage> {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    MyCircleAvatar(),
+                    MyCircleAvatar(
+                      imageUrl: 'assets/images/BloodSugar.jpg',
+                    ),
                     SizedBox(
                       height: 15,
                     ),
@@ -64,15 +66,18 @@ class _SignInPageState extends State<SignInPage> {
                           height: 35.0,
                         ),
                         MyFormField(
-                            inputLabel: 'Enter your email',
-                            icon: Icon(Icons.email),
-                            obscure: false,
-                            suggestions: true),
+                          inputLabel: 'Enter your email',
+                          icon: Icon(Icons.email),
+                          obscure: false,
+                          suggestions: true,
+                          onPressed: () {},
+                        ),
                         MyFormField(
                             inputLabel: 'Enter your password',
                             icon: Icon(Icons.password),
                             obscure: true,
-                            suggestions: false),
+                            suggestions: false,
+                            onPressed: () {}),
                         SizedBox(
                           height: 15.0,
                         ),
@@ -81,7 +86,7 @@ class _SignInPageState extends State<SignInPage> {
                           child: InkWell(
                             child: Text(
                               "I forgot my password",
-                              style: kCreateAccountText,
+                              style: kHyperlinkTextStyle,
                             ),
                             onTap: () {
                               print("I forgot my password");
@@ -110,7 +115,7 @@ class _SignInPageState extends State<SignInPage> {
                             InkWell(
                                 child: Text(
                                   "Create account",
-                                  style: kCreateAccountText,
+                                  style: kHyperlinkTextStyle,
                                 ),
                                 onTap: () {
                                   Navigator.pushNamed(context, '/signUp');

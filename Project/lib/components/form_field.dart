@@ -5,12 +5,14 @@ class MyFormField extends StatelessWidget {
       {required this.inputLabel,
       required this.icon,
       required this.obscure,
-      required this.suggestions});
+      required this.suggestions,
+      required this.onPressed});
 
   final String inputLabel;
   final Icon icon;
   final bool obscure;
   final bool suggestions;
+  final VoidCallback onPressed;
   @override
   Widget build(BuildContext context) {
     return Padding(
@@ -23,6 +25,7 @@ class MyFormField extends StatelessWidget {
         ),
         obscureText: obscure,
         enableSuggestions: suggestions,
+        onTap: onPressed,
       ),
     );
   }
