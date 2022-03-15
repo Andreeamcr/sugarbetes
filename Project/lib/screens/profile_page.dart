@@ -3,6 +3,7 @@ import 'dart:ui';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sugarbetes/components/custom_circle_avatar.dart';
+import 'package:sugarbetes/components/reusable_button_welcome.dart';
 import 'package:sugarbetes/utils/background_design.dart';
 import 'package:sugarbetes/utils/constants.dart';
 import 'package:sugarbetes/components/form_field.dart';
@@ -32,7 +33,7 @@ class _ProfilePageState extends State<ProfilePage> {
 
   void initState() {
     super.initState();
-    _changeOpacity(true);
+    opacityLevel = 1;
   }
 
   @override
@@ -212,6 +213,16 @@ class _ProfilePageState extends State<ProfilePage> {
                                       ? _changeOpacity(true)
                                       : opacityLevel = 1;
                                 }),
+                            Padding(
+                              padding: const EdgeInsets.symmetric(
+                                  vertical: 10.0, horizontal: 15.0),
+                              child: ReusableWelcomeButton(
+                                color: kFullNavyBlue,
+                                onPress: () =>
+                                    Navigator.pushNamed(context, '/insulin'),
+                                buttonChild: Text('Go to insulin page'),
+                              ),
+                            ),
                           ],
                         ),
                       ),

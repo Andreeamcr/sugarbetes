@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sugarbetes/screens/insulin_page.dart';
 import 'package:sugarbetes/screens/home_page.dart';
 import 'package:sugarbetes/screens/profile_page.dart';
 import 'package:sugarbetes/screens/sign_in_page.dart';
@@ -32,6 +33,7 @@ class MyApp extends StatelessWidget {
         '/signIn': (context) => SignInPage(),
         '/home': (context) => HomePage(),
         '/profile': (context) => ProfilePage(),
+        '/insulin': (context) => InsulinPage(),
       },
       // home: WelcomePage(),
     );
