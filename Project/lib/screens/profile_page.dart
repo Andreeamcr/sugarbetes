@@ -38,6 +38,8 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Stack(
       children: [
         BackgroundColorWidget(),
@@ -56,7 +58,7 @@ class _ProfilePageState extends State<ProfilePage> {
                 onPressed: () {
                   print('check pressed');
                 },
-                padding: EdgeInsets.only(right: 15.0),
+                padding: EdgeInsets.only(right: width * 0.05),
               )
             ],
             backgroundColor: Colors.transparent,
@@ -69,7 +71,7 @@ class _ProfilePageState extends State<ProfilePage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 SizedBox(
-                  height: 20,
+                  height: height*0.05,
                 ),
                 Expanded(
                   flex: 1,
@@ -85,7 +87,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             duration: Duration(seconds: 0),
                             opacity: opacityLevel,
                             child: Padding(
-                              padding: const EdgeInsets.only(top: 10.0),
+                              padding: EdgeInsets.only(top: height * 0.02),
                               child: InkWell(
                                 onTap: () {
                                   print('I changed the profile picture');
@@ -103,7 +105,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             opacity: opacityLevel,
                             child: Padding(
                               padding:
-                                  const EdgeInsets.symmetric(vertical: 5.0),
+                                  EdgeInsets.symmetric(vertical: height * 0.01),
                               child: Center(
                                 child: Text(
                                   'Hello Andreea!',
@@ -121,8 +123,8 @@ class _ProfilePageState extends State<ProfilePage> {
                 Expanded(
                   flex: 2,
                   child: Padding(
-                    padding: const EdgeInsets.only(
-                        top: 40, bottom: 20, left: 20, right: 20),
+                    padding: EdgeInsets.only(
+                        top: height * 0.06, bottom: height * 0.03, left: width * 0.045, right: width * 0.045),
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -133,11 +135,11 @@ class _ProfilePageState extends State<ProfilePage> {
                           crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
                             Padding(
-                              padding: const EdgeInsets.only(
-                                  top: 15.0,
-                                  left: 15.0,
-                                  right: 15.0,
-                                  bottom: 10.0),
+                              padding: EdgeInsets.only(
+                                  top: height * 0.025,
+                                  left: width * 0.03,
+                                  right: width * 0.03,
+                                  bottom: height * 0.01),
                               child: Row(
                                 children: [
                                   Expanded(
@@ -154,7 +156,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                           : Colors.white.withOpacity(0.4),
                                     ),
                                   ),
-                                  SizedBox(width: 5.0),
+                                  SizedBox(width: width * 0.02),
                                   Expanded(
                                     child: GenderSelectionCard(
                                       onPressed: () {
@@ -180,7 +182,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 onPressed: () {
                                   opacityLevel == 1
                                       ? _changeOpacity(true)
-                                      : opacityLevel = 1;
+                                      : opacityLevel;
                                 }),
                             MyFormField(
                                 inputLabel: 'Height: ',
@@ -190,7 +192,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 onPressed: () {
                                   opacityLevel == 1
                                       ? _changeOpacity(true)
-                                      : opacityLevel = 1;
+                                      : opacityLevel;
                                 }),
                             MyFormField(
                                 inputLabel: 'Weight: ',
@@ -200,7 +202,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 onPressed: () {
                                   opacityLevel == 1
                                       ? _changeOpacity(true)
-                                      : opacityLevel = 1;
+                                      : opacityLevel;
                                 }),
                             MyFormField(
                                 inputLabel:
@@ -211,11 +213,11 @@ class _ProfilePageState extends State<ProfilePage> {
                                 onPressed: () {
                                   opacityLevel == 1
                                       ? _changeOpacity(true)
-                                      : opacityLevel = 1;
+                                      : opacityLevel;
                                 }),
                             Padding(
-                              padding: const EdgeInsets.symmetric(
-                                  vertical: 10.0, horizontal: 15.0),
+                              padding: EdgeInsets.symmetric(
+                                  vertical: height * 0.02, horizontal: width * 0.03),
                               child: ReusableWelcomeButton(
                                 color: kFullNavyBlue,
                                 onPress: () =>

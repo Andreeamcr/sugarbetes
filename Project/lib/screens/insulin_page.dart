@@ -9,6 +9,7 @@ class InsulinPage extends StatefulWidget {
 class _InsulinPageState extends State<InsulinPage> {
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return Stack(
       children: [
         BackgroundColorWidget(),
@@ -27,7 +28,7 @@ class _InsulinPageState extends State<InsulinPage> {
                 onPressed: () {
                   print('check pressed');
                 },
-                padding: EdgeInsets.only(right: 15.0),
+                padding: EdgeInsets.only(right: width * 0.05),
               )
             ],
             backgroundColor: Colors.transparent,
@@ -42,6 +43,7 @@ class _InsulinPageState extends State<InsulinPage> {
                   SizedBox(
                     height: 20,
                   ),
+
                 ]),
           ),
         ),

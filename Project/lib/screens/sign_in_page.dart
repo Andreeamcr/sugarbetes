@@ -14,6 +14,8 @@ class SignInPage extends StatefulWidget {
 class _SignInPageState extends State<SignInPage> {
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Stack(
       children: [
         BackgroundColorWidget(),
@@ -40,7 +42,7 @@ class _SignInPageState extends State<SignInPage> {
                       imageUrl: 'assets/images/BloodSugar.jpg',
                     ),
                     SizedBox(
-                      height: 15,
+                      height: height * 0.03,
                     ),
                     Text(
                       'Sign In',
@@ -63,7 +65,7 @@ class _SignInPageState extends State<SignInPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         SizedBox(
-                          height: 35.0,
+                          height: height * 0.05,
                         ),
                         MyFormField(
                           inputLabel: 'Enter your email',
@@ -79,10 +81,10 @@ class _SignInPageState extends State<SignInPage> {
                             suggestions: false,
                             onPressed: () {}),
                         SizedBox(
-                          height: 15.0,
+                          height: height * 0.03,
                         ),
                         Padding(
-                          padding: EdgeInsets.only(left: 20.0),
+                          padding: EdgeInsets.only(left: width * 0.05),
                           child: InkWell(
                             child: Text(
                               "I forgot my password",
@@ -106,7 +108,7 @@ class _SignInPageState extends State<SignInPage> {
                         Row(
                           children: [
                             Padding(
-                              padding: EdgeInsets.only(left: 15.0, right: 8),
+                              padding: EdgeInsets.only(left: width * 0.05, right: width * 0.02),
                               child: Text(
                                 "You don't have an account?",
                                 style: kNotHavingAccountText,

@@ -12,12 +12,13 @@ class GenderSelectionCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double height = MediaQuery.of(context).size.height;
     return GestureDetector(
       onTap: onPressed,
       child: Container(
         decoration: BoxDecoration(
             borderRadius: BorderRadius.circular(10), color: color),
-        height: 40,
+        height: height * 0.06,
         child: Center(
             child: Text(
           genderLabel,

@@ -22,6 +22,7 @@ class ReusableHomeCard extends StatelessWidget {
           borderRadius: radius,
         ),
         child: cardChild,
+
       ),
     );
   }

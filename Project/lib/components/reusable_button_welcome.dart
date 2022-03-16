@@ -13,6 +13,8 @@ class ReusableWelcomeButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return ElevatedButton(
       onPressed: onPress,
       child: buttonChild,
@@ -23,7 +25,7 @@ class ReusableWelcomeButton extends StatelessWidget {
         primary: color,
         textStyle: kWelcomeText,
         elevation: 10,
-        padding: EdgeInsets.only(left: 50, right: 50),
+        padding: EdgeInsets.only(left: width*0.05 , right: width*0.05,top: height*0.01, bottom: height * 0.01),
       ),
     );
   }
