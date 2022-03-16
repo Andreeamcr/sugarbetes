@@ -50,7 +50,7 @@ class _HomePageState extends State<HomePage> {
                           color: kFullGreen,
                           radius:
                               BorderRadius.only(topLeft: Radius.circular(10.0)),
-                          onPress: () => print('HELLO2'),
+                          onPress: () => Navigator.pushNamed(context, '/math'),
                           cardChild: IconTextWidget(
                             icon: Icons.calculate,
                             label: 'Mathematics',

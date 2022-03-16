@@ -33,3 +33,9 @@ const kGenderTextStyle = TextStyle(
   fontFamily: 'MontserratAlternates',
   color: Colors.black,
 );
+const kMathTextStyle = TextStyle(
+  fontSize: 20,
+  fontWeight: FontWeight.w600,
+  fontFamily: 'MontserratAlternates',
+  color: Colors.black,
+);
