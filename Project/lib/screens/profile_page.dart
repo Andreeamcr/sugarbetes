@@ -219,10 +219,12 @@ class _ProfilePageState extends State<ProfilePage> {
                               padding: EdgeInsets.symmetric(
                                   vertical: height * 0.02, horizontal: width * 0.03),
                               child: ReusableWelcomeButton(
+                                width_factor: 0.08,
+                                heigth_factor: 0.01,
                                 color: kFullNavyBlue,
                                 onPress: () =>
                                     Navigator.pushNamed(context, '/insulin'),
-                                buttonChild: Text('Go to insulin page'),
+                                buttonChild: Text('''Go to insulin page'''),
                               ),
                             ),
                           ],

@@ -57,6 +57,8 @@ class _WelcomePageState extends State<WelcomePage> {
                         Navigator.pushNamed(context, '/signUp');
                       });
                     },
+                    width_factor: 0.15,
+                    heigth_factor: 0.01,
                     buttonChild: Text(
                       'Sign up',
                       style: kWelcomeText,
@@ -65,7 +67,7 @@ class _WelcomePageState extends State<WelcomePage> {
                 ),
               ),
               SizedBox(
-                height: height * 0.03,
+                height: height * 0.04,
               ),
               Expanded(
                 flex: 0,
@@ -78,6 +80,8 @@ class _WelcomePageState extends State<WelcomePage> {
                         Navigator.pushNamed(context, '/signIn');
                       });
                     },
+                    width_factor: 0.15,
+                    heigth_factor: 0.01,
                     buttonChild: Text(
                       'Sign in',
                       style: kWelcomeText,

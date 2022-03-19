@@ -33,12 +33,10 @@ class _MathPageState extends State<MathPage> {
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               children: [
                 Padding(
-                  padding: EdgeInsets.all(8.0),
+                  padding: EdgeInsets.all(width * 0.04),
                   child: Column(
                     children: [
-                    Padding(
-                      padding: EdgeInsets.all(8.0),
-                      child: Container(padding: EdgeInsets.all(height * 0.02),
+                      Container(padding: EdgeInsets.all(height * 0.02),
                         decoration: BoxDecoration(
                           borderRadius: BorderRadius.circular(20),
                           color: Colors.white.withOpacity(0.3)
@@ -47,6 +45,8 @@ class _MathPageState extends State<MathPage> {
                         1800kcal''',
                         style: kMathTextStyle,)),
                       ),
+                    SizedBox(
+                      height: height * 0.02,
                     ),
                     Container(
                       padding: EdgeInsets.all(10.0),
@@ -54,7 +54,7 @@ class _MathPageState extends State<MathPage> {
                         color: Colors.white.withOpacity(0.3),
                         borderRadius: BorderRadius.circular(20),
                       ),
-                      child: Center(child: Text('Ce este necesarul caloric (NC)? aaaaaaaaaaaaaafsevfagaervavWVevaaaaaaaaaaaaaaaaasvjhsbkcbkjabkshcbkaNCKbjbs',style: kMathTextStyle,),),
+                      child: Center(child: Text('   Ce este necesarul caloric (NC)? aaaaaaaaaaaaaafsevfagaervavWVevaaaaaaaaaaaaaaaaasvjhsbkcbkjabkshcbkaNCKbjbs',style: kMathTextStyle,),),
                      )
                   ],),
                 ),

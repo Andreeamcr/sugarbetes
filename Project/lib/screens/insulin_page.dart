@@ -164,6 +164,8 @@ class _InsulinPageState extends State<InsulinPage> {
                               padding: EdgeInsets.symmetric(
                                   vertical: height * 0.05, horizontal: width * 0.03),
                               child: ReusableWelcomeButton(
+                                width_factor: 0.08,
+                                heigth_factor: 0.02,
                                 color: kFullNavyBlue,
                                 onPress: () =>
                                     print('I pressed save button'),
