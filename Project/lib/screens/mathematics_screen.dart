@@ -75,7 +75,7 @@ class _MathPageState extends State<MathPage> {
                       "Vezi formulele de calcul folosite",
                       style: kHyperlinkTextStyle,
                     ),
-                    onTap: () => print("Here i will navigate to formulas page"),
+                    onTap: () => Navigator.pushNamed(context, "/formulas"),
                   ),
                 )
               ],
