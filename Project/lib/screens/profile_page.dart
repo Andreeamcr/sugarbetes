@@ -71,11 +71,12 @@ class _ProfilePageState extends State<ProfilePage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 SizedBox(
-                  height: height*0.05,
+                  height: height * 0.05,
                 ),
                 Expanded(
                   flex: 1,
                   child: Wrap(
+                    alignment: WrapAlignment.center,
                     children: [
                       Column(
                         mainAxisAlignment: MainAxisAlignment.center,
@@ -124,7 +125,10 @@ class _ProfilePageState extends State<ProfilePage> {
                   flex: 2,
                   child: Padding(
                     padding: EdgeInsets.only(
-                        top: height * 0.06, bottom: height * 0.03, left: width * 0.045, right: width * 0.045),
+                        top: height * 0.06,
+                        bottom: height * 0.03,
+                        left: width * 0.045,
+                        right: width * 0.045),
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -217,7 +221,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                 }),
                             Padding(
                               padding: EdgeInsets.symmetric(
-                                  vertical: height * 0.02, horizontal: width * 0.03),
+                                  vertical: height * 0.02,
+                                  horizontal: width * 0.03),
                               child: ReusableWelcomeButton(
                                 width_factor: 0.08,
                                 heigth_factor: 0.01,

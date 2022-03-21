@@ -1,10 +1,9 @@
 import 'package:flutter/material.dart';
 import 'package:sugarbetes/utils/background_design.dart';
 import 'package:sugarbetes/utils/constants.dart';
+import 'package:sugarbetes/components/math_card.dart';
 
 class MathPage extends StatefulWidget {
-
-
   @override
   _MathPageState createState() => _MathPageState();
 }
@@ -12,83 +11,77 @@ class MathPage extends StatefulWidget {
 class _MathPageState extends State<MathPage> {
   @override
   Widget build(BuildContext context) {
-    double width = MediaQuery.of(context).size.width;
     double height = MediaQuery.of(context).size.height;
     return Stack(
       children: [
         BackgroundColorWidget(),
         Scaffold(
           appBar: AppBar(
-            shadowColor: Colors.transparent,
+            title: Text(
+              "Matematica insulinei",
+              style: kMathTextStyleBold,
+            ),
             leading: IconButton(
               icon: Icon(Icons.arrow_back),
               onPressed: () => Navigator.pop(context),
             ),
-            backgroundColor: Colors.transparent,
+            backgroundColor: kFullNavyBlue,
           ),
-          extendBodyBehindAppBar: true,
           backgroundColor: Colors.transparent,
-          body:
-            Column(
+          body: SingleChildScrollView(
+            child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
-                Padding(
-                  padding: EdgeInsets.all(width * 0.04),
-                  child: Column(
-                    children: [
-                      Container(padding: EdgeInsets.all(height * 0.02),
-                        decoration: BoxDecoration(
-                          borderRadius: BorderRadius.circular(20),
-                          color: Colors.white.withOpacity(0.3)
-                        ),
-                        child: Center(child: Text('''Necesarul tau caloric/zi (NC):  
-                        1800kcal''',
-                        style: kMathTextStyle,)),
-                      ),
-                    SizedBox(
-                      height: height * 0.02,
-                    ),
-                    Container(
-                      padding: EdgeInsets.all(10.0),
-                      decoration: BoxDecoration(
-                        color: Colors.white.withOpacity(0.3),
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Center(child: Text('   Ce este necesarul caloric (NC)? aaaaaaaaaaaaaafsevfagaervavWVevaaaaaaaaaaaaaaaaasvjhsbkcbkjabkshcbkaNCKbjbs',style: kMathTextStyle,),),
-                     )
-                  ],),
+                MathTwoCardsGroup(
+                  label1: '''Necesarul tău caloric/zi (NC): ''',
+                  label2: "1800kcal",
+                  label3: '''   Ce este necesarul caloric (NC)? ''',
+                  label4:
+                      '''Reprezintă numărul de calorii necesar pentru o persoană în scopul menţinerii sau pierderii în greutate.''',
                 ),
-                Column(children: [
-                  Container(
-                  padding: EdgeInsets.symmetric(horizontal: width * 0.01, vertical: height* 0.01),
-                  decoration: BoxDecoration(
-                    borderRadius: BorderRadius.circular(20),
-                    color: Colors.red,
+                MathTwoCardsGroup(
+                  label1: "Doza ta totală de insulină/zi(DTI): ",
+                  label2: "40u",
+                  label3: '''Ce reprezintă Doza totală de insulină(DTI)?''',
+                  label4:
+                      '''DTI reprezintă suma totală a dozelor de insulină rapidă administrate înainte de mesele principale și de insulină lentă din ziua precedentă''',
+                ),
+                MathTwoCardsGroup(
+                  label1: '''Raţia insulină : carbohidraţi: ''',
+                  label2: "12.5gr HC",
+                  label3: '''Ce reprezintă raţia insulină : carbohidraţi?''',
+                  label4:
+                      '''Raţia insulină : carbohidrați ne spune câți carbohidrați pot fi neutralizaţi de 1 unitate de insulină''',
+                ),
+                MathTwoCardsGroup(
+                  label1: '''Factorul tău de sensibilitate la 
+                        insulină: ''',
+                  label2: "1u de insulină : 45 mg/dl",
+                  label3: '''Ce este factorul de sensibilitate la insulină? ''',
+                  label4:
+                      '''Factorul de sensibilitate ne spune cât de sensibili suntețm la acțiunea insulinei. Mai exact, ne arată cu cât scade glicemia 1 unitate de insulină rapidă.''',
+                ),
+                MathTwoCardsGroup(
+                  label1: '''Factorul de corecţie ''',
+                  label2: "",
+                  label3: '''Ce este factorul de corecţie? ''',
+                  label4:
+                      '''Factorul de corecţie ne ajută să calculăm cantitatea de insulină ce trebuie făcută în plus la o masă în cazul glicemiilor mari.''',
+                ),
+                Padding(
+                  padding: EdgeInsets.all(height * 0.05),
+                  child: InkWell(
+                    child: Text(
+                      "Vezi formulele de calcul folosite",
+                      style: kHyperlinkTextStyle,
+                    ),
+                    onTap: () => print("Here i will navigate to formulas page"),
                   ),
-                  child: Text(''' Factorul tau de sensibilitate la insulina: 
-                  1u de insulina : 70 mg/dl''',
-                  style: kMathTextStyle,),),
-                  Container(color: Colors.blue,
-                  child: Text('this is not mambo no5',
-                  style: kMathTextStyle,),)
-                ],),
-                Column(
-                  children: [
-                    Container(
-                      color: Colors.red,
-                      child: Text('blaaaaah'),
-                    ),
-                    Container(
-                      color: Colors.blue,
-                      child: Text('blahblahblah'),
-                    ),
-                  ],
                 )
-
               ],
             ),
           ),
-
+        ),
       ],
     );
   }

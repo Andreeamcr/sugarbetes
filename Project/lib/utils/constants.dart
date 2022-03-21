@@ -35,7 +35,13 @@ const kGenderTextStyle = TextStyle(
 );
 const kMathTextStyle = TextStyle(
   fontSize: 20,
-  fontWeight: FontWeight.w600,
+  fontWeight: FontWeight.w500,
+  fontFamily: 'MontserratAlternates',
+  color: Colors.black,
+);
+const kMathTextStyleBold = TextStyle(
+  fontSize: 20,
+  fontWeight: FontWeight.w900,
   fontFamily: 'MontserratAlternates',
   color: Colors.black,
 );
