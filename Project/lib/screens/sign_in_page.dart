@@ -1,3 +1,4 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sugarbetes/components/bottom_button.dart';
 import 'package:sugarbetes/components/custom_circle_avatar.dart';
@@ -35,20 +36,25 @@ class _SignInPageState extends State<SignInPage> {
           body: Column(
             children: [
               Expanded(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    MyCircleAvatar(
-                      imageUrl: 'assets/images/BloodSugar.jpg',
+                child: SingleChildScrollView(
+                  child: Container(
+                    padding: EdgeInsets.all(height * 0.07),
+                    child: Column(
+                      mainAxisAlignment: MainAxisAlignment.center,
+                      children: [
+                        MyCircleAvatar(
+                          imageUrl: 'assets/images/BloodSugar.jpg',
+                        ),
+                        SizedBox(
+                          height: height * 0.03,
+                        ),
+                        Text(
+                          'Sign In',
+                          style: kWelcomeText,
+                        ),
+                      ],
                     ),
-                    SizedBox(
-                      height: height * 0.03,
-                    ),
-                    Text(
-                      'Sign In',
-                      style: kWelcomeText,
-                    ),
-                  ],
+                  ),
                 ),
                 flex: 1,
               ),
@@ -108,7 +114,8 @@ class _SignInPageState extends State<SignInPage> {
                         Row(
                           children: [
                             Padding(
-                              padding: EdgeInsets.only(left: width * 0.05, right: width * 0.02),
+                              padding: EdgeInsets.only(
+                                  left: width * 0.05, right: width * 0.02),
                               child: Text(
                                 "You don't have an account?",
                                 style: kNotHavingAccountText,
