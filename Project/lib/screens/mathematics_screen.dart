@@ -30,7 +30,7 @@ class _MathPageState extends State<MathPage> {
           backgroundColor: Colors.transparent,
           body:
             Column(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 Padding(
                   padding: EdgeInsets.all(width * 0.04),
@@ -59,10 +59,18 @@ class _MathPageState extends State<MathPage> {
                   ],),
                 ),
                 Column(children: [
-                  Container(color: Colors.red,
-                  child: Text('this is mambo no5'),),
+                  Container(
+                  padding: EdgeInsets.symmetric(horizontal: width * 0.01, vertical: height* 0.01),
+                  decoration: BoxDecoration(
+                    borderRadius: BorderRadius.circular(20),
+                    color: Colors.red,
+                  ),
+                  child: Text(''' Factorul tau de sensibilitate la insulina: 
+                  1u de insulina : 70 mg/dl''',
+                  style: kMathTextStyle,),),
                   Container(color: Colors.blue,
-                  child: Text('this is not mambo no5'),)
+                  child: Text('this is not mambo no5',
+                  style: kMathTextStyle,),)
                 ],),
                 Column(
                   children: [
