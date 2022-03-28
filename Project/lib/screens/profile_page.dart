@@ -8,6 +8,9 @@ import 'package:sugarbetes/utils/background_design.dart';
 import 'package:sugarbetes/utils/constants.dart';
 import 'package:sugarbetes/components/form_field.dart';
 import 'package:sugarbetes/components/gender_card.dart';
+import 'dart:io' show Platform;
+import 'package:flutter/cupertino.dart';
+
 
 enum GenderType { female, male }
 double opacityLevel = 1;
@@ -34,6 +37,37 @@ class _ProfilePageState extends State<ProfilePage> {
   void initState() {
     super.initState();
     opacityLevel = 1;
+  }
+
+  String? initialValueDropdown = 'Activitate nivel ușor';
+
+  DropdownButton<String> androidDropdown(){
+    List<DropdownMenuItem<String>> dropdownItems = [];
+    for(String level in nivelActivitate){
+      var newItem = DropdownMenuItem(child: Padding(
+        child: Text(level),
+        padding: EdgeInsets.symmetric(horizontal: 25),
+      ),
+      value: level,
+      );
+      dropdownItems.add(newItem);
+    }
+    return DropdownButton(items: dropdownItems,value: initialValueDropdown,
+    onChanged: (value){
+      setState(() {
+        initialValueDropdown = value;
+      });
+    },);
+  }
+
+  CupertinoPicker iosPicker(){
+    List<Text> pickerItems = [];
+    for(String level in nivelActivitate){
+      pickerItems.add(Text(level));
+    }
+    return CupertinoPicker(itemExtent: 32.0, onSelectedItemChanged: (selectedIndex){
+      print(selectedIndex);
+    }, children: pickerItems);
   }
 
   @override
@@ -94,7 +128,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   print('I changed the profile picture');
                                 },
                                 child: Text(
-                                  'Change profile picture',
+                                  'Schimbă poza de profil',
                                   style: kHyperlinkTextStyle,
                                 ),
                               ),
@@ -109,7 +143,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   EdgeInsets.symmetric(vertical: height * 0.01),
                               child: Center(
                                 child: Text(
-                                  'Hello Andreea!',
+                                  'Salut Andreea!',
                                   //TODO: Make the name to be not hardcoded
                                   style: kWelcomeText,
                                 ),
@@ -148,7 +182,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 children: [
                                   Expanded(
                                     child: GenderSelectionCard(
-                                      genderLabel: 'Female',
+                                      genderLabel: 'Femeie',
                                       onPressed: () {
                                         setState(() {
                                           selectedGender = GenderType.female;
@@ -172,14 +206,14 @@ class _ProfilePageState extends State<ProfilePage> {
                                       color: selectedGender == GenderType.male
                                           ? kFullNavyBlue.withOpacity(0.8)
                                           : Colors.white.withOpacity(0.4),
-                                      genderLabel: 'Male',
+                                      genderLabel: 'Bărbat',
                                     ),
                                   ),
                                 ],
                               ),
                             ),
                             MyFormField(
-                                inputLabel: 'Age: ',
+                                inputLabel: 'Vârstă: ',
                                 icon: Icon(Icons.edit),
                                 obscure: false,
                                 suggestions: false,
@@ -189,7 +223,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                       : opacityLevel;
                                 }),
                             MyFormField(
-                                inputLabel: 'Height: ',
+                                inputLabel: 'Înălțime (cm): ',
                                 icon: Icon(Icons.height),
                                 obscure: false,
                                 suggestions: false,
@@ -199,7 +233,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                       : opacityLevel;
                                 }),
                             MyFormField(
-                                inputLabel: 'Weight: ',
+                                inputLabel: 'Greutate (kg): ',
                                 icon: Icon(Icons.monitor_weight),
                                 obscure: false,
                                 suggestions: false,
@@ -208,28 +242,33 @@ class _ProfilePageState extends State<ProfilePage> {
                                       ? _changeOpacity(true)
                                       : opacityLevel;
                                 }),
-                            MyFormField(
-                                inputLabel:
-                                    'Level of activity (low, medium, high): ',
-                                icon: Icon(Icons.fitness_center),
-                                obscure: false,
-                                suggestions: false,
-                                onPressed: () {
-                                  opacityLevel == 1
-                                      ? _changeOpacity(true)
-                                      : opacityLevel;
-                                }),
+                            Container(
+                              padding: EdgeInsets.all(height * 0.015),
+                              child: Platform.isAndroid ? androidDropdown() : iosPicker(),
+                            ),
+                            // MyFormField(
+                            //     inputLabel:
+                            //         'Level of activity (low, medium, high): ',
+                            //     icon: Icon(Icons.fitness_center),
+                            //     obscure: false,
+                            //     suggestions: false,
+                            //     onPressed: () {
+                            //       opacityLevel == 1
+                            //           ? _changeOpacity(true)
+                            //           : opacityLevel;
+                            //     }),
                             Padding(
                               padding: EdgeInsets.symmetric(
                                   vertical: height * 0.02,
                                   horizontal: width * 0.03),
                               child: ReusableWelcomeButton(
                                 width_factor: 0.08,
-                                heigth_factor: 0.01,
+                                heigth_factor: 0.02,
                                 color: kFullNavyBlue,
                                 onPress: () =>
                                     Navigator.pushNamed(context, '/insulin'),
-                                buttonChild: Text('''Go to insulin page'''),
+                                buttonChild: Text('''Mergi la pagina
+      tratament'''),
                               ),
                             ),
                           ],

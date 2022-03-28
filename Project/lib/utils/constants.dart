@@ -45,3 +45,9 @@ const kMathTextStyleBold = TextStyle(
   fontFamily: 'MontserratAlternates',
   color: Colors.black,
 );
+const List<String> nivelActivitate = [
+  'Repaus la pat',
+  'Activitate nivel ușor',
+  'Activitate nivel mediu',
+  'Activitate nivel intensiv'
+];

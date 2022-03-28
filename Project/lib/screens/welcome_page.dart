@@ -15,6 +15,7 @@ class _WelcomePageState extends State<WelcomePage> {
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
+    double width = MediaQuery.of(context).size.width;
     return Stack(
       children: [
         BackgroundColorWidget(),
@@ -31,7 +32,7 @@ class _WelcomePageState extends State<WelcomePage> {
                     // color: Colors.red,
                     child: Center(
                       child: Text(
-                        'Welcome to Sugarbetes!',
+                        'Bine ați venit la Sugarbetes!',
                         style: kWelcomeText,
                       ),
                     ),
@@ -59,9 +60,12 @@ class _WelcomePageState extends State<WelcomePage> {
                     },
                     width_factor: 0.15,
                     heigth_factor: 0.01,
-                    buttonChild: Text(
-                      'Sign up',
-                      style: kWelcomeText,
+                    buttonChild: Padding(
+                      padding:EdgeInsets.symmetric(horizontal: width * 0.03),
+                      child: Text(
+                        'Creare cont',
+                        style: kWelcomeText,
+                      ),
                     ),
                   ),
                 ),
@@ -82,9 +86,12 @@ class _WelcomePageState extends State<WelcomePage> {
                     },
                     width_factor: 0.15,
                     heigth_factor: 0.01,
-                    buttonChild: Text(
-                      'Sign in',
-                      style: kWelcomeText,
+                    buttonChild: Padding(
+                      padding: EdgeInsets.symmetric(horizontal: width*0.01),
+                      child: Text(
+                        'Autentificare',
+                        style: kWelcomeText,
+                      ),
                     ),
                   ),
                 ),

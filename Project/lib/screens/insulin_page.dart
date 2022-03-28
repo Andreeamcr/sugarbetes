@@ -90,7 +90,7 @@ class _InsulinPageState extends State<InsulinPage> {
                               EdgeInsets.symmetric(vertical: height * 0.01),
                               child: Center(
                                 child: Text(
-                                  'Insulin treatment',
+                                  'Schema de tratament',
                                   //TODO: Make the name to be not hardcoded
                                   style: kWelcomeText,
                                 ),
@@ -120,7 +120,7 @@ class _InsulinPageState extends State<InsulinPage> {
                               height: height * 0.02,
                             ),
                             MyFormField(
-                                inputLabel: 'Fast acting insulin type: ',
+                                inputLabel: 'Ce insulină rapidă folosiți?: ',
                                 icon: Icon(Icons.bloodtype),
                                 obscure: false,
                                 suggestions: false,
@@ -130,7 +130,7 @@ class _InsulinPageState extends State<InsulinPage> {
                                       : opacityLevel;
                                 }),
                             MyFormField(
-                                inputLabel: 'Total amount of fast acting insulin/day: ',
+                                inputLabel: 'Doza totală de insulină rapidă/zi: ',
                                 icon: Icon(Icons.opacity),
                                 obscure: false,
                                 suggestions: false,
@@ -140,7 +140,7 @@ class _InsulinPageState extends State<InsulinPage> {
                                       : opacityLevel;
                                 }),
                             MyFormField(
-                                inputLabel: 'Basal insulin type: ',
+                                inputLabel: 'Ce insulină bazală folosiți?: ',
                                 icon: Icon(Icons.bloodtype),
                                 obscure: false,
                                 suggestions: false,
@@ -151,7 +151,7 @@ class _InsulinPageState extends State<InsulinPage> {
                                 }),
                             MyFormField(
                                 inputLabel:
-                                'Total amount of basal insulin/day: ',
+                                'Doza totală de insulină bazală/zi: ',
                                 icon: Icon(Icons.opacity),
                                 obscure: false,
                                 suggestions: false,
@@ -169,7 +169,7 @@ class _InsulinPageState extends State<InsulinPage> {
                                 color: kFullNavyBlue,
                                 onPress: () =>
                                     print('I pressed save button'),
-                                buttonChild: Text('Save'),
+                                buttonChild: Text('Salvează'),
                               ),
                             ),
                           ],

@@ -42,7 +42,7 @@ class _HomePageState extends State<HomePage> {
                         onPress: () => Navigator.pushNamed(context, '/profile'),
                         cardChild: IconTextWidget(
                           icon: Icons.person,
-                          label: 'Profile',
+                          label: 'Profil',
                         ),
                       )),
                       Expanded(
@@ -53,7 +53,7 @@ class _HomePageState extends State<HomePage> {
                           onPress: () => Navigator.pushNamed(context, '/math'),
                           cardChild: IconTextWidget(
                             icon: Icons.calculate,
-                            label: 'Mathematics',
+                            label: 'Matematica insulinei',
                           ),
                         ),
                       ),
@@ -70,7 +70,7 @@ class _HomePageState extends State<HomePage> {
                         onPress: () => print('HELLO3'),
                         cardChild: IconTextWidget(
                           icon: Icons.notification_add,
-                          label: 'Reminders',
+                          label: 'Alarme',
                         ),
                       )),
                       Expanded(
@@ -80,7 +80,7 @@ class _HomePageState extends State<HomePage> {
                         onPress: () => print('HELLO4'),
                         cardChild: IconTextWidget(
                           icon: Icons.restaurant,
-                          label: 'Food',
+                          label: 'Alimente',
                         ),
                       )),
                     ],
@@ -97,7 +97,7 @@ class _HomePageState extends State<HomePage> {
                           onPress: () => print('HELLO5'),
                           cardChild: IconTextWidget(
                             icon: Icons.opacity,
-                            label: 'Blood Glucose',
+                            label: 'Glicemii',
                           ),
                         ),
                       ),
@@ -108,7 +108,7 @@ class _HomePageState extends State<HomePage> {
                         onPress: () => print('HELLO6'),
                         cardChild: IconTextWidget(
                           icon: Icons.settings,
-                          label: 'Settings',
+                          label: 'Setări',
                         ),
                       )),
                     ],

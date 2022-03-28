@@ -28,7 +28,6 @@ class ReusableWelcomeButton extends StatelessWidget {
         textStyle: kWelcomeText,
         elevation: 10,
         padding: EdgeInsets.symmetric(horizontal: width * width_factor,vertical: height * heigth_factor),
-        //width * 0.15, height * 0.01
       ),
     );
   }

@@ -47,7 +47,7 @@ class _SignUpPageState extends State<SignUpPage> {
                         height: height * 0.03,
                       ),
                       Text(
-                        'Sign Up',
+                        'Creare cont',
                         style: kWelcomeText,
                       ),
                     ],
@@ -72,37 +72,37 @@ class _SignUpPageState extends State<SignUpPage> {
                         height: height * 0.03,
                       ),
                       MyFormField(
-                          inputLabel: 'Enter your firstname',
+                          inputLabel: 'Introduceți numele',
                           icon: Icon(Icons.people),
                           obscure: false,
                           suggestions: true,
                           onPressed: () {}),
                       MyFormField(
-                          inputLabel: 'Enter your lastname',
+                          inputLabel: 'Introduceți prenumele',
                           icon: Icon(Icons.people),
                           obscure: false,
                           suggestions: true,
                           onPressed: () {}),
                       MyFormField(
-                          inputLabel: 'Enter your email address',
+                          inputLabel: 'Introduceți adresa de email',
                           icon: Icon(Icons.email),
                           obscure: false,
                           suggestions: true,
                           onPressed: () {}),
                       MyFormField(
-                          inputLabel: 'Enter password',
+                          inputLabel: 'Introduceți parola',
                           icon: Icon(Icons.password),
                           obscure: true,
                           suggestions: false,
                           onPressed: () {}),
                       MyFormField(
-                          inputLabel: 'Confirm password',
+                          inputLabel: 'Confirmare parolă',
                           icon: Icon(Icons.password),
                           obscure: true,
                           suggestions: false,
                           onPressed: () {}),
                       BottomButton(
-                        label: 'Create account',
+                        label: 'Crează cont',
                         onPress: () {
                           print('Hello!');
                         },

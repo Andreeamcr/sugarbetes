@@ -49,7 +49,7 @@ class _SignInPageState extends State<SignInPage> {
                           height: height * 0.03,
                         ),
                         Text(
-                          'Sign In',
+                          'Autentificare',
                           style: kWelcomeText,
                         ),
                       ],
@@ -74,14 +74,14 @@ class _SignInPageState extends State<SignInPage> {
                           height: height * 0.05,
                         ),
                         MyFormField(
-                          inputLabel: 'Enter your email',
+                          inputLabel: 'Introduceți adresa de email',
                           icon: Icon(Icons.email),
                           obscure: false,
                           suggestions: true,
                           onPressed: () {},
                         ),
                         MyFormField(
-                            inputLabel: 'Enter your password',
+                            inputLabel: 'Introduceți parola',
                             icon: Icon(Icons.password),
                             obscure: true,
                             suggestions: false,
@@ -93,7 +93,7 @@ class _SignInPageState extends State<SignInPage> {
                           padding: EdgeInsets.only(left: width * 0.05),
                           child: InkWell(
                             child: Text(
-                              "I forgot my password",
+                              "Mi-am uitat parola",
                               style: kHyperlinkTextStyle,
                             ),
                             onTap: () {
@@ -102,7 +102,7 @@ class _SignInPageState extends State<SignInPage> {
                           ),
                         ),
                         BottomButton(
-                            label: 'Log In',
+                            label: 'Autentificare',
                             onPress: () {
                               Navigator.push(
                                 context,
@@ -117,13 +117,13 @@ class _SignInPageState extends State<SignInPage> {
                               padding: EdgeInsets.only(
                                   left: width * 0.05, right: width * 0.02),
                               child: Text(
-                                "You don't have an account?",
+                                "Nu ai un cont?",
                                 style: kNotHavingAccountText,
                               ),
                             ),
                             InkWell(
                                 child: Text(
-                                  "Create account",
+                                  "Crează cont",
                                   style: kHyperlinkTextStyle,
                                 ),
                                 onTap: () {
