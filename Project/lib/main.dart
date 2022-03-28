@@ -8,6 +8,7 @@ import 'package:sugarbetes/screens/sign_in_page.dart';
 import 'package:sugarbetes/screens/sign_up_page.dart';
 import 'screens/welcome_page.dart';
 import 'package:flutter/services.dart';
+import 'screens/alarms_screen.dart';
 
 void main() {
   //these lines are for always remaining in portrait mode
@@ -38,6 +39,7 @@ class MyApp extends StatelessWidget {
         '/insulin': (context) => InsulinPage(),
         '/math': (context) => MathPage(),
         '/formulas': (context) => MathFormulas(),
+        '/reminder': (context) => ReminderPage(),
       },
       // home: WelcomePage(),
     );

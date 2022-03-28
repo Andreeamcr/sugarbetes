@@ -38,7 +38,7 @@ class _HomePageState extends State<HomePage> {
                       Expanded(
                           child: ReusableHomeCard(
                         color: kFullNavyBlue,
-                        radius: BorderRadius.zero,
+                        radius: BorderRadius.only(topRight: Radius.circular(10.0)),
                         onPress: () => Navigator.pushNamed(context, '/profile'),
                         cardChild: IconTextWidget(
                           icon: Icons.person,
@@ -67,7 +67,7 @@ class _HomePageState extends State<HomePage> {
                           child: ReusableHomeCard(
                         color: kFullGreen,
                         radius: BorderRadius.zero,
-                        onPress: () => print('HELLO3'),
+                        onPress: () => Navigator.pushNamed(context, '/reminder'),
                         cardChild: IconTextWidget(
                           icon: Icons.notification_add,
                           label: 'Alarme',
@@ -92,8 +92,7 @@ class _HomePageState extends State<HomePage> {
                       Expanded(
                         child: ReusableHomeCard(
                           color: kFullNavyBlue,
-                          radius: BorderRadius.only(
-                              topRight: Radius.circular(10.0)),
+                          radius: BorderRadius.zero,
                           onPress: () => print('HELLO5'),
                           cardChild: IconTextWidget(
                             icon: Icons.opacity,
