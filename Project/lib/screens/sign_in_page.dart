@@ -23,12 +23,13 @@ class _SignInPageState extends State<SignInPage> {
         Scaffold(
           appBar: AppBar(
             shadowColor: Colors.transparent,
-            leading: IconButton(
-              icon: Icon(Icons.arrow_back),
-              onPressed: () {
-                Navigator.pop(context);
-              },
-            ),
+            // leading: IconButton(
+            //   icon: Icon(Icons.arrow_back),
+            //   onPressed: () {
+            //     Navigator.pop(context);
+            //   },
+            // ),
+            automaticallyImplyLeading: false,
             backgroundColor: Colors.transparent,
           ),
           extendBodyBehindAppBar: true,

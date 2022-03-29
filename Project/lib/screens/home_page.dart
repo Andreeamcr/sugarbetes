@@ -13,8 +13,24 @@ class HomePage extends StatefulWidget {
 class _HomePageState extends State<HomePage> {
   @override
   Widget build(BuildContext context) {
+    double width = MediaQuery.of(context).size.width;
     return Scaffold(
+      appBar: AppBar(
+        backgroundColor: Colors.transparent,
+        shadowColor: Colors.transparent,
+        automaticallyImplyLeading: false,
+        actions: [
+          IconButton(
+            icon: Icon(Icons.logout),
+            onPressed: () {
+              Navigator.pushNamed(context, '/signIn');
+            },
+            padding: EdgeInsets.only(right: width * 0.05),
+          )
+        ],
+      ),
       backgroundColor: Colors.black,
+      extendBodyBehindAppBar: true,
       body: Column(
         children: [
           Expanded(
@@ -38,7 +54,8 @@ class _HomePageState extends State<HomePage> {
                       Expanded(
                           child: ReusableHomeCard(
                         color: kFullNavyBlue,
-                        radius: BorderRadius.only(topRight: Radius.circular(10.0)),
+                        radius:
+                            BorderRadius.only(topRight: Radius.circular(10.0)),
                         onPress: () => Navigator.pushNamed(context, '/profile'),
                         cardChild: IconTextWidget(
                           icon: Icons.person,
@@ -67,7 +84,8 @@ class _HomePageState extends State<HomePage> {
                           child: ReusableHomeCard(
                         color: kFullGreen,
                         radius: BorderRadius.zero,
-                        onPress: () => Navigator.pushNamed(context, '/reminder'),
+                        onPress: () =>
+                            Navigator.pushNamed(context, '/reminder'),
                         cardChild: IconTextWidget(
                           icon: Icons.notification_add,
                           label: 'Alarme',
