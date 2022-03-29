@@ -10,12 +10,13 @@ import 'package:sugarbetes/components/form_field.dart';
 import 'package:sugarbetes/components/gender_card.dart';
 import 'dart:io' show Platform;
 import 'package:flutter/cupertino.dart';
-
+import 'package:sugarbetes/screens/insulin_page.dart';
 
 enum GenderType { female, male }
 double opacityLevel = 1;
 
 class ProfilePage extends StatefulWidget {
+  static String id = 'profile';
   @override
   _ProfilePageState createState() => _ProfilePageState();
 }
@@ -41,33 +42,40 @@ class _ProfilePageState extends State<ProfilePage> {
 
   String? initialValueDropdown = 'Activitate nivel ușor';
 
-  DropdownButton<String> androidDropdown(){
+  DropdownButton<String> androidDropdown() {
     List<DropdownMenuItem<String>> dropdownItems = [];
-    for(String level in nivelActivitate){
-      var newItem = DropdownMenuItem(child: Padding(
-        child: Text(level),
-        padding: EdgeInsets.symmetric(horizontal: 25),
-      ),
-      value: level,
+    for (String level in nivelActivitate) {
+      var newItem = DropdownMenuItem(
+        child: Padding(
+          child: Text(level),
+          padding: EdgeInsets.symmetric(horizontal: 25),
+        ),
+        value: level,
       );
       dropdownItems.add(newItem);
     }
-    return DropdownButton(items: dropdownItems,value: initialValueDropdown,
-    onChanged: (value){
-      setState(() {
-        initialValueDropdown = value;
-      });
-    },);
+    return DropdownButton(
+      items: dropdownItems,
+      value: initialValueDropdown,
+      onChanged: (value) {
+        setState(() {
+          initialValueDropdown = value;
+        });
+      },
+    );
   }
 
-  CupertinoPicker iosPicker(){
+  CupertinoPicker iosPicker() {
     List<Text> pickerItems = [];
-    for(String level in nivelActivitate){
+    for (String level in nivelActivitate) {
       pickerItems.add(Text(level));
     }
-    return CupertinoPicker(itemExtent: 32.0, onSelectedItemChanged: (selectedIndex){
-      print(selectedIndex);
-    }, children: pickerItems);
+    return CupertinoPicker(
+        itemExtent: 32.0,
+        onSelectedItemChanged: (selectedIndex) {
+          print(selectedIndex);
+        },
+        children: pickerItems);
   }
 
   @override
@@ -244,7 +252,9 @@ class _ProfilePageState extends State<ProfilePage> {
                                 }),
                             Container(
                               padding: EdgeInsets.all(height * 0.015),
-                              child: Platform.isAndroid ? androidDropdown() : iosPicker(),
+                              child: Platform.isAndroid
+                                  ? androidDropdown()
+                                  : iosPicker(),
                             ),
                             // MyFormField(
                             //     inputLabel:
@@ -265,8 +275,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                 width_factor: 0.08,
                                 heigth_factor: 0.02,
                                 color: kFullNavyBlue,
-                                onPress: () =>
-                                    Navigator.pushNamed(context, '/insulin'),
+                                onPress: () => Navigator.pushNamed(
+                                    context, InsulinPage.id),
                                 buttonChild: Text('''Mergi la pagina
       tratament'''),
                               ),

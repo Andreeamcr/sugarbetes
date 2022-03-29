@@ -3,9 +3,14 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sugarbetes/components/icon_text_data.dart';
 import 'package:sugarbetes/components/reusable_home_card.dart';
+import 'package:sugarbetes/screens/alarms_screen.dart';
 import 'package:sugarbetes/utils/constants.dart';
+import 'package:sugarbetes/screens/sign_in_page.dart';
+import 'package:sugarbetes/screens/profile_page.dart';
+import 'package:sugarbetes/screens/mathematics_screen.dart';
 
 class HomePage extends StatefulWidget {
+  static String id = 'home';
   @override
   _HomePageState createState() => _HomePageState();
 }
@@ -23,7 +28,7 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             icon: Icon(Icons.logout),
             onPressed: () {
-              Navigator.pushNamed(context, '/signIn');
+              Navigator.pushNamed(context, SignInPage.id);
             },
             padding: EdgeInsets.only(right: width * 0.05),
           )
@@ -56,7 +61,8 @@ class _HomePageState extends State<HomePage> {
                         color: kFullNavyBlue,
                         radius:
                             BorderRadius.only(topRight: Radius.circular(10.0)),
-                        onPress: () => Navigator.pushNamed(context, '/profile'),
+                        onPress: () =>
+                            Navigator.pushNamed(context, ProfilePage.id),
                         cardChild: IconTextWidget(
                           icon: Icons.person,
                           label: 'Profil',
@@ -67,7 +73,8 @@ class _HomePageState extends State<HomePage> {
                           color: kFullGreen,
                           radius:
                               BorderRadius.only(topLeft: Radius.circular(10.0)),
-                          onPress: () => Navigator.pushNamed(context, '/math'),
+                          onPress: () =>
+                              Navigator.pushNamed(context, MathPage.id),
                           cardChild: IconTextWidget(
                             icon: Icons.calculate,
                             label: 'Matematica insulinei',
@@ -85,7 +92,7 @@ class _HomePageState extends State<HomePage> {
                         color: kFullGreen,
                         radius: BorderRadius.zero,
                         onPress: () =>
-                            Navigator.pushNamed(context, '/reminder'),
+                            Navigator.pushNamed(context, ReminderPage.id),
                         cardChild: IconTextWidget(
                           icon: Icons.notification_add,
                           label: 'Alarme',

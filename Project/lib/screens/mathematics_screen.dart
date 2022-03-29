@@ -2,8 +2,10 @@ import 'package:flutter/material.dart';
 import 'package:sugarbetes/utils/background_design.dart';
 import 'package:sugarbetes/utils/constants.dart';
 import 'package:sugarbetes/components/math_card.dart';
+import 'package:sugarbetes/screens/formulas_screen.dart';
 
 class MathPage extends StatefulWidget {
+  static String id = 'math';
   @override
   _MathPageState createState() => _MathPageState();
 }
@@ -75,7 +77,7 @@ class _MathPageState extends State<MathPage> {
                       "Vezi formulele de calcul folosite",
                       style: kHyperlinkTextStyle,
                     ),
-                    onTap: () => Navigator.pushNamed(context, "/formulas"),
+                    onTap: () => Navigator.pushNamed(context, MathFormulas.id),
                   ),
                 )
               ],

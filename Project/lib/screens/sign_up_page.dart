@@ -8,6 +8,7 @@ import 'package:sugarbetes/components/form_field.dart';
 import 'package:sugarbetes/components/bottom_button.dart';
 
 class SignUpPage extends StatefulWidget {
+  static String id = 'signUp';
   @override
   _SignUpPageState createState() => _SignUpPageState();
 }

@@ -7,11 +7,13 @@ import 'package:sugarbetes/components/reusable_button_welcome.dart';
 import 'package:sugarbetes/utils/background_design.dart';
 import 'package:sugarbetes/utils/constants.dart';
 import 'package:sugarbetes/components/form_field.dart';
+import 'package:sugarbetes/screens/home_page.dart';
 
 enum GenderType { female, male }
 double opacityLevel = 1;
 
 class InsulinPage extends StatefulWidget {
+  static String id = 'insulin';
   @override
   _InsulinPageState createState() => _InsulinPageState();
 }
@@ -55,7 +57,7 @@ class _InsulinPageState extends State<InsulinPage> {
               IconButton(
                 icon: Icon(Icons.home),
                 onPressed: () {
-                  Navigator.pushNamed(context, '/home');
+                  Navigator.pushNamed(context, HomePage.id);
                 },
                 padding: EdgeInsets.only(right: width * 0.05),
               )
@@ -70,7 +72,7 @@ class _InsulinPageState extends State<InsulinPage> {
               crossAxisAlignment: CrossAxisAlignment.stretch,
               children: [
                 SizedBox(
-                  height: height*0.05,
+                  height: height * 0.05,
                 ),
                 Expanded(
                   flex: 1,
@@ -87,11 +89,10 @@ class _InsulinPageState extends State<InsulinPage> {
                             opacity: opacityLevel,
                             child: Padding(
                               padding:
-                              EdgeInsets.symmetric(vertical: height * 0.01),
+                                  EdgeInsets.symmetric(vertical: height * 0.01),
                               child: Center(
                                 child: Text(
                                   'Schema de tratament',
-                                  //TODO: Make the name to be not hardcoded
                                   style: kWelcomeText,
                                 ),
                               ),
@@ -106,7 +107,10 @@ class _InsulinPageState extends State<InsulinPage> {
                   flex: 2,
                   child: Padding(
                     padding: EdgeInsets.only(
-                        top: height * 0.06, bottom: height * 0.03, left: width * 0.045, right: width * 0.045),
+                        top: height * 0.06,
+                        bottom: height * 0.03,
+                        left: width * 0.045,
+                        right: width * 0.045),
                     child: Container(
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.all(Radius.circular(20)),
@@ -130,7 +134,8 @@ class _InsulinPageState extends State<InsulinPage> {
                                       : opacityLevel;
                                 }),
                             MyFormField(
-                                inputLabel: 'Doza totală de insulină rapidă/zi: ',
+                                inputLabel:
+                                    'Doza totală de insulină rapidă/zi: ',
                                 icon: Icon(Icons.opacity),
                                 obscure: false,
                                 suggestions: false,
@@ -151,7 +156,7 @@ class _InsulinPageState extends State<InsulinPage> {
                                 }),
                             MyFormField(
                                 inputLabel:
-                                'Doza totală de insulină bazală/zi: ',
+                                    'Doza totală de insulină bazală/zi: ',
                                 icon: Icon(Icons.opacity),
                                 obscure: false,
                                 suggestions: false,
@@ -162,13 +167,13 @@ class _InsulinPageState extends State<InsulinPage> {
                                 }),
                             Padding(
                               padding: EdgeInsets.symmetric(
-                                  vertical: height * 0.05, horizontal: width * 0.03),
+                                  vertical: height * 0.05,
+                                  horizontal: width * 0.03),
                               child: ReusableWelcomeButton(
                                 width_factor: 0.08,
                                 heigth_factor: 0.02,
                                 color: kFullNavyBlue,
-                                onPress: () =>
-                                    print('I pressed save button'),
+                                onPress: () => print('I pressed save button'),
                                 buttonChild: Text('Salvează'),
                               ),
                             ),

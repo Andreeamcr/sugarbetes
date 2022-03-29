@@ -5,8 +5,11 @@ import 'package:sugarbetes/components/custom_circle_avatar.dart';
 import '../utils/background_design.dart';
 import 'package:sugarbetes/utils/constants.dart';
 import 'package:sugarbetes/components/reusable_button_welcome.dart';
+import 'sign_up_page.dart';
+import 'sign_in_page.dart';
 
 class WelcomePage extends StatefulWidget {
+  static String id = 'welcome';
   @override
   _WelcomePageState createState() => _WelcomePageState();
 }
@@ -55,13 +58,13 @@ class _WelcomePageState extends State<WelcomePage> {
                     color: kGradient1,
                     onPress: () {
                       setState(() {
-                        Navigator.pushNamed(context, '/signUp');
+                        Navigator.pushNamed(context, SignUpPage.id);
                       });
                     },
                     width_factor: 0.15,
                     heigth_factor: 0.01,
                     buttonChild: Padding(
-                      padding:EdgeInsets.symmetric(horizontal: width * 0.03),
+                      padding: EdgeInsets.symmetric(horizontal: width * 0.03),
                       child: Text(
                         'Creare cont',
                         style: kWelcomeText,
@@ -81,13 +84,13 @@ class _WelcomePageState extends State<WelcomePage> {
                     color: kGradient2,
                     onPress: () {
                       setState(() {
-                        Navigator.pushNamed(context, '/signIn');
+                        Navigator.pushNamed(context, SignInPage.id);
                       });
                     },
                     width_factor: 0.15,
                     heigth_factor: 0.01,
                     buttonChild: Padding(
-                      padding: EdgeInsets.symmetric(horizontal: width*0.01),
+                      padding: EdgeInsets.symmetric(horizontal: width * 0.01),
                       child: Text(
                         'Autentificare',
                         style: kWelcomeText,

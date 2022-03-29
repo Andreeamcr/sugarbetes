@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:sugarbetes/utils/background_design.dart';
 
 class ReminderPage extends StatefulWidget {
+  static String id = 'reminder';
   const ReminderPage({Key? key}) : super(key: key);
 
   @override

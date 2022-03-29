@@ -6,8 +6,10 @@ import 'package:sugarbetes/components/form_field.dart';
 import 'package:sugarbetes/utils/constants.dart';
 import 'package:sugarbetes/utils/background_design.dart';
 import 'home_page.dart';
+import 'sign_up_page.dart';
 
 class SignInPage extends StatefulWidget {
+  static String id = 'signIn';
   @override
   _SignInPageState createState() => _SignInPageState();
 }
@@ -105,12 +107,13 @@ class _SignInPageState extends State<SignInPage> {
                         BottomButton(
                             label: 'Autentificare',
                             onPress: () {
-                              Navigator.push(
-                                context,
-                                MaterialPageRoute(
-                                  builder: (context) => HomePage(),
-                                ),
-                              );
+                              Navigator.pushNamed(context, HomePage.id);
+                              // push(
+                              //   context,
+                              //   MaterialPageRoute(
+                              //     builder: (context) => HomePage(),
+                              //   ),
+                              // );
                             }),
                         Row(
                           children: [
@@ -128,7 +131,7 @@ class _SignInPageState extends State<SignInPage> {
                                   style: kHyperlinkTextStyle,
                                 ),
                                 onTap: () {
-                                  Navigator.pushNamed(context, '/signUp');
+                                  Navigator.pushNamed(context, SignUpPage.id);
                                 }),
                           ],
                         ),
