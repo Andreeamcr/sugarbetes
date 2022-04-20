@@ -25,13 +25,13 @@ class _SignInPageState extends State<SignInPage> {
         Scaffold(
           appBar: AppBar(
             shadowColor: Colors.transparent,
-            // leading: IconButton(
-            //   icon: Icon(Icons.arrow_back),
-            //   onPressed: () {
-            //     Navigator.pop(context);
-            //   },
-            // ),
-            automaticallyImplyLeading: false,
+            elevation: 0,
+            leading: IconButton(
+              icon: Icon(Icons.arrow_back),
+              onPressed: () {
+                Navigator.pop(context);
+              },
+            ),
             backgroundColor: Colors.transparent,
           ),
           extendBodyBehindAppBar: true,
@@ -107,13 +107,12 @@ class _SignInPageState extends State<SignInPage> {
                         BottomButton(
                             label: 'Autentificare',
                             onPress: () {
-                              Navigator.pushNamed(context, HomePage.id);
-                              // push(
-                              //   context,
-                              //   MaterialPageRoute(
-                              //     builder: (context) => HomePage(),
-                              //   ),
-                              // );
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                  builder: (context) => HomePage(),
+                                ),
+                              );
                             }),
                         Row(
                           children: [
@@ -131,7 +130,7 @@ class _SignInPageState extends State<SignInPage> {
                                   style: kHyperlinkTextStyle,
                                 ),
                                 onTap: () {
-                                  Navigator.pushNamed(context, SignUpPage.id);
+                                  Navigator.pushNamed(context, '/signUp');
                                 }),
                           ],
                         ),

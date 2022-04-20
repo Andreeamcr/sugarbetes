@@ -88,6 +88,7 @@ class _ProfilePageState extends State<ProfilePage> {
         Scaffold(
           appBar: AppBar(
             shadowColor: Colors.transparent,
+            elevation: 0,
             leading: IconButton(
               icon: Icon(Icons.arrow_back),
               onPressed: () {

@@ -47,6 +47,7 @@ class _InsulinPageState extends State<InsulinPage> {
         Scaffold(
           appBar: AppBar(
             shadowColor: Colors.transparent,
+            elevation: 0,
             leading: IconButton(
               icon: Icon(Icons.arrow_back),
               onPressed: () {
