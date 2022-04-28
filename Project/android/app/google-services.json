@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "293774631531",
+    "project_id": "sugarbetes-4e283",
+    "storage_bucket": "sugarbetes-4e283.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:293774631531:android:8fa84cd7c08fbc7585c72e",
+        "android_client_info": {
+          "package_name": "andreea.com.sugarbetes"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "293774631531-ohkhovbjfk81ddu7ptd4dn7508cdmb12.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyAA8W57l14B_z6VIbBrp2Uy8KdzHjYM46w"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "293774631531-ohkhovbjfk81ddu7ptd4dn7508cdmb12.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
