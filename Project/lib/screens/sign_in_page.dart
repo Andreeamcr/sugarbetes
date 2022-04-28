@@ -81,14 +81,14 @@ class _SignInPageState extends State<SignInPage> {
                           icon: Icon(Icons.email),
                           obscure: false,
                           suggestions: true,
-                          onPressed: () {},
+                          onChange: (value) {},
                         ),
                         MyFormField(
                             inputLabel: 'Introduceți parola',
                             icon: Icon(Icons.password),
                             obscure: true,
                             suggestions: false,
-                            onPressed: () {}),
+                            onChange: (value) {}),
                         SizedBox(
                           height: height * 0.03,
                         ),

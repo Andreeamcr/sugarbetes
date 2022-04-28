@@ -1,3 +1,4 @@
+import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
@@ -6,6 +7,7 @@ import '../utils/background_design.dart';
 import 'package:sugarbetes/components/custom_circle_avatar.dart';
 import 'package:sugarbetes/components/form_field.dart';
 import 'package:sugarbetes/components/bottom_button.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 class SignUpPage extends StatefulWidget {
   static String id = 'signUp';
@@ -13,10 +15,29 @@ class SignUpPage extends StatefulWidget {
   _SignUpPageState createState() => _SignUpPageState();
 }
 
+
 class _SignUpPageState extends State<SignUpPage> {
+  // @override
+  // void initState() {
+  //   super.initState();
+  //   Firebase.initializeApp().whenComplete(()
+  //   {
+  //     print("connection completed");
+  //     setState(() {
+  //
+  //     });
+  //   });
+  // }
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
+    final _auth = FirebaseAuth.instance;
+    String lastName;
+    String firstName;
+    String email;
+    String? password;
+    String? confirmPass;
+    String kConfirmLabel="Confirmare parolă";
     return Stack(children: [
       BackgroundColorWidget(),
       Scaffold(
@@ -78,35 +99,50 @@ class _SignUpPageState extends State<SignUpPage> {
                           icon: Icon(Icons.people),
                           obscure: false,
                           suggestions: true,
-                          onPressed: () {}),
+                          onChange: (value) {
+                            lastName = value;
+                          }),
                       MyFormField(
                           inputLabel: 'Introduceți prenumele',
                           icon: Icon(Icons.people),
                           obscure: false,
                           suggestions: true,
-                          onPressed: () {}),
+                          onChange: (value) {
+                            firstName = value;
+                          }),
                       MyFormField(
                           inputLabel: 'Introduceți adresa de email',
                           icon: Icon(Icons.email),
                           obscure: false,
                           suggestions: true,
-                          onPressed: () {}),
+                          onChange: (value) {
+                            email = value;
+                          }),
                       MyFormField(
                           inputLabel: 'Introduceți parola',
                           icon: Icon(Icons.password),
                           obscure: true,
                           suggestions: false,
-                          onPressed: () {}),
+                          onChange: (value) {
+                            password = value;
+                          }),
                       MyFormField(
-                          inputLabel: 'Confirmare parolă',
+                          inputLabel: "Confirmare parolă",
                           icon: Icon(Icons.password),
                           obscure: true,
                           suggestions: false,
-                          onPressed: () {}),
+                          onChange: (value) {
+                            confirmPass = value;
+                          }),
                       BottomButton(
                         label: 'Crează cont',
                         onPress: () {
-                          print('Hello!');
+                          print(confirmPass);
+                            // if(confirmPass != password){
+                            //   print("does not match!");
+                            print('hello');
+                            //TODO: confirm pass must match the password
+
                         },
                       ),
                     ],

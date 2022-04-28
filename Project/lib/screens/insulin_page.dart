@@ -129,7 +129,7 @@ class _InsulinPageState extends State<InsulinPage> {
                                 icon: Icon(Icons.bloodtype),
                                 obscure: false,
                                 suggestions: false,
-                                onPressed: () {
+                                onChange: (value) {
                                   opacityLevel == 1
                                       ? _changeOpacity(true)
                                       : opacityLevel;
@@ -140,7 +140,7 @@ class _InsulinPageState extends State<InsulinPage> {
                                 icon: Icon(Icons.opacity),
                                 obscure: false,
                                 suggestions: false,
-                                onPressed: () {
+                                onChange: (value) {
                                   opacityLevel == 1
                                       ? _changeOpacity(true)
                                       : opacityLevel;
@@ -150,7 +150,7 @@ class _InsulinPageState extends State<InsulinPage> {
                                 icon: Icon(Icons.bloodtype),
                                 obscure: false,
                                 suggestions: false,
-                                onPressed: () {
+                                onChange: (value) {
                                   opacityLevel == 1
                                       ? _changeOpacity(true)
                                       : opacityLevel;
@@ -161,7 +161,7 @@ class _InsulinPageState extends State<InsulinPage> {
                                 icon: Icon(Icons.opacity),
                                 obscure: false,
                                 suggestions: false,
-                                onPressed: () {
+                                onChange: (value) {
                                   opacityLevel == 1
                                       ? _changeOpacity(true)
                                       : opacityLevel;

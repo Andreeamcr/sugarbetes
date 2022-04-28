@@ -6,13 +6,13 @@ class MyFormField extends StatelessWidget {
       required this.icon,
       required this.obscure,
       required this.suggestions,
-      required this.onPressed});
+      required this.onChange});
 
   final String inputLabel;
   final Icon icon;
   final bool obscure;
   final bool suggestions;
-  final VoidCallback onPressed;
+  Function(String) onChange;
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -26,7 +26,8 @@ class MyFormField extends StatelessWidget {
         ),
         obscureText: obscure,
         enableSuggestions: suggestions,
-        onTap: onPressed,
+        //onTap: onPressed,
+        onChanged: onChange,
       ),
     );
   }

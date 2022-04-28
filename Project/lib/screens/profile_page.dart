@@ -226,7 +226,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 icon: Icon(Icons.edit),
                                 obscure: false,
                                 suggestions: false,
-                                onPressed: () {
+                                onChange: (value) {
                                   opacityLevel == 1
                                       ? _changeOpacity(true)
                                       : opacityLevel;
@@ -236,7 +236,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 icon: Icon(Icons.height),
                                 obscure: false,
                                 suggestions: false,
-                                onPressed: () {
+                                onChange: (value) {
                                   opacityLevel == 1
                                       ? _changeOpacity(true)
                                       : opacityLevel;
@@ -246,7 +246,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 icon: Icon(Icons.monitor_weight),
                                 obscure: false,
                                 suggestions: false,
-                                onPressed: () {
+                                onChange: (value) {
                                   opacityLevel == 1
                                       ? _changeOpacity(true)
                                       : opacityLevel;
