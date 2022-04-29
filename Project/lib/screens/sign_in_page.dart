@@ -4,6 +4,7 @@ import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
 import 'package:sugarbetes/components/bottom_button.dart';
 import 'package:sugarbetes/components/custom_circle_avatar.dart';
 import 'package:sugarbetes/components/form_field.dart';
+import 'package:sugarbetes/screens/welcome_page.dart';
 import 'package:sugarbetes/utils/constants.dart';
 import 'package:sugarbetes/utils/background_design.dart';
 import 'home_page.dart';
@@ -22,6 +23,10 @@ class _SignInPageState extends State<SignInPage> {
   String email = '';
   String password = '';
   bool showSpinner = false;
+  String kEmailLabel = 'Introduceți adresa de email';
+  String kPasswordLabel = 'Introduceţi parola';
+  TextStyle? changedPassLabelColor;
+  TextStyle? changedEmailLabelColor;
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -36,7 +41,7 @@ class _SignInPageState extends State<SignInPage> {
             leading: IconButton(
               icon: Icon(Icons.arrow_back),
               onPressed: () {
-                Navigator.pop(context);
+                Navigator.pushNamed(context, WelcomePage.id);
               },
             ),
             backgroundColor: Colors.transparent,
@@ -86,7 +91,8 @@ class _SignInPageState extends State<SignInPage> {
                             height: height * 0.05,
                           ),
                           MyFormField(
-                            inputLabel: 'Introduceți adresa de email',
+                            inputLabel: kEmailLabel,
+                            labelColor: changedEmailLabelColor,
                             icon: Icon(Icons.email),
                             obscure: false,
                             suggestions: true,
@@ -95,7 +101,8 @@ class _SignInPageState extends State<SignInPage> {
                             },
                           ),
                           MyFormField(
-                              inputLabel: 'Introduceți parola',
+                              inputLabel: kPasswordLabel,
+                              labelColor: changedPassLabelColor,
                               icon: Icon(Icons.password),
                               obscure: true,
                               suggestions: false,
@@ -133,8 +140,30 @@ class _SignInPageState extends State<SignInPage> {
                                   setState(() {
                                     showSpinner = false;
                                   });
-                                } catch (e) {
+                                } on FirebaseAuthException catch (e) {
                                   print(e);
+                                  if (e.code == 'user-not-found') {
+                                    kEmailLabel =
+                                        'Acest email nu este înregistrat';
+                                    kPasswordLabel = 'Introduceţi parola';
+                                    changedEmailLabelColor =
+                                        TextStyle(color: Colors.red);
+                                    setState(() {
+                                      showSpinner = false;
+                                    });
+                                  } else if (e.code == 'wrong-password') {
+                                    changedEmailLabelColor = TextStyle();
+                                    kEmailLabel = 'Introduceți adresa de email';
+                                    kPasswordLabel = 'Parolă incorectă';
+                                    changedPassLabelColor =
+                                        TextStyle(color: Colors.red);
+                                    setState(() {
+                                      showSpinner = false;
+                                    });
+                                  } else {
+                                    changedPassLabelColor = TextStyle();
+                                    kPasswordLabel = 'Introduceţi parola';
+                                  }
                                   setState(() {
                                     showSpinner = false;
                                   });
@@ -156,7 +185,7 @@ class _SignInPageState extends State<SignInPage> {
                                     style: kHyperlinkTextStyle,
                                   ),
                                   onTap: () {
-                                    Navigator.pushNamed(context, '/signUp');
+                                    Navigator.pushNamed(context, SignUpPage.id);
                                   }),
                             ],
                           ),

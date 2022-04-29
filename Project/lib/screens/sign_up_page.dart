@@ -5,6 +5,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/widgets.dart';
 import 'package:sugarbetes/screens/home_page.dart';
+import 'package:sugarbetes/screens/welcome_page.dart';
 import 'package:sugarbetes/utils/constants.dart';
 import '../utils/background_design.dart';
 import 'package:sugarbetes/components/custom_circle_avatar.dart';
@@ -28,6 +29,8 @@ class _SignUpPageState extends State<SignUpPage> {
   bool showSpinner = false;
   String kConfirmLabel = "Confirmare parolă";
   TextStyle? changedLabelColor;
+  TextStyle? changedEmailLabelColor;
+  String kEmailLabel = 'Introduceți adresa de email';
   // @override
   // void initState() {
   //   super.initState();
@@ -52,7 +55,7 @@ class _SignUpPageState extends State<SignUpPage> {
           leading: IconButton(
             icon: Icon(Icons.arrow_back),
             onPressed: () {
-              Navigator.pop(context);
+              Navigator.pushNamed(context, WelcomePage.id);
             },
           ),
           backgroundColor: Colors.transparent,
@@ -118,8 +121,9 @@ class _SignUpPageState extends State<SignUpPage> {
                               firstName = value;
                             }),
                         MyFormField(
-                            inputLabel: 'Introduceți adresa de email',
+                            inputLabel: kEmailLabel,
                             icon: Icon(Icons.email),
+                            labelColor: changedEmailLabelColor,
                             obscure: false,
                             suggestions: true,
                             onChange: (value) {
@@ -152,9 +156,12 @@ class _SignUpPageState extends State<SignUpPage> {
                               print("does not match!");
                               kConfirmLabel = "Parola incorecta";
                               changedLabelColor = TextStyle(color: Colors.red);
+                              setState(() {
+                                showSpinner = false;
+                              });
                             } else {
                               kConfirmLabel = "Confirmare parola";
-                              changedLabelColor = TextStyle(color: Colors.blue);
+                              changedLabelColor = TextStyle();
 
                               try {
                                 final existingUser =
@@ -173,11 +180,21 @@ class _SignUpPageState extends State<SignUpPage> {
                                 setState(() {
                                   showSpinner = false;
                                 });
-                              } catch (e) {
-                                print(e);
-                                setState(() {
-                                  showSpinner = false;
-                                });
+                              } on FirebaseAuthException catch (e) {
+                                if (e.code == 'email-already-in-use') {
+                                  print(e);
+                                  kEmailLabel =
+                                      'Acest email este deja înregistrat';
+                                  changedEmailLabelColor =
+                                      TextStyle(color: Colors.red);
+                                  setState(() {
+                                    showSpinner = false;
+                                  });
+                                } else {
+                                  kEmailLabel = 'Introduceți adresa de email';
+                                  changedEmailLabelColor =
+                                      TextStyle(color: Colors.blue);
+                                }
                               }
                             }
                           },
