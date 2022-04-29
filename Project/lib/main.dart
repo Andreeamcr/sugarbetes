@@ -9,10 +9,12 @@ import 'package:sugarbetes/screens/sign_up_page.dart';
 import 'screens/welcome_page.dart';
 import 'package:flutter/services.dart';
 import 'screens/alarms_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async{
   //these lines are for always remaining in portrait mode
   WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   SystemChrome.setPreferredOrientations(
       [DeviceOrientation.portraitUp, DeviceOrientation.portraitDown]);
 

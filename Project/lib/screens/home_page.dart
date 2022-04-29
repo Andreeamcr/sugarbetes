@@ -8,6 +8,7 @@ import 'package:sugarbetes/utils/constants.dart';
 import 'package:sugarbetes/screens/sign_in_page.dart';
 import 'package:sugarbetes/screens/profile_page.dart';
 import 'package:sugarbetes/screens/mathematics_screen.dart';
+import 'package:firebase_auth/firebase_auth.dart';
 
 class HomePage extends StatefulWidget {
   static String id = 'home';
@@ -16,6 +17,7 @@ class HomePage extends StatefulWidget {
 }
 
 class _HomePageState extends State<HomePage> {
+  final _auth = FirebaseAuth.instance;
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -29,6 +31,7 @@ class _HomePageState extends State<HomePage> {
           IconButton(
             icon: Icon(Icons.logout),
             onPressed: () {
+              _auth.signOut();
               Navigator.pushNamed(context, SignInPage.id);
             },
             padding: EdgeInsets.only(right: width * 0.05),
