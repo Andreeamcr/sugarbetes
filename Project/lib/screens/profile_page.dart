@@ -8,9 +8,12 @@ import 'package:sugarbetes/utils/background_design.dart';
 import 'package:sugarbetes/utils/constants.dart';
 import 'package:sugarbetes/components/form_field.dart';
 import 'package:sugarbetes/components/gender_card.dart';
-import 'dart:io' show Platform;
+import 'dart:io' show Platform, sleep;
 import 'package:flutter/cupertino.dart';
 import 'package:sugarbetes/screens/insulin_page.dart';
+import 'package:cloud_firestore/cloud_firestore.dart';
+import 'package:firebase_auth/firebase_auth.dart';
+import 'package:firebase_core/firebase_core.dart';
 
 enum GenderType { female, male }
 double opacityLevel = 1;
@@ -22,7 +25,11 @@ class ProfilePage extends StatefulWidget {
 }
 
 class _ProfilePageState extends State<ProfilePage> {
+  final _firestore = FirebaseFirestore.instance;
+  final auth = FirebaseAuth.instance;
+  User loggedInUser = FirebaseAuth.instance.currentUser!;
   GenderType selectedGender = GenderType.female;
+  String currentUser = "";
 
   void _changeOpacity(bool isPressed) {
     setState(() {
@@ -39,6 +46,35 @@ class _ProfilePageState extends State<ProfilePage> {
     super.initState();
     opacityLevel = 1;
   }
+
+  Future<String> getCurrentUserName() async {
+    String name = '';
+
+    try {
+      final user = auth.currentUser;
+      if (user != null) {
+        loggedInUser = user;
+        //print(loggedInUser.email);
+        final querySnapshot = await _firestore
+            .collection('registration')
+            .where('email', isEqualTo: loggedInUser.email)
+            .get();
+        for (var doc in querySnapshot.docs) {
+          name = doc.get('firstname');
+        }
+        //print(name);
+      }
+    } catch (e) {
+      print(e);
+    }
+    return name;
+  }
+
+  //Stream name = _firestore
+  //     .collection('registration')
+  //     .where('email', isEqualTo: loggedInUser.email)
+  //     .snapshots();
+  // print(name);
 
   String? initialValueDropdown = 'Activitate nivel ușor';
 
@@ -80,8 +116,24 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
+    print("[ProfilePage] Build");
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+    setState(() {
+      if (this.currentUser == "") {
+        getCurrentUserName()
+            .then((value) => {
+                  if (value != '')
+                    this.currentUser = value
+                  else
+                    this.currentUser = "Not Found"
+                })
+            .whenComplete(() => print("Set State" +
+                this.currentUser)); //TODO: Get the name from the Future method*/
+      }
+      print(this.currentUser);
+    });
+
     return Stack(
       children: [
         BackgroundColorWidget(),
@@ -152,7 +204,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   EdgeInsets.symmetric(vertical: height * 0.01),
                               child: Center(
                                 child: Text(
-                                  'Salut Andreea!',
+                                  'Salut $currentUser!',
                                   //TODO: Make the name to be not hardcoded
                                   style: kWelcomeText,
                                 ),
