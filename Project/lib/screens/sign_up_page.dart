@@ -153,9 +153,11 @@ class _SignUpPageState extends State<SignUpPage> {
                               showSpinner = true;
                             });
                             if (confirmPass != password) {
-                              print("does not match!");
+                              print("password does not match!");
                               kConfirmLabel = "Parola incorecta";
                               changedLabelColor = TextStyle(color: Colors.red);
+                              kEmailLabel = 'Introduceţi adresa de email';
+                              changedEmailLabelColor = TextStyle();
                               setState(() {
                                 showSpinner = false;
                               });
@@ -185,6 +187,14 @@ class _SignUpPageState extends State<SignUpPage> {
                                   print(e);
                                   kEmailLabel =
                                       'Acest email este deja înregistrat';
+                                  changedEmailLabelColor =
+                                      TextStyle(color: Colors.red);
+                                  setState(() {
+                                    showSpinner = false;
+                                  });
+                                } else if (e.code == 'invalid-email') {
+                                  kEmailLabel =
+                                      'Formatul acestui email este invalid';
                                   changedEmailLabelColor =
                                       TextStyle(color: Colors.red);
                                   setState(() {

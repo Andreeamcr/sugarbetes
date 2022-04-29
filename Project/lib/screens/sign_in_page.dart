@@ -160,9 +160,18 @@ class _SignInPageState extends State<SignInPage> {
                                     setState(() {
                                       showSpinner = false;
                                     });
+                                  } else if (e.code == 'invalid-email') {
+                                    kEmailLabel =
+                                        'Formatul acestui email este invalid';
+                                    changedEmailLabelColor =
+                                        TextStyle(color: Colors.red);
+                                    kPasswordLabel = 'Introduceţi parola';
+                                    changedPassLabelColor = TextStyle();
                                   } else {
                                     changedPassLabelColor = TextStyle();
                                     kPasswordLabel = 'Introduceţi parola';
+                                    changedEmailLabelColor = TextStyle();
+                                    kEmailLabel = 'Introduceți adresa de email';
                                   }
                                   setState(() {
                                     showSpinner = false;
