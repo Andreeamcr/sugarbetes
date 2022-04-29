@@ -23,6 +23,7 @@ class _HomePageState extends State<HomePage> {
       appBar: AppBar(
         backgroundColor: Colors.transparent,
         shadowColor: Colors.transparent,
+        elevation: 0,
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
