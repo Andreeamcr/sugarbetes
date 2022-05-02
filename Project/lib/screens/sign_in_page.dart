@@ -7,6 +7,7 @@ import 'package:sugarbetes/components/form_field.dart';
 import 'package:sugarbetes/screens/welcome_page.dart';
 import 'package:sugarbetes/utils/constants.dart';
 import 'package:sugarbetes/utils/background_design.dart';
+import 'package:sugarbetes/services/databaseService.dart';
 import 'home_page.dart';
 import 'sign_up_page.dart';
 import 'package:firebase_auth/firebase_auth.dart';
@@ -135,6 +136,8 @@ class _SignInPageState extends State<SignInPage> {
                                       await _auth.signInWithEmailAndPassword(
                                           email: email, password: password);
                                   if (existingUser != null) {
+                                    DatabaseService dbService = DatabaseService();
+                                    dbService.getCurrentUserData(email);
                                     Navigator.pushNamed(context, HomePage.id);
                                   }
                                   setState(() {

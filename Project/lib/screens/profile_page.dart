@@ -12,6 +12,7 @@ import 'dart:io' show Platform, sleep;
 import 'package:sugarbetes/screens/insulin_page.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:firebase_auth/firebase_auth.dart';
+import 'package:sugarbetes/services/databaseService.dart';
 import 'package:firebase_core/firebase_core.dart';
 
 enum GenderType { female, male }
@@ -192,7 +193,11 @@ class _ProfilePageState extends State<ProfilePage> {
                           AnimatedOpacity(
                             duration: Duration(seconds: 0),
                             opacity: opacityLevel,
-                              child: FutureBuilder<String>(
+                              child: Text(
+                                'Salut ${DatabaseService.getLoggedUserName()}',
+                                style: kWelcomeText,
+                              )
+                              /*child: FutureBuilder<String>(
                                 future: getCurrentUserName(),
                                 builder: (BuildContext context, AsyncSnapshot<String> snapshot){
                                   List<Widget> children;
@@ -239,7 +244,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                     ),
                                   );
                                 }
-                              ),
+                              ),*/
                             // Padding(
                             //   padding:
                             //       EdgeInsets.symmetric(vertical: height * 0.01),
