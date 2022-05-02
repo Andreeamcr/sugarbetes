@@ -24,6 +24,7 @@ class DatabaseService {
       userInfo['height'] = getOrElseValue(doc, 'height');
       userInfo['weight'] = getOrElseValue(doc, 'weight');
       userInfo['gender'] = getOrElseValue(doc, 'gender');
+      userInfo['activityLevel'] = getOrElseValue(doc, 'activityLevel');
     }
   }
 
@@ -46,7 +47,6 @@ class DatabaseService {
     for (var doc in querySnapshot.docs) {
       doc.reference.update({field: value});
     }
-
   }
 
   String getOrElseValue(QueryDocumentSnapshot doc, String field) {

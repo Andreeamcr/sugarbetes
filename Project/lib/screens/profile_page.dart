@@ -64,10 +64,11 @@ class _ProfilePageState extends State<ProfilePage> {
     }
     return DropdownButton(
       items: dropdownItems,
-      value: initialValueDropdown,
+      value: dbService.getUserValue("setValueInDatabase"),
       onChanged: (value) {
         setState(() {
           initialValueDropdown = value;
+          dbService.setValueInDatabase("setValueInDatabase", value.toString());
         });
       },
     );
@@ -266,17 +267,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                   ? androidDropdown()
                                   : iosPicker(),
                             ),
-                            // MyFormField(
-                            //     inputLabel:
-                            //         'Level of activity (low, medium, high): ',
-                            //     icon: Icon(Icons.fitness_center),
-                            //     obscure: false,
-                            //     suggestions: false,
-                            //     onPressed: () {
-                            //       opacityLevel == 1
-                            //           ? _changeOpacity(true)
-                            //           : opacityLevel;
-                            //     }),
                             Padding(
                               padding: EdgeInsets.symmetric(
                                   vertical: height * 0.02,
