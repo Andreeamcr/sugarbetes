@@ -47,29 +47,6 @@ class _ProfilePageState extends State<ProfilePage> {
     opacityLevel = 1;
   }
 
-  Future<String> getCurrentUserName() async {
-    String name = '';
-
-    try {
-      final user = auth.currentUser;
-      if (user != null) {
-        loggedInUser = user;
-        //print(loggedInUser.email);
-        final querySnapshot = await _firestore
-            .collection('registration')
-            .where('email', isEqualTo: loggedInUser.email)
-            .get();
-        for (var doc in querySnapshot.docs) {
-          name = doc.get('firstname');
-        }
-        //print(name);
-      }
-    } catch (e) {
-      print(e);
-    }
-    return name;
-  }
-
   String? initialValueDropdown = 'Activitate nivel ușor';
 
   DropdownButton<String> androidDropdown() {
@@ -184,7 +161,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                 'Salut ${DatabaseService.getLoggedUserName()}',
                                 style: kWelcomeText,
                               )
-
                           ),
                         ],
                       ),
