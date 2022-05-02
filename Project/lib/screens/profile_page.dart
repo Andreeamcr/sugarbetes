@@ -48,6 +48,8 @@ class _ProfilePageState extends State<ProfilePage> {
     opacityLevel = 1;
   }
 
+  
+
   String? initialValueDropdown = 'Activitate nivel ușor';
 
   DropdownButton<String> androidDropdown() {
@@ -163,6 +165,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 'Salut ${DatabaseService.getLoggedUserName()}',
                                 style: kWelcomeText,
                               )
+                             
                           ),
                         ],
                       ),
@@ -267,6 +270,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   ? androidDropdown()
                                   : iosPicker(),
                             ),
+
                             Padding(
                               padding: EdgeInsets.symmetric(
                                   vertical: height * 0.02,
