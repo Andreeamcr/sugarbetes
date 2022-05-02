@@ -113,20 +113,6 @@ class _ProfilePageState extends State<ProfilePage> {
     //print("[ProfilePage] Build");
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    // setState(() {
-    //   if (this.currentUser == "") {
-    //     getCurrentUserName()
-    //         .then((value) => {
-    //               if (value != '')
-    //                 this.currentUser = value
-    //               else
-    //                 this.currentUser = "Not Found"
-    //             })
-    //         .whenComplete(() => print("Set State" +
-    //             this.currentUser)); //TODO: Get the name from the Future method*/
-    //   }
-    //   print(this.currentUser);
-    // });
 
     return Stack(
       children: [
@@ -197,65 +183,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                 'Salut ${DatabaseService.getLoggedUserName()}',
                                 style: kWelcomeText,
                               )
-                              /*child: FutureBuilder<String>(
-                                future: getCurrentUserName(),
-                                builder: (BuildContext context, AsyncSnapshot<String> snapshot){
-                                  List<Widget> children;
-                                  if(snapshot.hasData){
-                                    children = <Widget>[
-                                      Padding(padding:
-                                        EdgeInsets.symmetric(vertical: height * 0.01),
-                                    child: Center(
-                                      child: Text(
-                                        'Salut ${snapshot.data}!',
-                                        //TODO: Make the name to be not hardcoded
-                                        style: kWelcomeText,
-                                      ),
-                                    ),),
-                                    ];
-                                  } else if(snapshot.hasError){
-                                    children = <Widget>[
-                                      Padding(padding:
-                                      EdgeInsets.symmetric(vertical: height * 0.01),
-                                        child: Center(
-                                          child: Text(
-                                            'Eroare ${snapshot.error}!',
-                                            //TODO: Make the name to be not hardcoded
-                                            style: kWelcomeText,
-                                          ),
-                                        ),),
-                                    ];
-                                  } else {
-                                    children = const <Widget>[
-                                      SizedBox(
-                                        width: 60,
-                                        height: 60,
-                                        child: CircularProgressIndicator(),),
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 16),
-                                        child: Text('Awaiting result...'),
-                                      ),
-                                    ];
-                                  }
-                                  return Center(
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: children,
-                                    ),
-                                  );
-                                }
-                              ),*/
-                            // Padding(
-                            //   padding:
-                            //       EdgeInsets.symmetric(vertical: height * 0.01),
-                            //   child: Center(
-                            //     child: Text(
-                            //       'Salut $currentUser!',
-                            //       //TODO: Make the name to be not hardcoded
-                            //       style: kWelcomeText,
-                            //     ),
-                            //   ),
-                            // ),
                           ),
                         ],
                       ),
