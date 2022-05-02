@@ -114,6 +114,7 @@ class _ProfilePageState extends State<ProfilePage> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
 
+
     return Stack(
       children: [
         BackgroundColorWidget(),
@@ -183,6 +184,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 'Salut ${DatabaseService.getLoggedUserName()}',
                                 style: kWelcomeText,
                               )
+
                           ),
                         ],
                       ),
