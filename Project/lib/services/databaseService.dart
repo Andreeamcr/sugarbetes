@@ -20,7 +20,33 @@ class DatabaseService {
       userInfo['firstName'] = getOrElseValue(doc, 'firstname');
       userInfo['lastName'] = getOrElseValue(doc, 'lastname');
       userInfo['email'] = getOrElseValue(doc, 'email');
+      userInfo['age'] = getOrElseValue(doc, 'age');
+      userInfo['height'] = getOrElseValue(doc, 'height');
+      userInfo['weight'] = getOrElseValue(doc, 'weight');
+      userInfo['gender'] = getOrElseValue(doc, 'gender');
     }
+  }
+
+  String getUserValue(String field)
+  {
+    try {
+      return userInfo[field].toString();
+    } catch(e) {
+      print("[DatabaseService]: Data from field $field is not present!");
+      return '';
+    }
+  }
+
+  Future setValueInDatabase(String field, String value) async {
+    userInfo[field] = value;
+    var querySnapshot = await _firestore
+        .collection('registration')
+        .where('email', isEqualTo: userInfo['email']).get();
+
+    for (var doc in querySnapshot.docs) {
+      doc.reference.update({field: value});
+    }
+
   }
 
   String getOrElseValue(QueryDocumentSnapshot doc, String field) {

@@ -30,6 +30,7 @@ class _ProfilePageState extends State<ProfilePage> {
   User loggedInUser = FirebaseAuth.instance.currentUser!;
   GenderType selectedGender = GenderType.female;
   String currentUser = "";
+  DatabaseService dbService = DatabaseService();
 
   void _changeOpacity(bool isPressed) {
     setState(() {
@@ -198,6 +199,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                       onPressed: () {
                                         setState(() {
                                           selectedGender = GenderType.female;
+                                          dbService.setValueInDatabase("gender", "female");
                                           print('$selectedGender was pressed');
                                         });
                                       },
@@ -212,6 +214,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                       onPressed: () {
                                         setState(() {
                                           selectedGender = GenderType.male;
+                                          dbService.setValueInDatabase("gender", "male");
                                           print('$selectedGender was pressed');
                                         });
                                       },
@@ -225,17 +228,18 @@ class _ProfilePageState extends State<ProfilePage> {
                               ),
                             ),
                             MyFormField(
-                                inputLabel: 'Vârstă: ',
+                                inputLabel: 'Vârstă: ${dbService.getUserValue("age")}',
                                 icon: Icon(Icons.edit),
                                 obscure: false,
                                 suggestions: false,
                                 onChange: (value) {
-                                  opacityLevel == 1
-                                      ? _changeOpacity(true)
-                                      : opacityLevel;
+                                    opacityLevel == 1
+                                        ? _changeOpacity(true)
+                                        : opacityLevel;
+                                    dbService.setValueInDatabase("age", value.toString());
                                 }),
                             MyFormField(
-                                inputLabel: 'Înălțime (cm): ',
+                                inputLabel: 'Înălțime (cm): ${dbService.getUserValue("height")}',
                                 icon: Icon(Icons.height),
                                 obscure: false,
                                 suggestions: false,
@@ -243,9 +247,10 @@ class _ProfilePageState extends State<ProfilePage> {
                                   opacityLevel == 1
                                       ? _changeOpacity(true)
                                       : opacityLevel;
+                                  dbService.setValueInDatabase("height", value);
                                 }),
                             MyFormField(
-                                inputLabel: 'Greutate (kg): ',
+                                inputLabel: 'Greutate (kg): ${dbService.getUserValue("weight")}',
                                 icon: Icon(Icons.monitor_weight),
                                 obscure: false,
                                 suggestions: false,
@@ -253,6 +258,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   opacityLevel == 1
                                       ? _changeOpacity(true)
                                       : opacityLevel;
+                                  dbService.setValueInDatabase("weight", value);
                                 }),
                             Container(
                               padding: EdgeInsets.all(height * 0.015),
