@@ -49,6 +49,7 @@ flutter:
     - assets/images/user-profile.jpg
     - assets/images/insulin_treatment.jpg
     - assets/images/insulin_reminder.jpg
+    - assets/images/IMG_8830.jpg
 
   fonts:
     - family: IndieFlower
