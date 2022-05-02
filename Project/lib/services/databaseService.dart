@@ -17,9 +17,44 @@ class DatabaseService {
         .where('email', isEqualTo: email)
         .get();
     for (var doc in querySnapshot.docs) {
-      userInfo['firstName'] = doc.get('firstname');
-      userInfo['lastName'] = doc.get('lastname');
-      userInfo['email'] = doc.get('email');
+      userInfo['firstName'] = getOrElseValue(doc, 'firstname');
+      userInfo['lastName'] = getOrElseValue(doc, 'lastname');
+      userInfo['email'] = getOrElseValue(doc, 'email');
+      userInfo['age'] = getOrElseValue(doc, 'age');
+      userInfo['height'] = getOrElseValue(doc, 'height');
+      userInfo['weight'] = getOrElseValue(doc, 'weight');
+      userInfo['gender'] = getOrElseValue(doc, 'gender');
+      userInfo['activityLevel'] = getOrElseValue(doc, 'activityLevel');
+    }
+  }
+
+  String getUserValue(String field)
+  {
+    try {
+      return userInfo[field].toString();
+    } catch(e) {
+      print("[DatabaseService]: Data from field $field is not present!");
+      return '';
+    }
+  }
+
+  Future setValueInDatabase(String field, String value) async {
+    userInfo[field] = value;
+    var querySnapshot = await _firestore
+        .collection('registration')
+        .where('email', isEqualTo: userInfo['email']).get();
+
+    for (var doc in querySnapshot.docs) {
+      doc.reference.update({field: value});
+    }
+  }
+
+  String getOrElseValue(QueryDocumentSnapshot doc, String field) {
+    try {
+      return doc.get(field);
+    } catch(e) {
+      print("[DatabaseService] Field $field threw the following error: " + e.toString());
+      return '';
     }
   }
 

@@ -30,6 +30,7 @@ class _ProfilePageState extends State<ProfilePage> {
   User loggedInUser = FirebaseAuth.instance.currentUser!;
   GenderType selectedGender = GenderType.female;
   String currentUser = "";
+  DatabaseService dbService = DatabaseService();
 
   void _changeOpacity(bool isPressed) {
     setState(() {
@@ -45,29 +46,6 @@ class _ProfilePageState extends State<ProfilePage> {
   void initState() {
     super.initState();
     opacityLevel = 1;
-  }
-
-  Future<String> getCurrentUserName() async {
-    String name = '';
-
-    try {
-      final user = auth.currentUser;
-      if (user != null) {
-        loggedInUser = user;
-        //print(loggedInUser.email);
-        final querySnapshot = await _firestore
-            .collection('registration')
-            .where('email', isEqualTo: loggedInUser.email)
-            .get();
-        for (var doc in querySnapshot.docs) {
-          name = doc.get('firstname');
-        }
-        //print(name);
-      }
-    } catch (e) {
-      print(e);
-    }
-    return name;
   }
 
   String? initialValueDropdown = 'Activitate nivel ușor';
@@ -86,10 +64,11 @@ class _ProfilePageState extends State<ProfilePage> {
     }
     return DropdownButton(
       items: dropdownItems,
-      value: initialValueDropdown,
+      value: dbService.getUserValue("setValueInDatabase"),
       onChanged: (value) {
         setState(() {
           initialValueDropdown = value;
+          dbService.setValueInDatabase("setValueInDatabase", value.toString());
         });
       },
     );
@@ -113,20 +92,7 @@ class _ProfilePageState extends State<ProfilePage> {
     //print("[ProfilePage] Build");
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-    // setState(() {
-    //   if (this.currentUser == "") {
-    //     getCurrentUserName()
-    //         .then((value) => {
-    //               if (value != '')
-    //                 this.currentUser = value
-    //               else
-    //                 this.currentUser = "Not Found"
-    //             })
-    //         .whenComplete(() => print("Set State" +
-    //             this.currentUser)); //TODO: Get the name from the Future method*/
-    //   }
-    //   print(this.currentUser);
-    // });
+
 
     return Stack(
       children: [
@@ -197,65 +163,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                 'Salut ${DatabaseService.getLoggedUserName()}',
                                 style: kWelcomeText,
                               )
-                              /*child: FutureBuilder<String>(
-                                future: getCurrentUserName(),
-                                builder: (BuildContext context, AsyncSnapshot<String> snapshot){
-                                  List<Widget> children;
-                                  if(snapshot.hasData){
-                                    children = <Widget>[
-                                      Padding(padding:
-                                        EdgeInsets.symmetric(vertical: height * 0.01),
-                                    child: Center(
-                                      child: Text(
-                                        'Salut ${snapshot.data}!',
-                                        //TODO: Make the name to be not hardcoded
-                                        style: kWelcomeText,
-                                      ),
-                                    ),),
-                                    ];
-                                  } else if(snapshot.hasError){
-                                    children = <Widget>[
-                                      Padding(padding:
-                                      EdgeInsets.symmetric(vertical: height * 0.01),
-                                        child: Center(
-                                          child: Text(
-                                            'Eroare ${snapshot.error}!',
-                                            //TODO: Make the name to be not hardcoded
-                                            style: kWelcomeText,
-                                          ),
-                                        ),),
-                                    ];
-                                  } else {
-                                    children = const <Widget>[
-                                      SizedBox(
-                                        width: 60,
-                                        height: 60,
-                                        child: CircularProgressIndicator(),),
-                                      Padding(
-                                        padding: EdgeInsets.only(top: 16),
-                                        child: Text('Awaiting result...'),
-                                      ),
-                                    ];
-                                  }
-                                  return Center(
-                                    child: Column(
-                                      mainAxisAlignment: MainAxisAlignment.center,
-                                      children: children,
-                                    ),
-                                  );
-                                }
-                              ),*/
-                            // Padding(
-                            //   padding:
-                            //       EdgeInsets.symmetric(vertical: height * 0.01),
-                            //   child: Center(
-                            //     child: Text(
-                            //       'Salut $currentUser!',
-                            //       //TODO: Make the name to be not hardcoded
-                            //       style: kWelcomeText,
-                            //     ),
-                            //   ),
-                            // ),
                           ),
                         ],
                       ),
@@ -293,6 +200,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                       onPressed: () {
                                         setState(() {
                                           selectedGender = GenderType.female;
+                                          dbService.setValueInDatabase("gender", "female");
                                           print('$selectedGender was pressed');
                                         });
                                       },
@@ -307,6 +215,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                       onPressed: () {
                                         setState(() {
                                           selectedGender = GenderType.male;
+                                          dbService.setValueInDatabase("gender", "male");
                                           print('$selectedGender was pressed');
                                         });
                                       },
@@ -320,17 +229,18 @@ class _ProfilePageState extends State<ProfilePage> {
                               ),
                             ),
                             MyFormField(
-                                inputLabel: 'Vârstă: ',
+                                inputLabel: 'Vârstă: ${dbService.getUserValue("age")}',
                                 icon: Icon(Icons.edit),
                                 obscure: false,
                                 suggestions: false,
                                 onChange: (value) {
-                                  opacityLevel == 1
-                                      ? _changeOpacity(true)
-                                      : opacityLevel;
+                                    opacityLevel == 1
+                                        ? _changeOpacity(true)
+                                        : opacityLevel;
+                                    dbService.setValueInDatabase("age", value.toString());
                                 }),
                             MyFormField(
-                                inputLabel: 'Înălțime (cm): ',
+                                inputLabel: 'Înălțime (cm): ${dbService.getUserValue("height")}',
                                 icon: Icon(Icons.height),
                                 obscure: false,
                                 suggestions: false,
@@ -338,9 +248,10 @@ class _ProfilePageState extends State<ProfilePage> {
                                   opacityLevel == 1
                                       ? _changeOpacity(true)
                                       : opacityLevel;
+                                  dbService.setValueInDatabase("height", value);
                                 }),
                             MyFormField(
-                                inputLabel: 'Greutate (kg): ',
+                                inputLabel: 'Greutate (kg): ${dbService.getUserValue("weight")}',
                                 icon: Icon(Icons.monitor_weight),
                                 obscure: false,
                                 suggestions: false,
@@ -348,6 +259,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                   opacityLevel == 1
                                       ? _changeOpacity(true)
                                       : opacityLevel;
+                                  dbService.setValueInDatabase("weight", value);
                                 }),
                             Container(
                               padding: EdgeInsets.all(height * 0.015),
@@ -355,17 +267,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                   ? androidDropdown()
                                   : iosPicker(),
                             ),
-                            // MyFormField(
-                            //     inputLabel:
-                            //         'Level of activity (low, medium, high): ',
-                            //     icon: Icon(Icons.fitness_center),
-                            //     obscure: false,
-                            //     suggestions: false,
-                            //     onPressed: () {
-                            //       opacityLevel == 1
-                            //           ? _changeOpacity(true)
-                            //           : opacityLevel;
-                            //     }),
                             Padding(
                               padding: EdgeInsets.symmetric(
                                   vertical: height * 0.02,
