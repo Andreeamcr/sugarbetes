@@ -17,9 +17,18 @@ class DatabaseService {
         .where('email', isEqualTo: email)
         .get();
     for (var doc in querySnapshot.docs) {
-      userInfo['firstName'] = doc.get('firstname');
-      userInfo['lastName'] = doc.get('lastname');
-      userInfo['email'] = doc.get('email');
+      userInfo['firstName'] = getOrElseValue(doc, 'firstname');
+      userInfo['lastName'] = getOrElseValue(doc, 'lastname');
+      userInfo['email'] = getOrElseValue(doc, 'email');
+    }
+  }
+
+  String getOrElseValue(QueryDocumentSnapshot doc, String field) {
+    try {
+      return doc.get(field);
+    } catch(e) {
+      print("[DatabaseService] Field $field threw the following error: " + e.toString());
+      return '';
     }
   }
 
