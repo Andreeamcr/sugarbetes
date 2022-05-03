@@ -129,19 +129,21 @@ class _ReminderPageState extends State<ReminderPage> {
                     ],
                   ),
                 ),
-                Container(
+                Align(
                   alignment: Alignment.bottomRight,
-                  padding:
-                      EdgeInsets.only(top: height * 0.25, right: width * 0.05),
-                  child: SvgPicture.asset(
-                    'assets/svg/time_management.svg',
-                    width: width * 0.2,
-                    height: height * 0.2,
-                    alignment: Alignment.centerRight,
+                  child: Container(
+                    alignment: Alignment.bottomRight,
+                    padding: EdgeInsets.only(
+                        top: height * 0.25, right: width * 0.05),
+                    child: SvgPicture.asset(
+                      'assets/svg/time_management.svg',
+                      width: width * 0.2,
+                      height: height * 0.2,
+                      alignment: Alignment.centerRight,
+                    ),
                   ),
                 ),
               ],
-              //TODO: add an image on the top of the page, add plus button, add new container for the new alarm, add checkboxes for every alarm to check the days for the alarm to ring, add pop-up window to set the alarm time
             ),
           ),
         ),
