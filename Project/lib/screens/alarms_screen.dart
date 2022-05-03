@@ -1,6 +1,9 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sugarbetes/utils/background_design.dart';
 import 'package:sugarbetes/utils/constants.dart';
+import 'package:sugarbetes/components/animated_toggle.dart';
+import 'package:flutter_svg/svg.dart';
 
 class ReminderPage extends StatefulWidget {
   static String id = 'reminder';
@@ -13,26 +16,27 @@ class ReminderPage extends StatefulWidget {
 class _ReminderPageState extends State<ReminderPage> {
   TimeOfDay selectedTime = TimeOfDay.now();
 
-  _selectTime(BuildContext context) async{
-    final TimeOfDay? timeOfDay = await showTimePicker(context: context,
+  _selectTime(BuildContext context) async {
+    final TimeOfDay? timeOfDay = await showTimePicker(
+        context: context,
         initialTime: selectedTime,
         initialEntryMode: TimePickerEntryMode.dial,
-        builder: (context, child){
-      return Theme(data: ThemeData.dark().copyWith(
-        colorScheme: ColorScheme.light(
-          primary: kFullNavyBlue,
-          onSurface: kFullNavyBlue,
-        ),
-        buttonTheme: ButtonThemeData(
-          colorScheme: ColorScheme.dark(
-            primary: kFullNavyBlue,
-
-          ),
-        ),
-      ), child: child!);
-        }
-    );
-    if(timeOfDay != null && timeOfDay != selectedTime){
+        builder: (context, child) {
+          return Theme(
+              data: ThemeData.dark().copyWith(
+                colorScheme: ColorScheme.light(
+                  primary: kFullNavyBlue,
+                  onSurface: kFullNavyBlue,
+                ),
+                buttonTheme: ButtonThemeData(
+                  colorScheme: ColorScheme.dark(
+                    primary: kFullNavyBlue,
+                  ),
+                ),
+              ),
+              child: child!);
+        });
+    if (timeOfDay != null && timeOfDay != selectedTime) {
       setState(() {
         selectedTime = timeOfDay;
       });
@@ -43,12 +47,16 @@ class _ReminderPageState extends State<ReminderPage> {
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
+    int _toggleValue = 0;
     return Stack(
       children: [
         BackgroundColorWidget(),
         Scaffold(
           appBar: AppBar(
-            title: Text("Alarma insulinei bazale", style: kMathTextStyleBold,),
+            title: Text(
+              "Alarma insulinei bazale",
+              style: kMathTextStyleBold,
+            ),
             shadowColor: Colors.transparent,
             elevation: 0,
             leading: IconButton(
@@ -59,33 +67,82 @@ class _ReminderPageState extends State<ReminderPage> {
             ),
           ),
           backgroundColor: Colors.transparent,
-          body: Column(
-            crossAxisAlignment: CrossAxisAlignment.start,
-            children: [
-              Padding(
-                padding: EdgeInsets.only(left: width * 0.07, right: width * 0.07, top: height * 0.1,bottom: height * 0.07),
-                child: FloatingActionButton(onPressed: (){
-                  _selectTime(context);
-                },
-                  child: Icon(Icons.add,color: kFullGreen,size: 30,),
-                backgroundColor: kFullNavyBlue,),
-              ),
-              Container(
-                color: Colors.red,
-                child: Row(
-                  mainAxisAlignment: MainAxisAlignment.start,
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(horizontal: width * 0.07),
-                      child: Icon(Icons.alarm),
+          body: SingleChildScrollView(
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Padding(
+                  padding: EdgeInsets.only(
+                      left: width * 0.07,
+                      right: width * 0.07,
+                      top: height * 0.1,
+                      bottom: height * 0.07),
+                  child: FloatingActionButton(
+                    onPressed: () {
+                      _selectTime(context);
+                    },
+                    child: Icon(
+                      Icons.add,
+                      color: kFullGreen,
+                      size: 30,
                     ),
-                    Text("${selectedTime.hour} : ${selectedTime.minute}"),
-                  ],
+                    backgroundColor: kFullNavyBlue,
+                  ),
                 ),
-              ),
-
-            ],
-            //TODO: add an image on the top of the page, add plus button, add new container for the new alarm, add checkboxes for every alarm to check the days for the alarm to ring, add pop-up window to set the alarm time
+                Container(
+                  margin: EdgeInsets.all(10),
+                  decoration: BoxDecoration(
+                    color: kGradient2.withOpacity(0.4),
+                    borderRadius: BorderRadius.circular(25),
+                  ),
+                  child: Row(
+                    mainAxisAlignment: MainAxisAlignment.start,
+                    children: <Widget>[
+                      Expanded(
+                          flex: 1,
+                          child: Padding(
+                            padding: EdgeInsets.all(10.0),
+                            child: Icon(
+                              Icons.alarm,
+                              size: 30,
+                            ),
+                          )),
+                      Expanded(
+                          flex: 2,
+                          child: Text(
+                            "${selectedTime.hour} : ${selectedTime.minute}",
+                            style: kMathTextStyleBold,
+                          )),
+                      Expanded(
+                        flex: 2,
+                        child: AnimatedToggle(
+                          values: ['On', 'Off'],
+                          onToggleCallback: (value) {
+                            setState(() {
+                              _toggleValue = value;
+                            });
+                          },
+                          backgroundColor: kGradient2,
+                          buttonColor: kFullNavyBlue,
+                        ),
+                      ),
+                    ],
+                  ),
+                ),
+                Container(
+                  alignment: Alignment.bottomRight,
+                  padding:
+                      EdgeInsets.only(top: height * 0.25, right: width * 0.05),
+                  child: SvgPicture.asset(
+                    'assets/svg/time_management.svg',
+                    width: width * 0.2,
+                    height: height * 0.2,
+                    alignment: Alignment.centerRight,
+                  ),
+                ),
+              ],
+              //TODO: add an image on the top of the page, add plus button, add new container for the new alarm, add checkboxes for every alarm to check the days for the alarm to ring, add pop-up window to set the alarm time
+            ),
           ),
         ),
       ],

@@ -19,6 +19,7 @@ dependencies:
   cloud_firestore: ^3.1.12
   firebase_auth: ^3.3.14
   modal_progress_hud_nsn: ^0.1.0-nullsafety-1
+  flutter_svg: ^1.0.3
 
 
   # The following adds the Cupertino Icons font to your application.
@@ -50,6 +51,7 @@ flutter:
     - assets/images/insulin_treatment.jpg
     - assets/images/insulin_reminder.jpg
     - assets/images/IMG_8830.jpg
+    - assets/svg/time_management.svg
 
   fonts:
     - family: IndieFlower

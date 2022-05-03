@@ -48,8 +48,6 @@ class _ProfilePageState extends State<ProfilePage> {
     opacityLevel = 1;
   }
 
-  
-
   String? initialValueDropdown = 'Activitate nivel ușor';
 
   DropdownButton<String> androidDropdown() {
@@ -66,11 +64,12 @@ class _ProfilePageState extends State<ProfilePage> {
     }
     return DropdownButton(
       items: dropdownItems,
-      value: dbService.getUserValue("setValueInDatabase"),
+      value:
+          initialValueDropdown, //dbService.getUserValue("setValueInDatabase"),
       onChanged: (value) {
         setState(() {
           initialValueDropdown = value;
-          dbService.setValueInDatabase("setValueInDatabase", value.toString());
+          // dbService.setValueInDatabase("setValueInDatabase", value.toString());
         });
       },
     );
@@ -94,7 +93,6 @@ class _ProfilePageState extends State<ProfilePage> {
     //print("[ProfilePage] Build");
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
-
 
     return Stack(
       children: [
@@ -159,14 +157,12 @@ class _ProfilePageState extends State<ProfilePage> {
                           ),
                           //TODO: Make this avatar to change profile picture
                           AnimatedOpacity(
-                            duration: Duration(seconds: 0),
-                            opacity: opacityLevel,
+                              duration: Duration(seconds: 0),
+                              opacity: opacityLevel,
                               child: Text(
                                 'Salut ${DatabaseService.getLoggedUserName()}',
                                 style: kWelcomeText,
-                              )
-                             
-                          ),
+                              )),
                         ],
                       ),
                     ],
@@ -203,7 +199,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                       onPressed: () {
                                         setState(() {
                                           selectedGender = GenderType.female;
-                                          dbService.setValueInDatabase("gender", "female");
+                                          dbService.setValueInDatabase(
+                                              "gender", "female");
                                           print('$selectedGender was pressed');
                                         });
                                       },
@@ -218,7 +215,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                       onPressed: () {
                                         setState(() {
                                           selectedGender = GenderType.male;
-                                          dbService.setValueInDatabase("gender", "male");
+                                          dbService.setValueInDatabase(
+                                              "gender", "male");
                                           print('$selectedGender was pressed');
                                         });
                                       },
@@ -232,18 +230,21 @@ class _ProfilePageState extends State<ProfilePage> {
                               ),
                             ),
                             MyFormField(
-                                inputLabel: 'Vârstă: ${dbService.getUserValue("age")}',
+                                inputLabel:
+                                    'Vârstă: ${dbService.getUserValue("age")}',
                                 icon: Icon(Icons.edit),
                                 obscure: false,
                                 suggestions: false,
                                 onChange: (value) {
-                                    opacityLevel == 1
-                                        ? _changeOpacity(true)
-                                        : opacityLevel;
-                                    dbService.setValueInDatabase("age", value.toString());
+                                  opacityLevel == 1
+                                      ? _changeOpacity(true)
+                                      : opacityLevel;
+                                  dbService.setValueInDatabase(
+                                      "age", value.toString());
                                 }),
                             MyFormField(
-                                inputLabel: 'Înălțime (cm): ${dbService.getUserValue("height")}',
+                                inputLabel:
+                                    'Înălțime (cm): ${dbService.getUserValue("height")}',
                                 icon: Icon(Icons.height),
                                 obscure: false,
                                 suggestions: false,
@@ -254,7 +255,8 @@ class _ProfilePageState extends State<ProfilePage> {
                                   dbService.setValueInDatabase("height", value);
                                 }),
                             MyFormField(
-                                inputLabel: 'Greutate (kg): ${dbService.getUserValue("weight")}',
+                                inputLabel:
+                                    'Greutate (kg): ${dbService.getUserValue("weight")}',
                                 icon: Icon(Icons.monitor_weight),
                                 obscure: false,
                                 suggestions: false,
@@ -270,7 +272,6 @@ class _ProfilePageState extends State<ProfilePage> {
                                   ? androidDropdown()
                                   : iosPicker(),
                             ),
-
                             Padding(
                               padding: EdgeInsets.symmetric(
                                   vertical: height * 0.02,
