@@ -2,8 +2,8 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sugarbetes/utils/background_design.dart';
 import 'package:sugarbetes/utils/constants.dart';
-import 'package:sugarbetes/components/animated_toggle.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:sugarbetes/components/alarm_card.dart';
 
 class ReminderPage extends StatefulWidget {
   static String id = 'reminder';
@@ -89,45 +89,23 @@ class _ReminderPageState extends State<ReminderPage> {
                     backgroundColor: kFullNavyBlue,
                   ),
                 ),
-                Container(
-                  margin: EdgeInsets.all(10),
-                  decoration: BoxDecoration(
-                    color: kGradient2.withOpacity(0.4),
-                    borderRadius: BorderRadius.circular(25),
-                  ),
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.start,
-                    children: <Widget>[
-                      Expanded(
-                          flex: 1,
-                          child: Padding(
-                            padding: EdgeInsets.all(10.0),
-                            child: Icon(
-                              Icons.alarm,
-                              size: 30,
-                            ),
-                          )),
-                      Expanded(
-                          flex: 2,
-                          child: Text(
-                            "${selectedTime.hour} : ${selectedTime.minute}",
-                            style: kMathTextStyleBold,
-                          )),
-                      Expanded(
-                        flex: 2,
-                        child: AnimatedToggle(
-                          values: ['On', 'Off'],
-                          onToggleCallback: (value) {
-                            setState(() {
-                              _toggleValue = value;
-                            });
-                          },
-                          backgroundColor: kGradient2,
-                          buttonColor: kFullNavyBlue,
-                        ),
-                      ),
-                    ],
-                  ),
+                AlarmCard(
+                  selectedTime: selectedTime,
+                  callBack: (value) {
+                    setState(() {
+                      _toggleValue = value;
+                      print(_toggleValue);
+                    });
+                  },
+                ),
+                AlarmCard(
+                  selectedTime: selectedTime,
+                  callBack: (value) {
+                    setState(() {
+                      _toggleValue = value;
+                      print(_toggleValue);
+                    });
+                  },
                 ),
                 Align(
                   alignment: Alignment.bottomRight,
