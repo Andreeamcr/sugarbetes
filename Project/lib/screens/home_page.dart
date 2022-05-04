@@ -29,7 +29,6 @@ class _HomePageState extends State<HomePage> {
         automaticallyImplyLeading: false,
         actions: [
           IconButton(
-            color: Colors.black,
             icon: Icon(Icons.logout),
             onPressed: () {
               _auth.signOut();
@@ -48,7 +47,7 @@ class _HomePageState extends State<HomePage> {
             child: Container(
               decoration: BoxDecoration(
                 image: DecorationImage(
-                  image: AssetImage('assets/images/IMG_8830.jpg'),
+                  image: AssetImage('assets/images/sugar.jpg'),
                   fit: BoxFit.cover,
                 ),
               ),
