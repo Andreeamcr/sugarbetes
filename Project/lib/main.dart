@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sugarbetes/screens/food_page.dart';
 import 'package:sugarbetes/screens/formulas_screen.dart';
 import 'package:sugarbetes/screens/insulin_page.dart';
 import 'package:sugarbetes/screens/home_page.dart';
@@ -45,6 +46,7 @@ class MyApp extends StatelessWidget {
         MathFormulas.id: (context) => MathFormulas(),
         ReminderPage.id: (context) => ReminderPage(),
         SettingsPage.id: (context) => SettingsPage(),
+        FoodPage.id: (context) => FoodPage(),
       },
       // home: WelcomePage(),
     );
