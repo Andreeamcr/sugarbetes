@@ -15,7 +15,7 @@ class ReminderPage extends StatefulWidget {
 
 class _ReminderPageState extends State<ReminderPage> {
   TimeOfDay selectedTime = TimeOfDay.now();
-
+  List<bool> _selections = List.generate(7, (_) => false);
   _selectTime(BuildContext context) async {
     final TimeOfDay? timeOfDay = await showTimePicker(
         context: context,
@@ -50,7 +50,6 @@ class _ReminderPageState extends State<ReminderPage> {
     int _toggleValue = 0;
     int currentHour = DateTime.now().hour;
     int currentMinute = DateTime.now().minute;
-    final List<bool> selections = List.generate(7, (_) => false);
     return Stack(
       children: [
         BackgroundColorWidget(),
@@ -85,7 +84,6 @@ class _ReminderPageState extends State<ReminderPage> {
                       child: FloatingActionButton(
                         onPressed: () {
                           _selectTime(context);
-                          print("$currentHour : $currentMinute");
                         },
                         child: Icon(
                           Icons.add,
@@ -117,45 +115,12 @@ class _ReminderPageState extends State<ReminderPage> {
                       print(_toggleValue);
                     });
                   },
-                ),
-                Center(
-                  child: ToggleButtons(
-                      children: <Widget>[
-                        Text(
-                          'Lu',
-                          style: kToggleText,
-                        ),
-                        Text(
-                          'Ma',
-                          style: kToggleText,
-                        ),
-                        Text(
-                          'Mi',
-                          style: kToggleText,
-                        ),
-                        Text(
-                          'Jo',
-                          style: kToggleText,
-                        ),
-                        Text(
-                          'Vi',
-                          style: kToggleText,
-                        ),
-                        Text(
-                          'Sâ',
-                          style: kToggleText,
-                        ),
-                        Text(
-                          'Du',
-                          style: kToggleText,
-                        ),
-                      ],
-                      onPressed: (int index) {
-                        setState(() {
-                          selections[index] = !selections[index];
-                        });
-                      },
-                      isSelected: selections),
+                  isSelected: _selections,
+                  onPress: (int index) {
+                    setState(() {
+                      _selections[index] = !_selections[index];
+                    });
+                  },
                 ),
                 AlarmCard(
                   selectedTime: selectedTime,
@@ -163,6 +128,12 @@ class _ReminderPageState extends State<ReminderPage> {
                     setState(() {
                       _toggleValue = value;
                       print(_toggleValue);
+                    });
+                  },
+                  isSelected: _selections,
+                  onPress: (int index) {
+                    setState(() {
+                      _selections[index] = !_selections[index];
                     });
                   },
                 ),

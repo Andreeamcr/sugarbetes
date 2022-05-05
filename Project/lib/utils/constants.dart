@@ -45,6 +45,18 @@ const kMathTextStyleBold = TextStyle(
   fontFamily: 'MontserratAlternates',
   color: Colors.black,
 );
+const kToggleText = TextStyle(
+  fontSize: 14,
+  fontWeight: FontWeight.w900,
+  fontFamily: 'MontserratAlternates',
+  color: Colors.black,
+);
+const kTimeBold = TextStyle(
+  fontSize: 30,
+  fontWeight: FontWeight.w900,
+  fontFamily: 'MontserratAlternates',
+  color: kFullGreen,
+);
 const List<String> nivelActivitate = [
   'Repaus la pat',
   'Activitate nivel ușor',
