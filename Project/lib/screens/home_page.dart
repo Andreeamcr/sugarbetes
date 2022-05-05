@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 import 'package:sugarbetes/components/icon_text_data.dart';
 import 'package:sugarbetes/components/reusable_home_card.dart';
 import 'package:sugarbetes/screens/alarms_screen.dart';
+import 'package:sugarbetes/screens/settings_screen.dart';
 import 'package:sugarbetes/utils/constants.dart';
 import 'package:sugarbetes/screens/sign_in_page.dart';
 import 'package:sugarbetes/screens/profile_page.dart';
@@ -133,7 +134,8 @@ class _HomePageState extends State<HomePage> {
                           child: ReusableHomeCard(
                         color: kFullGreen,
                         radius: BorderRadius.zero,
-                        onPress: () => print('HELLO6'),
+                        onPress: () =>
+                            Navigator.pushNamed(context, SettingsPage.id),
                         cardChild: IconTextWidget(
                           icon: Icons.settings,
                           label: 'Setări',

@@ -44,6 +44,7 @@ flutter:
 
   # To add assets to your application, add an assets section, like this:
   assets:
+    - assets/
     - assets/images/logo.jpg
     - assets/images/BloodSugar.jpg
     - assets/images/sugar.jpg
@@ -52,6 +53,7 @@ flutter:
     - assets/images/insulin_reminder.jpg
     - assets/images/IMG_8830.jpg
     - assets/svg/time_management.svg
+    - assets/svg/database.svg
 
   fonts:
     - family: IndieFlower
