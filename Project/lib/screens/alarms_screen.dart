@@ -48,6 +48,9 @@ class _ReminderPageState extends State<ReminderPage> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     int _toggleValue = 0;
+    int currentHour = DateTime.now().hour;
+    int currentMinute = DateTime.now().minute;
+    final List<bool> selections = List.generate(7, (_) => false);
     return Stack(
       children: [
         BackgroundColorWidget(),
@@ -71,23 +74,40 @@ class _ReminderPageState extends State<ReminderPage> {
             child: Column(
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Padding(
-                  padding: EdgeInsets.only(
-                      left: width * 0.07,
-                      right: width * 0.07,
-                      top: height * 0.1,
-                      bottom: height * 0.07),
-                  child: FloatingActionButton(
-                    onPressed: () {
-                      _selectTime(context);
-                    },
-                    child: Icon(
-                      Icons.add,
-                      color: kFullGreen,
-                      size: 30,
+                Row(
+                  children: [
+                    Padding(
+                      padding: EdgeInsets.only(
+                          left: width * 0.07,
+                          right: width * 0.17,
+                          top: height * 0.1,
+                          bottom: height * 0.03),
+                      child: FloatingActionButton(
+                        onPressed: () {
+                          _selectTime(context);
+                          print("$currentHour : $currentMinute");
+                        },
+                        child: Icon(
+                          Icons.add,
+                          color: kFullGreen,
+                          size: 30,
+                        ),
+                        backgroundColor: kFullNavyBlue,
+                      ),
                     ),
-                    backgroundColor: kFullNavyBlue,
-                  ),
+                    Container(
+                      padding:
+                          EdgeInsets.symmetric(vertical: 10, horizontal: 20),
+                      decoration: BoxDecoration(
+                        color: kFullNavyBlue,
+                        borderRadius: BorderRadius.circular(15),
+                      ),
+                      child: Text(
+                        '$currentHour : $currentMinute',
+                        style: kTimeBold,
+                      ),
+                    ),
+                  ],
                 ),
                 AlarmCard(
                   selectedTime: selectedTime,
@@ -97,6 +117,45 @@ class _ReminderPageState extends State<ReminderPage> {
                       print(_toggleValue);
                     });
                   },
+                ),
+                Center(
+                  child: ToggleButtons(
+                      children: <Widget>[
+                        Text(
+                          'Lu',
+                          style: kToggleText,
+                        ),
+                        Text(
+                          'Ma',
+                          style: kToggleText,
+                        ),
+                        Text(
+                          'Mi',
+                          style: kToggleText,
+                        ),
+                        Text(
+                          'Jo',
+                          style: kToggleText,
+                        ),
+                        Text(
+                          'Vi',
+                          style: kToggleText,
+                        ),
+                        Text(
+                          'Sâ',
+                          style: kToggleText,
+                        ),
+                        Text(
+                          'Du',
+                          style: kToggleText,
+                        ),
+                      ],
+                      onPressed: (int index) {
+                        setState(() {
+                          selections[index] = !selections[index];
+                        });
+                      },
+                      isSelected: selections),
                 ),
                 AlarmCard(
                   selectedTime: selectedTime,
