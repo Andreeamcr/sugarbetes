@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:sugarbetes/components/custom_clipper.dart';
+import 'package:sugarbetes/utils/constants.dart';
 
 class MyCircleAvatar extends StatelessWidget {
   MyCircleAvatar({required this.imageUrl});
@@ -20,6 +21,7 @@ class MyCircleAvatar extends StatelessWidget {
         ),
       ),
       radius: height * 0.11,
+      backgroundColor: kFullNavyBlue,
     );
   }
 }
