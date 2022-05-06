@@ -9,6 +9,12 @@ class FoodPage extends StatefulWidget {
 }
 
 class _FoodPageState extends State<FoodPage> {
+  Icon customIcon = const Icon(Icons.search);
+  Icon customIconBack = const Icon(Icons.arrow_back);
+  Widget customSearchBar = const Text(
+    'Valori nutriţionale',
+    style: kMathTextStyleBold,
+  );
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -17,19 +23,44 @@ class _FoodPageState extends State<FoodPage> {
         BackgroundColorWidget(),
         Scaffold(
           appBar: AppBar(
-            title: Text(
-              'Valori nutriţionale',
-              style: kMathTextStyleBold,
-            ),
+            automaticallyImplyLeading: false,
+            title: customSearchBar,
             centerTitle: true,
             leading: IconButton(
-              icon: Icon(Icons.arrow_back),
+              icon: customIconBack,
               onPressed: () => Navigator.pop(context),
             ),
             actions: [
               IconButton(
-                icon: Icon(Icons.search),
-                onPressed: () {},
+                icon: customIcon,
+                onPressed: () {
+                  setState(() {
+                    if (customIcon.icon == Icons.search) {
+                      customIcon = const Icon(Icons.cancel);
+                      customSearchBar = const ListTile(
+                        leading: Icon(
+                          Icons.search,
+                          color: Colors.black,
+                          size: 28,
+                        ),
+                        title: TextField(
+                          decoration: InputDecoration(
+                            hintText: 'Căutaţi un aliment',
+                            hintStyle: kMathTextStyleBold,
+                            border: InputBorder.none,
+                          ),
+                          style: kMathTextStyleBold,
+                        ),
+                      );
+                    } else {
+                      customIcon = const Icon(Icons.search);
+                      customSearchBar = const Text(
+                        'Valori nutriţionale',
+                        style: kMathTextStyleBold,
+                      );
+                    }
+                  });
+                },
                 padding: EdgeInsets.only(right: width * 0.05),
               ),
             ],
