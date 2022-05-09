@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sugarbetes/utils/background_design.dart';
 import 'package:sugarbetes/utils/constants.dart';
 
@@ -15,9 +16,11 @@ class _FoodPageState extends State<FoodPage> {
     'Valori nutriţionale',
     style: kMathTextStyleBold,
   );
+  bool isVisible = true;
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
+    double height = MediaQuery.of(context).size.height;
     return Stack(
       children: [
         BackgroundColorWidget(),
@@ -35,6 +38,7 @@ class _FoodPageState extends State<FoodPage> {
                 icon: customIcon,
                 onPressed: () {
                   setState(() {
+                    isVisible = false;
                     if (customIcon.icon == Icons.search) {
                       customIcon = const Icon(Icons.cancel);
                       customSearchBar = const ListTile(
@@ -53,6 +57,7 @@ class _FoodPageState extends State<FoodPage> {
                         ),
                       );
                     } else {
+                      isVisible = true;
                       customIcon = const Icon(Icons.search);
                       customSearchBar = const Text(
                         'Valori nutriţionale',
@@ -69,7 +74,24 @@ class _FoodPageState extends State<FoodPage> {
           backgroundColor: Colors.transparent,
           body: SingleChildScrollView(
             child: Column(
-              children: [],
+              children: [
+                Visibility(
+                  child: Align(
+                    alignment: Alignment.center,
+                    child: Padding(
+                      padding: EdgeInsets.only(top: height * 0.2),
+                      child: Container(
+                        child: SvgPicture.asset(
+                          'assets/svg/food.svg',
+                        ),
+                        height: height * 0.3,
+                        width: width * 0.6,
+                      ),
+                    ),
+                  ),
+                  visible: isVisible,
+                ),
+              ],
             ),
           ),
         ),

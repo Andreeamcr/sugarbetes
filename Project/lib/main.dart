@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:sugarbetes/screens/food_page.dart';
 import 'package:sugarbetes/screens/formulas_screen.dart';
+import 'package:sugarbetes/screens/glicemii_screen.dart';
 import 'package:sugarbetes/screens/insulin_page.dart';
 import 'package:sugarbetes/screens/home_page.dart';
 import 'package:sugarbetes/screens/mathematics_screen.dart';
@@ -47,6 +48,7 @@ class MyApp extends StatelessWidget {
         ReminderPage.id: (context) => ReminderPage(),
         SettingsPage.id: (context) => SettingsPage(),
         FoodPage.id: (context) => FoodPage(),
+        GlicemiiPage.id: (context) => GlicemiiPage(),
       },
       // home: WelcomePage(),
     );

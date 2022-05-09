@@ -54,6 +54,7 @@ flutter:
     - assets/images/IMG_8830.jpg
     - assets/svg/time_management.svg
     - assets/svg/database.svg
+    - assets/svg/food.svg
 
   fonts:
     - family: IndieFlower
