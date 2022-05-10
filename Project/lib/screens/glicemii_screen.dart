@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:sugarbetes/screens/settings_screen.dart';
 import 'package:sugarbetes/utils/background_design.dart';
 import 'package:sugarbetes/utils/constants.dart';
+import 'package:sugarbetes/components/glucose_table.dart';
 
 class GlicemiiPage extends StatefulWidget {
   static String id = 'glicemii';
@@ -35,13 +36,15 @@ class _GlicemiiPageState extends State<GlicemiiPage> {
             ),
           ),
           body: Column(
+            crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               Row(
                 children: [
                   Padding(
                     padding: EdgeInsets.symmetric(
-                        vertical: height * 0.03, horizontal: width * 0.09),
+                        vertical: height * 0.04, horizontal: width * 0.09),
                     child: FloatingActionButton(
+                      heroTag: 'btn1',
                       onPressed: () {
                         setState(() {
                           if (customIcon.icon == Icons.link_off) {
@@ -69,8 +72,67 @@ class _GlicemiiPageState extends State<GlicemiiPage> {
                 ],
                 mainAxisAlignment: MainAxisAlignment.start,
               ),
+              ListView(
+                children: [
+                  GlucoseTable(
+                    dataRow: [
+                      DataRow(cells: [
+                        DataCell(
+                          Text(
+                            '6:48',
+                            style: kToggleText,
+                          ),
+                        ),
+                        DataCell(
+                          Text(
+                            '68',
+                            style: kToggleText,
+                          ),
+                        ),
+                      ]),
+                      DataRow(cells: [
+                        DataCell(
+                          Text(
+                            '12:05',
+                            style: kToggleText,
+                          ),
+                        ),
+                        DataCell(
+                          Text(
+                            '95',
+                            style: kToggleText,
+                          ),
+                        ),
+                      ]),
+                    ],
+                  ),
+                ],
+                shrinkWrap: true,
+              ),
+              Padding(
+                padding: EdgeInsets.all(width * 0.06),
+                child: SizedBox(
+                  width: width * 0.55,
+                  height: height * 0.06,
+                  child: FloatingActionButton(
+                    heroTag: 'btn2',
+                    onPressed: () {
+                      print("Hello!");
+                    },
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(20),
+                    ),
+                    child: Text(
+                      'Adaugă o nouă valoare',
+                      style: kToggleText,
+                    ),
+                    backgroundColor: kFullNavyBlue,
+                  ),
+                ),
+              ),
             ],
           ),
+          // ),
           backgroundColor: Colors.transparent,
         ),
       ],
