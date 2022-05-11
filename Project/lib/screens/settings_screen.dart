@@ -4,7 +4,6 @@ import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sugarbetes/components/form_field.dart';
 import 'package:sugarbetes/screens/home_page.dart';
 import 'package:sugarbetes/utils/background_design.dart';
-import 'package:sugarbetes/screens/glicemii_screen.dart';
 import '../components/reusable_button_welcome.dart';
 import '../utils/constants.dart';
 
@@ -105,7 +104,7 @@ class _SettingsPageState extends State<SettingsPage> {
                               heigth_factor: 0.02,
                               color: kFullNavyBlue,
                               onPress: () {
-                                Navigator.pushNamed(context, GlicemiiPage.id);
+                                Navigator.pop(context);
                               },
                               buttonChild: Text('Salvează'),
                             ),
