@@ -15,10 +15,10 @@ class GlucoseTable extends StatelessWidget {
       ),
       DataColumn(
         label: Text(
-          'Valoare glicemie',
+          'Valoare glicemie (mg/dl)',
           style: kMathTextStyle,
         ),
-      )
+      ),
     ], rows: dataRow);
   }
 }

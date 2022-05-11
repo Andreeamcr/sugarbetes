@@ -18,6 +18,50 @@ class _GlicemiiPageState extends State<GlicemiiPage> {
     color: kFullGreen,
     size: 30,
   );
+  final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
+  final TextEditingController _textEditingController = TextEditingController();
+
+  Future<void> showInformationDialog(BuildContext context) async {
+    return await showDialog(
+        context: context,
+        builder: (context) {
+          return StatefulBuilder(builder: (context, setState) {
+            return AlertDialog(
+              content: Form(
+                key: _formKey,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    TextFormField(
+                      controller: _textEditingController,
+                      validator: (value) {
+                        return value!.isNotEmpty
+                            ? null
+                            : 'Introduceţi o valoare';
+                      },
+                      decoration: InputDecoration(
+                          hintText: 'Introduceţi valoarea glicemiei'),
+                    ),
+                  ],
+                ),
+              ),
+              title: Text('Glicemie (mg/dl)'),
+              actions: <Widget>[
+                InkWell(
+                  child: Text('OK    '),
+                  onTap: () {
+                    if (_formKey.currentState!.validate()) {
+                      print('update the damn table');
+                      Navigator.pop(context);
+                    }
+                  },
+                )
+              ],
+            );
+          });
+        });
+  }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
@@ -116,8 +160,8 @@ class _GlicemiiPageState extends State<GlicemiiPage> {
                   height: height * 0.06,
                   child: FloatingActionButton(
                     heroTag: 'btn2',
-                    onPressed: () {
-                      print("Hello!");
+                    onPressed: () async {
+                      await showInformationDialog(context);
                     },
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(20),
@@ -134,6 +178,7 @@ class _GlicemiiPageState extends State<GlicemiiPage> {
           ),
           // ),
           backgroundColor: Colors.transparent,
+          resizeToAvoidBottomInset: false,
         ),
       ],
     );
