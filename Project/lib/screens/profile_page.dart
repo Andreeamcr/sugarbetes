@@ -48,8 +48,6 @@ class _ProfilePageState extends State<ProfilePage> {
     opacityLevel = 1;
   }
 
-  String? initialValueDropdown = 'Activitate nivel ușor';
-
   DropdownButton<String> androidDropdown() {
     List<DropdownMenuItem<String>> dropdownItems = [];
     for (String level in nivelActivitate) {
@@ -64,15 +62,24 @@ class _ProfilePageState extends State<ProfilePage> {
     }
     return DropdownButton(
       items: dropdownItems,
-      value:
-          initialValueDropdown, //dbService.getUserValue("setValueInDatabase"),
+      value: DatabaseService.userInfo["activityLevel"] == '' ? dropdownItems[1].value : DatabaseService.userInfo["activityLevel"],
       onChanged: (value) {
         setState(() {
-          initialValueDropdown = value;
-          // dbService.setValueInDatabase("setValueInDatabase", value.toString());
+          dbService.setValueInDatabase("activityLevel", value.toString());
         });
       },
     );
+  }
+
+  String? getValueFromList( List<DropdownMenuItem<String>> list, String value) {
+    String? result = '';
+    for (var element in list) {
+      if(element.value == value) {
+        result = element.value;
+      }
+    }
+
+    return result;
   }
 
   CupertinoPicker iosPicker() {
