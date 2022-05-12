@@ -28,7 +28,7 @@ class DatabaseService {
     }
   }
 
-  String getUserValue(String field)
+  static String getUserValue(String field)
   {
     try {
       return userInfo[field].toString();

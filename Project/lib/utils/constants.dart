@@ -57,6 +57,7 @@ const kTimeBold = TextStyle(
   fontFamily: 'MontserratAlternates',
   color: kFullGreen,
 );
+
 const List<String> nivelActivitate = [
   'Repaus la pat',
   'Activitate nivel ușor',
