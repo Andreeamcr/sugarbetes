@@ -31,24 +31,38 @@ class CalculusService {
   }
 
   int calculateNC() {
-    var height = int.parse(DatabaseService.getUserValue("height"));
-    var activity = activityLvl[DatabaseService.getUserValue("activityLevel")] ?? 0;
-    if(DatabaseService.userInfo["gender"] == "male") {
-       _NC = (height - 100) * activity;
-    }
-    else {
-      _NC = (height - 105) * activity;
-    }
+    try {
+      var height = int.parse(DatabaseService.getUserValue("height"));
+      var activity = activityLvl[DatabaseService.getUserValue(
+          "activityLevel")] ?? 0;
+      if (DatabaseService.userInfo["gender"] == "male") {
+        _NC = (height - 100) * activity;
+      }
+      else {
+        _NC = (height - 105) * activity;
+      }
 
-    return _NC;
+      return _NC;
+    } catch (e) {
+      print("Error in calculating NC");
+      return 0;
+    }
   }
 
   double calculateDTI() {
-    var totalRapidInsulin = double.parse(DatabaseService.getUserValue("rapidInsulinQuantity"));
-    var totalBaseInsulin = double.parse(DatabaseService.getUserValue("baseInsulinQuantity"));
+    try {
+      var totalRapidInsulin = double.parse(
+          DatabaseService.getUserValue("rapidInsulinQuantity"));
+      var totalBaseInsulin = double.parse(
+          DatabaseService.getUserValue("baseInsulinQuantity"));
 
-    _DTI = totalBaseInsulin + totalRapidInsulin;
-    return _DTI;
+      _DTI = totalBaseInsulin + totalRapidInsulin;
+      return _DTI;
+    }
+    catch(e) {
+      print("Error calculating DTI");
+      return 0;
+    }
   }
 
   double calculateIHC() {
