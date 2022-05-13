@@ -25,6 +25,10 @@ class DatabaseService {
       userInfo['weight'] = getOrElseValue(doc, 'weight');
       userInfo['gender'] = getOrElseValue(doc, 'gender');
       userInfo['activityLevel'] = getOrElseValue(doc, 'activityLevel');
+      userInfo['rapidInsulinType'] = getOrElseValue(doc, 'rapidInsulinType');
+      userInfo['rapidInsulinQuantity'] = getOrElseValue(doc, 'rapidInsulinQuantity');
+      userInfo['baseInsulinType'] = getOrElseValue(doc, 'baseInsulinType');
+      userInfo['baseInsulinQuantity'] = getOrElseValue(doc, 'baseInsulinQuantity');
     }
   }
 

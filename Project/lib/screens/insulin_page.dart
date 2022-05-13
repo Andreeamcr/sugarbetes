@@ -4,6 +4,7 @@ import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sugarbetes/components/custom_circle_avatar.dart';
 import 'package:sugarbetes/components/reusable_button_welcome.dart';
+import 'package:sugarbetes/services/databaseService.dart';
 import 'package:sugarbetes/utils/background_design.dart';
 import 'package:sugarbetes/utils/constants.dart';
 import 'package:sugarbetes/components/form_field.dart';
@@ -20,6 +21,7 @@ class InsulinPage extends StatefulWidget {
 
 class _InsulinPageState extends State<InsulinPage> {
   GenderType selectedGender = GenderType.female;
+  DatabaseService dbService = new DatabaseService();
 
   void _changeOpacity(bool isPressed) {
     setState(() {
@@ -133,6 +135,8 @@ class _InsulinPageState extends State<InsulinPage> {
                                   opacityLevel == 1
                                       ? _changeOpacity(true)
                                       : opacityLevel;
+                                  dbService.setValueInDatabase(
+                                      "rapidInsulinType", value.toString());
                                 }),
                             MyFormField(
                                 inputLabel:
@@ -144,6 +148,8 @@ class _InsulinPageState extends State<InsulinPage> {
                                   opacityLevel == 1
                                       ? _changeOpacity(true)
                                       : opacityLevel;
+                                  dbService.setValueInDatabase(
+                                      "rapidInsulinQuantity", value.toString());
                                 }),
                             MyFormField(
                                 inputLabel: 'Ce insulină bazală folosiți?: ',
@@ -154,6 +160,8 @@ class _InsulinPageState extends State<InsulinPage> {
                                   opacityLevel == 1
                                       ? _changeOpacity(true)
                                       : opacityLevel;
+                                  dbService.setValueInDatabase(
+                                      "baseInsulinType", value.toString());
                                 }),
                             MyFormField(
                                 inputLabel:
@@ -165,6 +173,8 @@ class _InsulinPageState extends State<InsulinPage> {
                                   opacityLevel == 1
                                       ? _changeOpacity(true)
                                       : opacityLevel;
+                                  dbService.setValueInDatabase(
+                                      "baseInsulinQuantity", value.toString());
                                 }),
                             Padding(
                               padding: EdgeInsets.symmetric(
