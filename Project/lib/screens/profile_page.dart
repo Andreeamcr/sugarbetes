@@ -238,7 +238,7 @@ class _ProfilePageState extends State<ProfilePage> {
                             ),
                             MyFormField(
                                 inputLabel:
-                                    'Vârstă: ${dbService.getUserValue("age")}',
+                                    'Vârstă: ${DatabaseService.getUserValue("age")}',
                                 icon: Icon(Icons.edit),
                                 obscure: false,
                                 suggestions: false,
@@ -251,7 +251,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 }),
                             MyFormField(
                                 inputLabel:
-                                    'Înălțime (cm): ${dbService.getUserValue("height")}',
+                                    'Înălțime (cm): ${DatabaseService.getUserValue("height")}',
                                 icon: Icon(Icons.height),
                                 obscure: false,
                                 suggestions: false,
@@ -263,7 +263,7 @@ class _ProfilePageState extends State<ProfilePage> {
                                 }),
                             MyFormField(
                                 inputLabel:
-                                    'Greutate (kg): ${dbService.getUserValue("weight")}',
+                                    'Greutate (kg): ${DatabaseService.getUserValue("weight")}',
                                 icon: Icon(Icons.monitor_weight),
                                 obscure: false,
                                 suggestions: false,
