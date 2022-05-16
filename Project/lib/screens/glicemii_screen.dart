@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sugarbetes/screens/settings_screen.dart';
@@ -23,6 +25,10 @@ class _GlicemiiPageState extends State<GlicemiiPage> {
   );
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _textEditingController = TextEditingController();
+  final List<ChartData> chartData = [
+    ChartData(DateTime.now().subtract(Duration(hours: 1)), 105),
+    ChartData(DateTime.now().subtract(Duration(minutes: 30)), 68),
+  ];
 
   Future<void> showInformationDialog(BuildContext context) async {
     return await showDialog(
@@ -36,11 +42,19 @@ class _GlicemiiPageState extends State<GlicemiiPage> {
                   mainAxisSize: MainAxisSize.min,
                   children: [
                     TextFormField(
+                      keyboardType: TextInputType.number,
                       controller: _textEditingController,
                       validator: (value) {
-                        return value!.isNotEmpty
-                            ? null
-                            : 'Introduceţi o valoare';
+                        // return value!.isNotEmpty
+                        //     ? null
+                        //     : 'Introduceţi o valoare';
+                        if (value != null) {
+                          double convertedValue = double.parse(value);
+                          chartData
+                              .add(ChartData(DateTime.now(), convertedValue));
+                        } else {
+                          print('Introduceti o valoare');
+                        }
                       },
                       decoration: InputDecoration(
                           hintText: 'Introduceţi valoarea glicemiei'),
@@ -54,7 +68,6 @@ class _GlicemiiPageState extends State<GlicemiiPage> {
                   child: Text('OK    '),
                   onTap: () {
                     if (_formKey.currentState!.validate()) {
-                      print('update the damn table');
                       Navigator.pop(context);
                     }
                   },
@@ -70,12 +83,7 @@ class _GlicemiiPageState extends State<GlicemiiPage> {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     String dbStatus = 'Deconectat';
-    final List<ChartData> chartData = [
-      ChartData(DateTime.now(), 68),
-      ChartData(DateTime.now().add(Duration(hours: 1)), 105),
-      ChartData(DateTime.now().add(Duration(hours: 2)), 125)
-      // ChartData(DateTime(2020, 12, 23, 14, 15, 03), 95)
-    ];
+
     return Stack(
       children: [
         BackgroundColorWidget(),
