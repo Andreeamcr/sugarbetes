@@ -5,8 +5,8 @@ import 'package:sugarbetes/utils/background_design.dart';
 import 'package:sugarbetes/utils/constants.dart';
 import 'package:sugarbetes/components/glucose_table.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
-import 'package:syncfusion_flutter_charts/sparkcharts.dart';
 import 'package:sugarbetes/components/chart_data.dart';
+import 'package:intl/intl.dart';
 
 class GlicemiiPage extends StatefulWidget {
   static String id = 'glicemii';
@@ -71,8 +71,10 @@ class _GlicemiiPageState extends State<GlicemiiPage> {
     double width = MediaQuery.of(context).size.width;
     String dbStatus = 'Deconectat';
     final List<ChartData> chartData = [
-      ChartData(DateTime(13, 05), 68),
-      ChartData(DateTime(2020, 12, 23, 14, 15, 03), 95)
+      ChartData(DateTime.now(), 68),
+      ChartData(DateTime.now().add(Duration(hours: 1)), 105),
+      ChartData(DateTime.now().add(Duration(hours: 2)), 125)
+      // ChartData(DateTime(2020, 12, 23, 14, 15, 03), 95)
     ];
     return Stack(
       children: [
@@ -188,16 +190,20 @@ class _GlicemiiPageState extends State<GlicemiiPage> {
                 Container(
                   child: SfCartesianChart(
                     primaryXAxis: DateTimeAxis(
-                      minimum: DateTime.now(),
+                      majorGridLines: MajorGridLines(color: Colors.transparent),
+                      edgeLabelPlacement: EdgeLabelPlacement.shift,
+                      minimum: DateTime.now().subtract(
+                          Duration(hours: 8, minutes: 59, seconds: 59)),
                       intervalType: DateTimeIntervalType.hours,
                       desiredIntervals: 1,
                       interval: 1,
                       maximum: DateTime.now().add(
-                        Duration(hours: 12, minutes: 59, seconds: 59),
+                        Duration(hours: 8, minutes: 59, seconds: 59),
                       ),
                     ),
                     series: <CartesianSeries>[
                       LineSeries<ChartData, DateTime>(
+                        color: Colors.white,
                         dataSource: chartData,
                         xValueMapper: (ChartData data, _) => data.x,
                         yValueMapper: (ChartData data, _) => data.y,
@@ -209,6 +215,19 @@ class _GlicemiiPageState extends State<GlicemiiPage> {
                         ),
                       ),
                     ],
+                    primaryYAxis: NumericAxis(
+                        numberFormat: NumberFormat.compact(),
+                        interval: 30,
+                        maximum: 250,
+                        minimum: 30,
+                        edgeLabelPlacement: EdgeLabelPlacement.shift,
+                        plotBands: <PlotBand>[
+                          PlotBand(
+                              start: 70,
+                              end: 180,
+                              color: kFullNavyBlue,
+                              opacity: 0.8)
+                        ]),
                   ),
                 )
               ],
