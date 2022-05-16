@@ -107,7 +107,8 @@ class _GlicemiiPageState extends State<GlicemiiPage> {
                 Row(
                   children: [
                     Padding(
-                      padding: EdgeInsets.symmetric(horizontal: width * 0.09),
+                      padding: EdgeInsets.symmetric(
+                          horizontal: width * 0.09, vertical: 20),
                       child: FloatingActionButton(
                         heroTag: 'btn1',
                         onPressed: () {
@@ -137,7 +138,76 @@ class _GlicemiiPageState extends State<GlicemiiPage> {
                   ],
                   mainAxisAlignment: MainAxisAlignment.start,
                 ),
+                Padding(
+                  padding: EdgeInsets.only(top: height * 0.02),
+                  child: Container(
+                    child: SfCartesianChart(
+                      primaryXAxis: DateTimeAxis(
+                        majorGridLines:
+                            MajorGridLines(color: Colors.transparent),
+                        edgeLabelPlacement: EdgeLabelPlacement.shift,
+                        minimum: DateTime.now().subtract(
+                            Duration(hours: 8, minutes: 59, seconds: 59)),
+                        intervalType: DateTimeIntervalType.hours,
+                        desiredIntervals: 1,
+                        interval: 1,
+                        maximum: DateTime.now().add(
+                          Duration(hours: 8, minutes: 59, seconds: 59),
+                        ),
+                      ),
+                      series: <CartesianSeries>[
+                        LineSeries<ChartData, DateTime>(
+                          color: Colors.white,
+                          dataSource: chartData,
+                          xValueMapper: (ChartData data, _) => data.x,
+                          yValueMapper: (ChartData data, _) => data.y,
+                          markerSettings: MarkerSettings(
+                            isVisible: true,
+                          ),
+                          dataLabelSettings: DataLabelSettings(
+                            isVisible: true,
+                          ),
+                        ),
+                      ],
+                      primaryYAxis: NumericAxis(
+                          numberFormat: NumberFormat.compact(),
+                          interval: 30,
+                          maximum: 250,
+                          minimum: 30,
+                          edgeLabelPlacement: EdgeLabelPlacement.shift,
+                          plotBands: <PlotBand>[
+                            PlotBand(
+                                start: 70,
+                                end: 180,
+                                color: kFullNavyBlue,
+                                opacity: 0.8)
+                          ]),
+                    ),
+                  ),
+                ),
+                Padding(
+                  padding: EdgeInsets.all(width * 0.06),
+                  child: SizedBox(
+                    width: width * 0.55,
+                    height: height * 0.06,
+                    child: FloatingActionButton(
+                      heroTag: 'btn2',
+                      onPressed: () async {
+                        await showInformationDialog(context);
+                      },
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(20),
+                      ),
+                      child: Text(
+                        'Adaugă o nouă valoare',
+                        style: kToggleText,
+                      ),
+                      backgroundColor: kFullNavyBlue,
+                    ),
+                  ),
+                ),
                 ListView(
+                  padding: EdgeInsets.only(top: 0, bottom: 10),
                   children: [
                     GlucoseTable(
                       dataRow: [
@@ -174,76 +244,12 @@ class _GlicemiiPageState extends State<GlicemiiPage> {
                   ],
                   shrinkWrap: true,
                 ),
-                Padding(
-                  padding: EdgeInsets.all(width * 0.06),
-                  child: SizedBox(
-                    width: width * 0.55,
-                    height: height * 0.06,
-                    child: FloatingActionButton(
-                      heroTag: 'btn2',
-                      onPressed: () async {
-                        await showInformationDialog(context);
-                      },
-                      shape: RoundedRectangleBorder(
-                        borderRadius: BorderRadius.circular(20),
-                      ),
-                      child: Text(
-                        'Adaugă o nouă valoare',
-                        style: kToggleText,
-                      ),
-                      backgroundColor: kFullNavyBlue,
-                    ),
-                  ),
-                ),
-                Container(
-                  child: SfCartesianChart(
-                    primaryXAxis: DateTimeAxis(
-                      majorGridLines: MajorGridLines(color: Colors.transparent),
-                      edgeLabelPlacement: EdgeLabelPlacement.shift,
-                      minimum: DateTime.now().subtract(
-                          Duration(hours: 8, minutes: 59, seconds: 59)),
-                      intervalType: DateTimeIntervalType.hours,
-                      desiredIntervals: 1,
-                      interval: 1,
-                      maximum: DateTime.now().add(
-                        Duration(hours: 8, minutes: 59, seconds: 59),
-                      ),
-                    ),
-                    series: <CartesianSeries>[
-                      LineSeries<ChartData, DateTime>(
-                        color: Colors.white,
-                        dataSource: chartData,
-                        xValueMapper: (ChartData data, _) => data.x,
-                        yValueMapper: (ChartData data, _) => data.y,
-                        markerSettings: MarkerSettings(
-                          isVisible: true,
-                        ),
-                        dataLabelSettings: DataLabelSettings(
-                          isVisible: true,
-                        ),
-                      ),
-                    ],
-                    primaryYAxis: NumericAxis(
-                        numberFormat: NumberFormat.compact(),
-                        interval: 30,
-                        maximum: 250,
-                        minimum: 30,
-                        edgeLabelPlacement: EdgeLabelPlacement.shift,
-                        plotBands: <PlotBand>[
-                          PlotBand(
-                              start: 70,
-                              end: 180,
-                              color: kFullNavyBlue,
-                              opacity: 0.8)
-                        ]),
-                  ),
-                )
               ],
             ),
           ),
           // ),
           backgroundColor: Colors.transparent,
-          resizeToAvoidBottomInset: false,
+          resizeToAvoidBottomInset: true,
         ),
       ],
     );
