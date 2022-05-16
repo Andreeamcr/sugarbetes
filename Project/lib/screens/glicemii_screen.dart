@@ -156,20 +156,24 @@ class _GlicemiiPageState extends State<GlicemiiPage> {
                         ),
                       ),
                       series: <CartesianSeries>[
-                        LineSeries<ChartData, DateTime>(
+                        SplineSeries<ChartData, DateTime>(
                           color: Colors.white,
                           dataSource: chartData,
                           xValueMapper: (ChartData data, _) => data.x,
                           yValueMapper: (ChartData data, _) => data.y,
                           markerSettings: MarkerSettings(
-                            isVisible: true,
-                          ),
+                              isVisible: true,
+                              shape: DataMarkerType.circle,
+                              width: 4,
+                              height: 4),
                           dataLabelSettings: DataLabelSettings(
                             isVisible: true,
                           ),
                         ),
                       ],
                       primaryYAxis: NumericAxis(
+                          majorGridLines:
+                              MajorGridLines(color: Colors.transparent),
                           numberFormat: NumberFormat.compact(),
                           interval: 30,
                           maximum: 250,
@@ -177,10 +181,20 @@ class _GlicemiiPageState extends State<GlicemiiPage> {
                           edgeLabelPlacement: EdgeLabelPlacement.shift,
                           plotBands: <PlotBand>[
                             PlotBand(
+                                start: 180,
+                                end: 250,
+                                color: kHighValue,
+                                opacity: 0.6),
+                            PlotBand(
                                 start: 70,
                                 end: 180,
-                                color: kFullNavyBlue,
-                                opacity: 0.8)
+                                color: kFullGreen,
+                                opacity: 0.4),
+                            PlotBand(
+                                start: 30,
+                                end: 70,
+                                color: kLowValue,
+                                opacity: 0.6)
                           ]),
                     ),
                   ),

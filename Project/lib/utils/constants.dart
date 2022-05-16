@@ -4,6 +4,8 @@ const Color kGradient1 = Color(0xFF255B7C);
 const Color kGradient2 = Color(0xFF77E6B6);
 const Color kFullGreen = Color(0xFF7DEB9E);
 const Color kFullNavyBlue = Color(0xFF22577A);
+const Color kHighValue = Color(0xffecb3);
+const Color kLowValue = Color(0xf44336);
 
 const kWelcomeText = TextStyle(
   fontSize: 25,
