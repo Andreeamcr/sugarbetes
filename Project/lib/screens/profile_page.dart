@@ -144,7 +144,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           MyCircleAvatar(
-                            imageUrl: 'assets/images/user-profile.jpg',
+                            imageUrl: 'assets/images/IMG_8830.jpg',
                           ),
                           AnimatedOpacity(
                             duration: Duration(seconds: 0),
@@ -167,7 +167,7 @@ class _ProfilePageState extends State<ProfilePage> {
                               duration: Duration(seconds: 0),
                               opacity: opacityLevel,
                               child: Text(
-                                'Salut ${DatabaseService.getLoggedUserName()}',
+                                'Salut ${DatabaseService.getLoggedUserName()}!',
                                 style: kWelcomeText,
                               )),
                         ],
