@@ -122,21 +122,21 @@ class _ReminderPageState extends State<ReminderPage> {
                     });
                   },
                 ),
-                AlarmCard(
-                  selectedTime: selectedTime,
-                  callBack: (value) {
-                    setState(() {
-                      _toggleValue = value;
-                      print(_toggleValue);
-                    });
-                  },
-                  isSelected: _selections,
-                  onPress: (int index) {
-                    setState(() {
-                      _selections[index] = !_selections[index];
-                    });
-                  },
-                ),
+                // AlarmCard(
+                //   selectedTime: selectedTime,
+                //   callBack: (value) {
+                //     setState(() {
+                //       _toggleValue = value;
+                //       print(_toggleValue);
+                //     });
+                //   },
+                //   isSelected: _selections,
+                //   onPress: (int index) {
+                //     setState(() {
+                //       _selections[index] = !_selections[index];
+                //     });
+                //   },
+                // ),
                 Align(
                   alignment: Alignment.bottomRight,
                   child: Container(
