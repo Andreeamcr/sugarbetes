@@ -127,7 +127,7 @@ class _InsulinPageState extends State<InsulinPage> {
                               height: height * 0.02,
                             ),
                             MyFormField(
-                                inputLabel: 'Ce insulină rapidă folosiți?: ',
+                                inputLabel: 'Insulină rapidă: ${DatabaseService.getUserValue("rapidInsulinType")}',
                                 icon: Icon(Icons.bloodtype),
                                 obscure: false,
                                 suggestions: false,
@@ -140,7 +140,7 @@ class _InsulinPageState extends State<InsulinPage> {
                                 }),
                             MyFormField(
                                 inputLabel:
-                                    'Doza totală de insulină rapidă/zi: ',
+                                    'Doza totală de insulină rapidă/zi(u): ${DatabaseService.getUserValue("rapidInsulinQuantity")} ',
                                 icon: Icon(Icons.opacity),
                                 obscure: false,
                                 suggestions: false,
@@ -152,7 +152,7 @@ class _InsulinPageState extends State<InsulinPage> {
                                       "rapidInsulinQuantity", value.toString());
                                 }),
                             MyFormField(
-                                inputLabel: 'Ce insulină bazală folosiți?: ',
+                                inputLabel: 'Insulină bazală: ${DatabaseService.getUserValue("baseInsulinType")}',
                                 icon: Icon(Icons.bloodtype),
                                 obscure: false,
                                 suggestions: false,
@@ -165,7 +165,7 @@ class _InsulinPageState extends State<InsulinPage> {
                                 }),
                             MyFormField(
                                 inputLabel:
-                                    'Doza totală de insulină bazală/zi: ',
+                                    'Doza totală de insulină bazală/zi(u): ${DatabaseService.getUserValue("baseInsulinQuantity")} ',
                                 icon: Icon(Icons.opacity),
                                 obscure: false,
                                 suggestions: false,
