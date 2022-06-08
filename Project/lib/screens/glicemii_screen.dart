@@ -104,40 +104,44 @@ class _GlicemiiPageState extends State<GlicemiiPage> {
                 SizedBox(
                   height: height * 0.11,
                 ),
-                Row(
-                  children: [
-                    Padding(
-                      padding: EdgeInsets.symmetric(
-                          horizontal: width * 0.09, vertical: 20),
-                      child: FloatingActionButton(
-                        heroTag: 'btn1',
-                        onPressed: () {
-                          setState(() {
-                            if (customIcon.icon == Icons.link_off) {
-                              customIcon = const Icon(Icons.link,
-                                  color: kFullGreen, size: 30);
-                              Navigator.pushNamed(context, SettingsPage.id);
-                            } else {
-                              customIcon = const Icon(
-                                Icons.link_off,
-                                color: kFullGreen,
-                                size: 30,
-                              );
-                            }
-                          });
-                        },
-                        child: customIcon,
-                        backgroundColor: kFullNavyBlue,
-                      ),
-                    ),
-                    Text(
-                      'Status:  $dbStatus',
-                      //TODO: de implementat variabila sa nu mai fie hardcodata
-                      style: kMathTextStyleBold,
-                    ),
-                  ],
-                  mainAxisAlignment: MainAxisAlignment.start,
+                Padding(
+                  padding: EdgeInsets.all(height*0.05),
+                  child: Text("Bun venit în evidența glicemiilor!",style: kMathTextStyleBold,),
                 ),
+                // Row(
+                //   children: [
+                //     Padding(
+                //       padding: EdgeInsets.symmetric(
+                //           horizontal: width * 0.09, vertical: 20),
+                //       child: FloatingActionButton(
+                //         heroTag: 'btn1',
+                //         onPressed: () {
+                //           setState(() {
+                //             if (customIcon.icon == Icons.link_off) {
+                //               customIcon = const Icon(Icons.link,
+                //                   color: kFullGreen, size: 30);
+                //               Navigator.pushNamed(context, SettingsPage.id);
+                //             } else {
+                //               customIcon = const Icon(
+                //                 Icons.link_off,
+                //                 color: kFullGreen,
+                //                 size: 30,
+                //               );
+                //             }
+                //           });
+                //         },
+                //         child: customIcon,
+                //         backgroundColor: kFullNavyBlue,
+                //       ),
+                //     ),
+                //     Text(
+                //       'Status:  $dbStatus',
+                //       //TODO: de implementat variabila sa nu mai fie hardcodata
+                //       style: kMathTextStyleBold,
+                //     ),
+                //   ],
+                //   mainAxisAlignment: MainAxisAlignment.start,
+                // ),
                 Padding(
                   padding: EdgeInsets.only(top: height * 0.02),
                   child: Container(
