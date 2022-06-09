@@ -124,7 +124,12 @@ class _HomePageState extends State<HomePage> {
                     children: [
                       Expanded(
                         child: ReusableHomeCard(
-                          color: kFullNavyBlue,
+                          color: kGradient1,
+                          gradient: LinearGradient(
+                            begin: Alignment.topRight,
+                            end: Alignment.bottomLeft,
+                            colors: [kFullNavyBlue, kFullGreen],
+                          ),
                           radius: BorderRadius.zero,
                           onPress: () =>
                               Navigator.pushNamed(context, GlicemiiPage.id),
@@ -134,17 +139,17 @@ class _HomePageState extends State<HomePage> {
                           ),
                         ),
                       ),
-                      Expanded(
-                          child: ReusableHomeCard(
-                        color: kFullGreen,
-                        radius: BorderRadius.zero,
-                        onPress: () =>
-                            Navigator.pushNamed(context, SettingsPage.id),
-                        cardChild: IconTextWidget(
-                          icon: Icons.settings,
-                          label: 'Setări',
-                        ),
-                      )),
+                      // Expanded(
+                      //     child: ReusableHomeCard(
+                      //   color: kFullGreen,
+                      //   radius: BorderRadius.zero,
+                      //   onPress: () =>
+                      //       Navigator.pushNamed(context, SettingsPage.id),
+                      //   cardChild: IconTextWidget(
+                      //     icon: Icons.settings,
+                      //     label: 'Setări',
+                      //   ),
+                      // )),
                     ],
                   ),
                 ),
