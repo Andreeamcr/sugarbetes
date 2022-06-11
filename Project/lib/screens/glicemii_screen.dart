@@ -26,6 +26,9 @@ class _GlicemiiPageState extends State<GlicemiiPage> {
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _textEditingController = TextEditingController();
   final List<ChartData> chartData = [
+    ChartData(DateTime.now().subtract(Duration(hours: 5)), 215),
+    ChartData(DateTime.now().subtract(Duration(hours: 2)), 94),
+    ChartData(DateTime.now().subtract(Duration(hours: 1, minutes: 30)), 110),
     ChartData(DateTime.now().subtract(Duration(hours: 1)), 105),
     ChartData(DateTime.now().subtract(Duration(minutes: 30)), 68),
   ];
@@ -224,44 +227,47 @@ class _GlicemiiPageState extends State<GlicemiiPage> {
                     ),
                   ),
                 ),
-                ListView(
-                  padding: EdgeInsets.only(top: 0, bottom: 10),
-                  children: [
-                    GlucoseTable(
-                      dataRow: [
-                        DataRow(cells: [
-                          DataCell(
-                            Text(
-                              '6:48',
-                              style: kToggleText,
-                            ),
-                          ),
-                          DataCell(
-                            Text(
-                              '68',
-                              style: kToggleText,
-                            ),
-                          ),
-                        ]),
-                        DataRow(cells: [
-                          DataCell(
-                            Text(
-                              '12:05',
-                              style: kToggleText,
-                            ),
-                          ),
-                          DataCell(
-                            Text(
-                              '95',
-                              style: kToggleText,
-                            ),
-                          ),
-                        ]),
-                      ],
-                    ),
-                  ],
-                  shrinkWrap: true,
-                ),
+
+
+
+                // ListView(
+                //   padding: EdgeInsets.only(top: 0, bottom: 10),
+                //   children: [
+                //     GlucoseTable(
+                //       dataRow: [
+                //         DataRow(cells: [
+                //           DataCell(
+                //             Text(
+                //               '6:48',
+                //               style: kToggleText,
+                //             ),
+                //           ),
+                //           DataCell(
+                //             Text(
+                //               '68',
+                //               style: kToggleText,
+                //             ),
+                //           ),
+                //         ]),
+                //         DataRow(cells: [
+                //           DataCell(
+                //             Text(
+                //               '12:05',
+                //               style: kToggleText,
+                //             ),
+                //           ),
+                //           DataCell(
+                //             Text(
+                //               '95',
+                //               style: kToggleText,
+                //             ),
+                //           ),
+                //         ]),
+                //       ],
+                //     ),
+                //   ],
+                //   shrinkWrap: true,
+                // ),
               ],
             ),
           ),
