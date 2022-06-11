@@ -14,7 +14,7 @@ class ReminderPage extends StatefulWidget {
 }
 
 class _ReminderPageState extends State<ReminderPage> {
-  TimeOfDay selectedTime = TimeOfDay.now();
+  TimeOfDay selectedTime = TimeOfDay(hour: 20, minute: 30);
   List<bool> _selections = List.generate(7, (_) => false);
   _selectTime(BuildContext context) async {
     final TimeOfDay? timeOfDay = await showTimePicker(
