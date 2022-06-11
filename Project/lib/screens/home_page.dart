@@ -126,8 +126,8 @@ class _HomePageState extends State<HomePage> {
                         child: ReusableHomeCard(
                           color: kGradient1,
                           gradient: LinearGradient(
-                            begin: Alignment.topRight,
-                            end: Alignment.bottomLeft,
+                            begin: Alignment.topCenter,
+                            end: Alignment.bottomCenter,
                             colors: [kFullNavyBlue, kFullGreen],
                           ),
                           radius: BorderRadius.zero,
