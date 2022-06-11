@@ -11,21 +11,25 @@ class FoodData {
     String fullURL = '$foodURL&ingr=$userInput';
     http.Response response = await http.get(Uri.parse(fullURL));
     print(response.statusCode);
-    // print(response.body);
     if(response.statusCode == 200){
-      var decodedData = jsonDecode(response.body);
-      var energy = decodedData['parsed'][0]['food']['nutrients']['ENERC_KCAL'];
-      var protein = decodedData['parsed'][0]['food']['nutrients']['PROCNT'];
-      var fat = decodedData['parsed'][0]['food']['nutrients']['FAT'];
-      var carb = decodedData['parsed'][0]['food']['nutrients']['CHOCDF'];
-      var fiber = decodedData['parsed'][0]['food']['nutrients']['FIBTG'];
+      try{
+        var decodedData = jsonDecode(response.body);
+        var energy = decodedData['parsed'][0]['food']['nutrients']['ENERC_KCAL'];
+        var protein = decodedData['parsed'][0]['food']['nutrients']['PROCNT'];
+        var fat = decodedData['parsed'][0]['food']['nutrients']['FAT'];
+        var carb = decodedData['parsed'][0]['food']['nutrients']['CHOCDF'];
+        var fiber = decodedData['parsed'][0]['food']['nutrients']['FIBTG'];
 
-      nutritionValues['energyValue'] = energy;
-      nutritionValues['proteinValue'] = protein;
-      nutritionValues['fatValue'] = fat;
-      nutritionValues['carbsValue'] = carb;
-      nutritionValues['fiberValue'] = fiber;
-      print(nutritionValues);
+        nutritionValues['energyValue'] = energy;
+        nutritionValues['proteinValue'] = protein;
+        nutritionValues['fatValue'] = fat;
+        nutritionValues['carbsValue'] = carb;
+        nutritionValues['fiberValue'] = fiber;
+        print(nutritionValues);
+      }
+      catch(e){
+        throw 'Can\'t find the element';
+      }
     }
     else{
       print(response.statusCode);

@@ -21,12 +21,6 @@ class _FoodPageState extends State<FoodPage> {
   final myController = TextEditingController();
 
   @override
-  void initState() {
-    FoodData().getFoodData('milk');
-    super.initState();
-  }
-
-  @override
   void dispose() {
     myController.dispose();
     super.dispose();
@@ -70,6 +64,9 @@ class _FoodPageState extends State<FoodPage> {
                           ),
                           style: kMathTextStyleBold,
                           controller: myController,
+                          onSubmitted: (value){
+                            FoodData().getFoodData(value);
+                          },
                         ),
                       );
                     } else {
