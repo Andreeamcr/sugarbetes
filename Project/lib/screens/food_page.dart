@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:sugarbetes/utils/background_design.dart';
 import 'package:sugarbetes/utils/constants.dart';
+import 'package:sugarbetes/services/foodService.dart';
 
 class FoodPage extends StatefulWidget {
   static String id = 'food';
@@ -17,6 +18,20 @@ class _FoodPageState extends State<FoodPage> {
     style: kMathTextStyleBold,
   );
   bool isVisible = true;
+  final myController = TextEditingController();
+
+  @override
+  void initState() {
+    FoodData().getFoodData('milk');
+    super.initState();
+  }
+
+  @override
+  void dispose() {
+    myController.dispose();
+    super.dispose();
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -41,7 +56,7 @@ class _FoodPageState extends State<FoodPage> {
                     isVisible = false;
                     if (customIcon.icon == Icons.search) {
                       customIcon = const Icon(Icons.cancel);
-                      customSearchBar = const ListTile(
+                      customSearchBar = ListTile(
                         leading: Icon(
                           Icons.search,
                           color: Colors.black,
@@ -54,6 +69,7 @@ class _FoodPageState extends State<FoodPage> {
                             border: InputBorder.none,
                           ),
                           style: kMathTextStyleBold,
+                          controller: myController,
                         ),
                       );
                     } else {
@@ -91,6 +107,7 @@ class _FoodPageState extends State<FoodPage> {
                   ),
                   visible: isVisible,
                 ),
+                Text(myController.text),
               ],
             ),
           ),
