@@ -1,11 +1,12 @@
 import 'dart:async';
+import 'dart:io';
 
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:sugarbetes/screens/settings_screen.dart';
 import 'package:sugarbetes/utils/background_design.dart';
 import 'package:sugarbetes/utils/constants.dart';
-import 'package:sugarbetes/components/glucose_table.dart';
+import 'package:sugarbetes/services/glucoseService.dart';
 import 'package:syncfusion_flutter_charts/charts.dart';
 import 'package:sugarbetes/components/chart_data.dart';
 import 'package:intl/intl.dart';
@@ -23,15 +24,61 @@ class _GlicemiiPageState extends State<GlicemiiPage> {
     color: kFullGreen,
     size: 30,
   );
+  GlucoseService _service = GlucoseService();
+
   final GlobalKey<FormState> _formKey = GlobalKey<FormState>();
   final TextEditingController _textEditingController = TextEditingController();
-  final List<ChartData> chartData = [
-    ChartData(DateTime.now().subtract(Duration(hours: 5)), 215),
-    ChartData(DateTime.now().subtract(Duration(hours: 2)), 94),
-    ChartData(DateTime.now().subtract(Duration(hours: 1, minutes: 30)), 110),
-    ChartData(DateTime.now().subtract(Duration(hours: 1)), 105),
-    ChartData(DateTime.now().subtract(Duration(minutes: 30)), 68),
+   TextEditingController _c = TextEditingController();
+
+  @override
+  void initState() {
+    _c = TextEditingController();
+    _c.text = DateTime.now().hour.toString();
+    _populateChartData();
+    super.initState();
+  }
+
+  List<ChartData> chartData = [
+    // ChartData(DateTime.now().subtract(Duration(hours: 9)), 160),
+    // ChartData(DateTime.now().subtract(Duration(hours: 8)), 170),
+    // ChartData(DateTime.now().subtract(Duration(hours: 7)), 195),
+    // ChartData(DateTime.now().subtract(Duration(hours: 6)), 200),
+    // ChartData(DateTime.now().subtract(Duration(hours: 5)), 215),
+    // ChartData(DateTime.now().subtract(Duration(hours: 2)), 94),
+    // ChartData(DateTime.now().subtract(Duration(hours: 1, minutes: 30)), 110),
+    // ChartData(DateTime.now().subtract(Duration(hours: 1)), 105),
+    // ChartData(DateTime.now().subtract(Duration(minutes: 30)), 68),
   ];
+
+  _populateChartData() {
+    chartData = [];
+    glucoseValues.forEach((key, value) {
+      var now = _service.calculateSpaceGrid();
+      var deltaDay = DateTime.now().day - now.day;
+        for(var i = 0; i < value.length; i++)
+        {
+          print("Now.Day: " + now.day.toString() + " |key: " + key.toString() + "| delta: " + deltaDay.toString());
+          var x = DateTime(now.year, now.month, now.day, i, 0,0);
+
+          if (deltaDay == 0) {
+            if(i < now.hour && key == 0) {
+            print("000000000000Now.Hour: " + now.hour.toString() + "|i.hour" + i.toString());
+            chartData.add(ChartData(x, value[i].toDouble()));
+            }
+          }
+          else {
+            if((now.hour - x.hour).abs() <= 10 && deltaDay == key) {
+              print("~~~~~~~~~~Now.Hour: " + now.hour.toString() + "|x.hour" + x.hour.toString());
+              chartData.add(ChartData(x, value[i].toDouble()));
+            }
+          }
+        }
+    });
+    chartData.forEach((element) {
+      print("Date: " + element.x.toString() + " | value: " +element.y.toString());
+    });
+  }
+
 
   Future<void> showInformationDialog(BuildContext context) async {
     return await showDialog(
@@ -108,8 +155,9 @@ class _GlicemiiPageState extends State<GlicemiiPage> {
                   height: height * 0.11,
                 ),
                 Padding(
-                  padding: EdgeInsets.all(height*0.05),
-                  child: Text("Bun venit în evidența glicemiilor!",style: kMathTextStyleBold,),
+                  padding: EdgeInsets.all(height*0.08),
+                  child: Text("Bun venit în evidența glicemiilor!",style: kMathTextStyleBold,
+                  textAlign: TextAlign.center,),
                 ),
                 // Row(
                 //   children: [
@@ -145,6 +193,54 @@ class _GlicemiiPageState extends State<GlicemiiPage> {
                 //   ],
                 //   mainAxisAlignment: MainAxisAlignment.start,
                 // ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: [
+                      Container(
+                        decoration: BoxDecoration(
+                            color: Colors.white.withOpacity(0.3),
+                            borderRadius: BorderRadius.circular(10)
+                        ),
+                        margin: EdgeInsets.only(left: width * 0.1, right: width* 0.05
+                        ),
+                        padding: EdgeInsets.only(top: height * 0.015, left: width * 0.05),
+                        child: androidDropdown(),
+                      ),
+                      SizedBox(
+                        width: width * 0.25,
+                        child: TextFormField(
+                          controller: _c,
+                          validator: (value) {
+                            if(value != null) {
+
+                            }
+                          },
+                          keyboardType: TextInputType.number,
+                          textAlign: TextAlign.center,
+                        //  initialValue: _service.getCurrentHour().toString(),
+                          textAlignVertical: TextAlignVertical.center,
+                          decoration: InputDecoration(
+                            labelText: 'Ora',
+                            labelStyle: kMathTextStyleBold,
+                            floatingLabelAlignment: FloatingLabelAlignment.center,
+                            fillColor: Colors.black,
+                            border: OutlineInputBorder(
+                            ),
+
+                          ),
+                          onFieldSubmitted: (value){
+                            setState(() {
+                              _service.setCurrentHour(int.parse(value));
+                              _populateChartData();
+                            });
+                          },
+                        )
+                      ),
+                  ],
+                ),
+
+
+
                 Padding(
                   padding: EdgeInsets.only(top: height * 0.02),
                   child: Container(
@@ -153,14 +249,16 @@ class _GlicemiiPageState extends State<GlicemiiPage> {
                         majorGridLines:
                             MajorGridLines(color: Colors.transparent),
                         edgeLabelPlacement: EdgeLabelPlacement.shift,
-                        minimum: DateTime.now().subtract(
-                            Duration(hours: 8, minutes: 59, seconds: 59)),
+                        minimum: _service.calculateSpaceGrid()
+                                         .subtract(const Duration(hours: 8, minutes: 59, seconds: 59)),
                         intervalType: DateTimeIntervalType.hours,
                         desiredIntervals: 1,
                         interval: 1,
-                        maximum: DateTime.now().add(
+                        maximum: _service.calculateSpaceGrid()
+                                         .add(const Duration(hours: 8, minutes: 59, seconds: 59)),
+                        /*DateTime.now().add(
                           Duration(hours: 8, minutes: 59, seconds: 59),
-                        ),
+                        ),*/
                       ),
                       series: <CartesianSeries>[
                         SplineSeries<ChartData, DateTime>(
@@ -229,45 +327,13 @@ class _GlicemiiPageState extends State<GlicemiiPage> {
                 ),
 
 
-
-                // ListView(
-                //   padding: EdgeInsets.only(top: 0, bottom: 10),
-                //   children: [
-                //     GlucoseTable(
-                //       dataRow: [
-                //         DataRow(cells: [
-                //           DataCell(
-                //             Text(
-                //               '6:48',
-                //               style: kToggleText,
-                //             ),
-                //           ),
-                //           DataCell(
-                //             Text(
-                //               '68',
-                //               style: kToggleText,
-                //             ),
-                //           ),
-                //         ]),
-                //         DataRow(cells: [
-                //           DataCell(
-                //             Text(
-                //               '12:05',
-                //               style: kToggleText,
-                //             ),
-                //           ),
-                //           DataCell(
-                //             Text(
-                //               '95',
-                //               style: kToggleText,
-                //             ),
-                //           ),
-                //         ]),
-                //       ],
-                //     ),
-                //   ],
-                //   shrinkWrap: true,
-                // ),
+                ListView(
+                  padding: EdgeInsets.only(top: 0, bottom: 10),
+                  children: [
+                    _createDataTable()
+                    ],
+                  shrinkWrap: true,
+                ),
               ],
             ),
           ),
@@ -278,4 +344,60 @@ class _GlicemiiPageState extends State<GlicemiiPage> {
       ],
     );
   }
+
+  DataTable _createDataTable() {
+    return DataTable(columns: _createColumns(), rows: _createRows());
+  }
+
+  List<DataRow> _createRows() {
+    if(chartData.isEmpty) {
+      return List.empty();
+    }
+
+    return chartData.map((data) =>
+        DataRow(cells: [
+          DataCell(Text(DateFormat('yyyy-MM-dd - kk:mm').format(data.x))),
+          DataCell(Text(data.y.toString()))
+        ])
+    ).toList();
+  }
+
+  List<DataColumn> _createColumns() {
+    return [
+      DataColumn(label: Text('Data & ora', style: kMathTextStyleBold,)),
+      DataColumn(label: Text('Valoare (mg/dl)', style: kMathTextStyleBold,))
+    ];
+  }
+
+  DropdownButton<String> androidDropdown() {
+    List<DropdownMenuItem<String>> dropdownItems = [];
+    for (String zi in zile) {
+      var newItem = DropdownMenuItem(
+        child: Padding(
+          child: Text(zi),
+          padding: EdgeInsets.symmetric(horizontal: 25),
+        ),
+        value: zi,
+      );
+      dropdownItems.add(newItem);
+    }
+    return DropdownButton(
+      // dropdownColor: Colors.white.withOpacity(0.5),
+      items: dropdownItems,
+      value: _service.getCurrentDay(),
+      onChanged: (value) {
+        setState(() {
+            _service.setCurrentDay(value.toString());
+            if(value == zile[0]) {
+              print("Merge");
+              _c.text = DateTime.now().hour.toString();
+              _service.setCurrentHour(DateTime.now().hour);
+            }
+            _populateChartData();
+        });
+      },
+    );
+  }
+
 }
+
