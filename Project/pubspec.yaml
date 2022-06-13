@@ -57,6 +57,7 @@ flutter:
     - assets/svg/time_management.svg
     - assets/svg/database.svg
     - assets/svg/food.svg
+    - assets/images/notfound.png
 
   fonts:
     - family: IndieFlower

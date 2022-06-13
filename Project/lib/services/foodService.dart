@@ -20,11 +20,11 @@ class FoodData {
         var carb = decodedData['parsed'][0]['food']['nutrients']['CHOCDF'];
         var fiber = decodedData['parsed'][0]['food']['nutrients']['FIBTG'];
 
-        nutritionValues['energyValue'] = energy;
-        nutritionValues['proteinValue'] = protein;
-        nutritionValues['fatValue'] = fat;
-        nutritionValues['carbsValue'] = carb;
-        nutritionValues['fiberValue'] = fiber;
+        nutritionValues['Valoare energetică'] = energy;
+        nutritionValues['Proteine'] = protein;
+        nutritionValues['Grăsimi'] = fat;
+        nutritionValues['Carbohidrați'] = carb;
+        nutritionValues['Fibre'] = fiber;
         print(nutritionValues);
       }
       catch(e){

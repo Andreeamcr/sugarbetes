@@ -1,5 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:http/http.dart';
+import 'package:modal_progress_hud_nsn/modal_progress_hud_nsn.dart';
+import 'package:sugarbetes/components/glucose_table.dart';
 import 'package:sugarbetes/utils/background_design.dart';
 import 'package:sugarbetes/utils/constants.dart';
 import 'package:sugarbetes/services/foodService.dart';
@@ -26,6 +29,29 @@ class _FoodPageState extends State<FoodPage> {
     super.dispose();
   }
 
+  Map<String, double> getResult = {};
+  bool isWaiting = false;
+  bool isNotFound = false;
+  Future<Widget?> getData(String userInput) async {
+    isWaiting = true;
+    try {
+      var data = await FoodData().getFoodData(userInput);
+      isWaiting = false;
+      setState(() {
+        getResult = data;
+        isNotFound = false;
+      });
+    }
+    catch(e){
+      setState(() {
+        getResult = {};
+        isNotFound = true;
+      });
+      isWaiting = false;
+      print(e);
+    }
+  }
+
   @override
   Widget build(BuildContext context) {
     double width = MediaQuery.of(context).size.width;
@@ -47,7 +73,6 @@ class _FoodPageState extends State<FoodPage> {
                 icon: customIcon,
                 onPressed: () {
                   setState(() {
-                    isVisible = false;
                     if (customIcon.icon == Icons.search) {
                       customIcon = const Icon(Icons.cancel);
                       customSearchBar = ListTile(
@@ -64,8 +89,9 @@ class _FoodPageState extends State<FoodPage> {
                           ),
                           style: kMathTextStyleBold,
                           controller: myController,
-                          onSubmitted: (value){
-                            FoodData().getFoodData(value);
+                          onSubmitted: (value) {
+                            getData(value);
+                            isVisible = false;
                           },
                         ),
                       );
@@ -85,31 +111,101 @@ class _FoodPageState extends State<FoodPage> {
             backgroundColor: kFullNavyBlue,
           ),
           backgroundColor: Colors.transparent,
-          body: SingleChildScrollView(
-            child: Column(
-              children: [
-                Visibility(
-                  child: Align(
-                    alignment: Alignment.center,
-                    child: Padding(
-                      padding: EdgeInsets.only(top: height * 0.2),
-                      child: Container(
-                        child: SvgPicture.asset(
-                          'assets/svg/food.svg',
+          body: ModalProgressHUD(
+            inAsyncCall: isWaiting,
+            child: SingleChildScrollView(
+              child: Column(
+                children: [
+                  Visibility(
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Padding(
+                        padding: EdgeInsets.only(top: height * 0.2),
+                        child: Container(
+                          child: Text('Ce aliment doriți să căutați?', style: kWelcomeText,),
                         ),
-                        height: height * 0.3,
-                        width: width * 0.6,
                       ),
                     ),
+                    visible: isVisible,
                   ),
-                  visible: isVisible,
-                ),
-                Text(myController.text),
-              ],
+                  Visibility(
+                    child: Align(
+                      alignment: Alignment.center,
+                      child: Padding(
+                        padding: EdgeInsets.only(top: height * 0.1),
+                        child: Container(
+                          child: SvgPicture.asset(
+                            'assets/svg/food.svg',
+                          ),
+                          height: height * 0.3,
+                          width: width * 0.6,
+                        ),
+                      ),
+                    ),
+                    visible: isVisible,
+                  ),
+                  //Text(myController.text + getResult.toString()),
+                  Visibility(child: Padding(
+                    padding: EdgeInsets.only(top: height* 0.10,
+                    bottom: height * 0.02),
+                    child: Center(child: Text(!isNotFound ? myController.text : "Alimentul nu a fost găsit", style: kWelcomeText,)),
+                  ),
+                    visible: !isVisible,
+                  ),
+                  Visibility(child: Padding(
+                    padding: EdgeInsets.only(top: height * 0.10),
+                    child: Image.asset("assets/images/notfound.png", height: height * 0.30,),
+                  ),
+                    visible: isNotFound && !isVisible,
+                  ),
+                  Visibility(
+                    visible: !isVisible && !isNotFound,
+                    child: ListView( children: [
+                      _createDataTable()
+                      // DataTable(
+                      //   columns: [
+                      //     DataColumn(label: Text('Nutrien )),
+                      //     DataColumn(label: Text('coloana2')),
+                      //   ],
+                      //   rows: [DataRow(cells: [ DataCell(
+                      //     Text('celula')),
+                      //     DataCell(Text('abc'))]
+                      //   ),],
+                      // ),
+    ],
+                      shrinkWrap: true,
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
       ],
     );
+  }
+
+ DataTable _createDataTable() {
+    return DataTable(columns: _createColumns(), rows: _createRows());
+  }
+
+ List<DataRow> _createRows() {
+    if(getResult.isEmpty) {
+      return List.empty();
+    }
+
+    return getResult.keys.map((key) =>
+      DataRow(cells: [
+        DataCell(Text(key)),
+        DataCell(Text(getResult[key].toString()))
+      ])
+    ).toList();
+  }
+
+  List<DataColumn> _createColumns() {
+    return [
+      DataColumn(label: Text('Nutrienți', style: kMathTextStyleBold,)),
+      DataColumn(label: Text('Valori (100g)', style: kMathTextStyleBold,))
+    ];
   }
 }

@@ -31,17 +31,7 @@ class _SignUpPageState extends State<SignUpPage> {
   TextStyle? changedLabelColor;
   TextStyle? changedEmailLabelColor;
   String kEmailLabel = 'Introduceți adresa de email';
-  // @override
-  // void initState() {
-  //   super.initState();
-  //   Firebase.initializeApp().whenComplete(()
-  //   {
-  //     print("connection completed");
-  //     setState(() {
-  //
-  //     });
-  //   });
-  // }
+
   @override
   Widget build(BuildContext context) {
     double height = MediaQuery.of(context).size.height;
