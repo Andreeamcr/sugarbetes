@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:sugarbetes/components/reusable_button_welcome.dart';
 import 'package:sugarbetes/services/calculusService.dart';
 import 'package:sugarbetes/utils/background_design.dart';
 import 'package:sugarbetes/utils/constants.dart';
@@ -75,12 +76,16 @@ class _MathPageState extends State<MathPage> {
                 ),
                 Padding(
                   padding: EdgeInsets.all(height * 0.05),
-                  child: InkWell(
-                    child: Text(
+                  child: ReusableWelcomeButton(
+                    color: kFullNavyBlue,
+                    heigth_factor: 0.015,
+                    width_factor: 0.2,
+                    onPress: () => Navigator.pushNamed(context, MathFormulas.id),
+                    buttonChild: Text(
                       "Vezi formulele de calcul folosite",
-                      style: kHyperlinkTextStyle,
+                      style: kMathTextStyleBold,
+                      textAlign: TextAlign.center,
                     ),
-                    onTap: () => Navigator.pushNamed(context, MathFormulas.id),
                   ),
                 )
               ],

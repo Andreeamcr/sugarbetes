@@ -6,12 +6,12 @@ import 'package:sugarbetes/utils/constants.dart';
 
 class ReusableWelcomeButton extends StatelessWidget {
   ReusableWelcomeButton(
-      {required this.color, required this.onPress, required this.buttonChild, required this.width_factor, required this.heigth_factor});
+      {required this.color, required this.onPress, required this.buttonChild, this.width_factor, this.heigth_factor});
   final Color color;
   final VoidCallback onPress;
   final Widget buttonChild;
-  final double width_factor;
-  final double heigth_factor;
+  final double? width_factor;
+  final double? heigth_factor;
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class ReusableWelcomeButton extends StatelessWidget {
         primary: color,
         textStyle: kWelcomeText,
         elevation: 10,
-        padding: EdgeInsets.symmetric(horizontal: width * width_factor,vertical: height * heigth_factor),
+        padding: EdgeInsets.symmetric(horizontal: width * width_factor! ,vertical: height * heigth_factor!),
       ),
     );
   }
