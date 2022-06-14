@@ -32,7 +32,7 @@ class GlucoseService {
       return DateTime.now();
     }
     var day = DateTime.now().subtract(Duration(days: daysMapped[currentDay]!));
-    print("Ziua curenta este" + DateTime(day.year, day.month, day.day, currentHour, 0,0).toString());
+    // print("Ziua curenta este" + DateTime(day.year, day.month, day.day, currentHour, 0,0).toString());
     return DateTime(day.year, day.month, day.day, currentHour, 0,0);
   }
 

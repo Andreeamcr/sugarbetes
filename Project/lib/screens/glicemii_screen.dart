@@ -57,25 +57,25 @@ class _GlicemiiPageState extends State<GlicemiiPage> {
       var deltaDay = DateTime.now().day - now.day;
         for(var i = 0; i < value.length; i++)
         {
-          print("Now.Day: " + now.day.toString() + " |key: " + key.toString() + "| delta: " + deltaDay.toString());
+          // print("Now.Day: " + now.day.toString() + " |key: " + key.toString() + "| delta: " + deltaDay.toString());
           var x = DateTime(now.year, now.month, now.day, i, 0,0);
 
           if (deltaDay == 0) {
             if(i < now.hour && key == 0) {
-            print("000000000000Now.Hour: " + now.hour.toString() + "|i.hour" + i.toString());
+            // print("000000000000Now.Hour: " + now.hour.toString() + "|i.hour" + i.toString());
             chartData.add(ChartData(x, value[i].toDouble()));
             }
           }
           else {
             if((now.hour - x.hour).abs() <= 10 && deltaDay == key) {
-              print("~~~~~~~~~~Now.Hour: " + now.hour.toString() + "|x.hour" + x.hour.toString());
+              // print("~~~~~~~~~~Now.Hour: " + now.hour.toString() + "|x.hour" + x.hour.toString());
               chartData.add(ChartData(x, value[i].toDouble()));
             }
           }
         }
     });
     chartData.forEach((element) {
-      print("Date: " + element.x.toString() + " | value: " +element.y.toString());
+      // print("Date: " + element.x.toString() + " | value: " +element.y.toString());
     });
   }
 
@@ -281,13 +281,13 @@ class _GlicemiiPageState extends State<GlicemiiPage> {
                               MajorGridLines(color: Colors.transparent),
                           numberFormat: NumberFormat.compact(),
                           interval: 30,
-                          maximum: 250,
+                          maximum: 400,
                           minimum: 30,
                           edgeLabelPlacement: EdgeLabelPlacement.shift,
                           plotBands: <PlotBand>[
                             PlotBand(
                                 start: 180,
-                                end: 250,
+                                end: 400,
                                 color: kHighValue,
                                 opacity: 0.6),
                             PlotBand(
@@ -326,9 +326,8 @@ class _GlicemiiPageState extends State<GlicemiiPage> {
                   ),
                 ),
 
-
                 ListView(
-                  padding: EdgeInsets.only(top: 0, bottom: 10),
+                  padding: const EdgeInsets.only(top: 0, bottom: 10),
                   children: [
                     _createDataTable()
                     ],
