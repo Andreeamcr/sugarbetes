@@ -48,16 +48,15 @@ flutter:
   assets:
     - assets/
     - assets/images/logo.jpg
-    - assets/images/BloodSugar.jpg
     - assets/images/sugar.jpg
     - assets/images/user-profile.jpg
-    - assets/images/insulin_treatment.jpg
-    - assets/images/insulin_reminder.jpg
-    - assets/images/IMG_8830.jpg
     - assets/svg/time_management.svg
     - assets/svg/database.svg
     - assets/svg/food.svg
     - assets/images/notfound.png
+    - assets/images/logo_circle.png
+    - assets/images/profile_circle.png
+    - assets/images/insulin_circle.png
 
   fonts:
     - family: IndieFlower

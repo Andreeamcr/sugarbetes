@@ -46,7 +46,7 @@ class _WelcomePageState extends State<WelcomePage> {
               Expanded(
                 flex: 2,
                 child: MyCircleAvatar(
-                  imageUrl: 'assets/images/BloodSugar.jpg',
+                  imageUrl: 'assets/images/logo_circle.png',
                 ),
               ),
               Expanded(

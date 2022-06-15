@@ -85,7 +85,7 @@ class _InsulinPageState extends State<InsulinPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           MyCircleAvatar(
-                            imageUrl: 'assets/images/insulin_treatment.jpg',
+                            imageUrl: 'assets/images/insulin_circle.png',
                           ),
                           AnimatedOpacity(
                             duration: Duration(seconds: 0),
@@ -127,7 +127,8 @@ class _InsulinPageState extends State<InsulinPage> {
                               height: height * 0.02,
                             ),
                             MyFormField(
-                                inputLabel: 'Insulină rapidă: ${DatabaseService.getUserValue("rapidInsulinType")}',
+                                inputLabel:
+                                    'Insulină rapidă: ${DatabaseService.getUserValue("rapidInsulinType")}',
                                 icon: Icon(Icons.bloodtype),
                                 obscure: false,
                                 suggestions: false,
@@ -152,7 +153,8 @@ class _InsulinPageState extends State<InsulinPage> {
                                       "rapidInsulinQuantity", value.toString());
                                 }),
                             MyFormField(
-                                inputLabel: 'Insulină bazală: ${DatabaseService.getUserValue("baseInsulinType")}',
+                                inputLabel:
+                                    'Insulină bazală: ${DatabaseService.getUserValue("baseInsulinType")}',
                                 icon: Icon(Icons.bloodtype),
                                 obscure: false,
                                 suggestions: false,

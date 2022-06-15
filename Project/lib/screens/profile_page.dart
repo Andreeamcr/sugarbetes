@@ -62,7 +62,9 @@ class _ProfilePageState extends State<ProfilePage> {
     }
     return DropdownButton(
       items: dropdownItems,
-      value: DatabaseService.userInfo["activityLevel"] == '' ? dropdownItems[1].value : DatabaseService.userInfo["activityLevel"],
+      value: DatabaseService.userInfo["activityLevel"] == ''
+          ? dropdownItems[1].value
+          : DatabaseService.userInfo["activityLevel"],
       onChanged: (value) {
         setState(() {
           dbService.setValueInDatabase("activityLevel", value.toString());
@@ -71,10 +73,10 @@ class _ProfilePageState extends State<ProfilePage> {
     );
   }
 
-  String? getValueFromList( List<DropdownMenuItem<String>> list, String value) {
+  String? getValueFromList(List<DropdownMenuItem<String>> list, String value) {
     String? result = '';
     for (var element in list) {
-      if(element.value == value) {
+      if (element.value == value) {
         result = element.value;
       }
     }
@@ -144,7 +146,7 @@ class _ProfilePageState extends State<ProfilePage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           MyCircleAvatar(
-                            imageUrl: 'assets/images/IMG_8830.jpg',
+                            imageUrl: 'assets/images/profile_circle.png',
                           ),
                           AnimatedOpacity(
                             duration: Duration(seconds: 0),

@@ -64,7 +64,7 @@ class _SignUpPageState extends State<SignUpPage> {
                       mainAxisAlignment: MainAxisAlignment.center,
                       children: [
                         MyCircleAvatar(
-                          imageUrl: 'assets/images/BloodSugar.jpg',
+                          imageUrl: 'assets/images/logo_circle.png',
                         ),
                         SizedBox(
                           height: height * 0.03,

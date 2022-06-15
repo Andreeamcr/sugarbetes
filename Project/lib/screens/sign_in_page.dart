@@ -61,7 +61,7 @@ class _SignInPageState extends State<SignInPage> {
                         mainAxisAlignment: MainAxisAlignment.center,
                         children: [
                           MyCircleAvatar(
-                            imageUrl: 'assets/images/BloodSugar.jpg',
+                            imageUrl: 'assets/images/logo_circle.png',
                           ),
                           SizedBox(
                             height: height * 0.03,
@@ -136,7 +136,8 @@ class _SignInPageState extends State<SignInPage> {
                                       await _auth.signInWithEmailAndPassword(
                                           email: email, password: password);
                                   if (existingUser != null) {
-                                    DatabaseService dbService = DatabaseService();
+                                    DatabaseService dbService =
+                                        DatabaseService();
                                     dbService.getCurrentUserData(email);
                                     Navigator.pushNamed(context, HomePage.id);
                                   }

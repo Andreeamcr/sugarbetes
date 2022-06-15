@@ -1,6 +1,5 @@
+import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:sugarbetes/components/custom_clipper.dart';
-import 'package:sugarbetes/utils/constants.dart';
 
 class MyCircleAvatar extends StatelessWidget {
   MyCircleAvatar({required this.imageUrl});
@@ -11,17 +10,8 @@ class MyCircleAvatar extends StatelessWidget {
     double height = MediaQuery.of(context).size.height;
     double width = MediaQuery.of(context).size.width;
     return CircleAvatar(
-      child: ClipOval(
-        clipper: MyClipper(),
-        child: Image.asset(
-          imageUrl,
-          height: height * 0.22,
-          width: width * 0.4,
-          fit: BoxFit.cover,
-        ),
-      ),
       radius: height * 0.11,
-      backgroundColor: kFullNavyBlue,
+      child: Image.asset(imageUrl),
     );
   }
 }
