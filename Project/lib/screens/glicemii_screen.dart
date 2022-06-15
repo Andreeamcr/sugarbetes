@@ -326,12 +326,15 @@ class _GlicemiiPageState extends State<GlicemiiPage> {
                   ),
                 ),
 
-                ListView(
-                  padding: const EdgeInsets.only(top: 0, bottom: 10),
-                  children: [
-                    _createDataTable()
-                    ],
-                  shrinkWrap: true,
+                Padding(
+                  padding: const EdgeInsets.symmetric(horizontal: 15.0),
+                  child: ListView(
+                      padding: const EdgeInsets.only(top: 0, bottom: 10),
+                      children: [
+                        _createDataTable()
+                        ],
+                      shrinkWrap: true,
+                    ),
                 ),
               ],
             ),
